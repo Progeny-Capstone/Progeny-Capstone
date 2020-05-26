@@ -1,8 +1,10 @@
-package com.progeny.progeny.repositories;
+package com.progeny.repositories;
 
-import com.progeny.progeny.model.User;
+import com.progeny.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByUsername(String username);
 }

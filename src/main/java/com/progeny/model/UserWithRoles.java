@@ -1,4 +1,4 @@
-package com.progeny.progeny.model;
+package com.progeny.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
