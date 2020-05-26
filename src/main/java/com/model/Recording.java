@@ -1,4 +1,4 @@
-package com.progeny.model;
+package com.model;
 
 public class Recording {
 }

@@ -1,4 +1,4 @@
-package com.progeny.model;
+package com.model;
 
 import javax.persistence.*;
 
@@ -16,7 +16,7 @@ public class User {
     @Column(nullable = false, length = 45)
     private String lastName;
 
-    @Column(nullable = false, length = 60)
+    @Column(nullable = false, length = 60, unique = true)
     private String email;
 
     @Column(nullable = false, length = 60)
@@ -34,12 +34,15 @@ public class User {
     @Column(nullable = false, columnDefinition = "boolean default false")
     private Boolean isAdmin;
 
+    @Column(nullable = false, length = 50, unique = true)
+    private String username;
 
     public User(){}
 
 
-    public User(long id, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, Boolean isAdmin) {
+    public User(long id, String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, Boolean isAdmin) {
         this.id = id;
+        this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -50,7 +53,8 @@ public class User {
         this.isAdmin = isAdmin;
     }
 
-    public User(String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, Boolean isAdmin) {
+    public User(String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, Boolean isAdmin) {
+        this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
