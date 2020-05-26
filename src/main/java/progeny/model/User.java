@@ -1,9 +1,9 @@
-package com.model;
+package progeny.model;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -38,6 +38,14 @@ public class User {
     private String username;
 
     public User(){}
+
+    public User(User copy){
+        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
+
+    }
 
 
     public User(long id, String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, Boolean isAdmin) {
@@ -135,5 +143,13 @@ public class User {
 
     public void setAdmin(Boolean admin) {
         isAdmin = admin;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

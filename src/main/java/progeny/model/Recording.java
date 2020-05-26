@@ -1,4 +1,4 @@
-package com.model;
+package progeny.model;
 
 public class Recording {
 }
