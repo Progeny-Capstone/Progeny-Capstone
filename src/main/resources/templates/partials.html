@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:fragment="head">
+
+    <meta charset="UTF-8">
+    <title>Progeny</title>
+
+    <!--  CUSTOM CSS  -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/nav.css}">
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Roboto&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<nav th:fragment="navbar">
+    <ul class="main-nav">
+        <li class="left"><a href="index.html">Progeny</a></li>
+        <li><a href="#">Features</a></li>
+        <li><a href="#">Stories</a></li>
+        <li><a href="#">About</a></li>
+
+        <li sec:authorize="isAnonymous()"><a href="/sign-up">Sign-Up</a></li>
+        <li sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
+
+        <li sec:authorize="isAuthenticated()">
+            <li><a href="#">Profile</a></li>
+            <form th:action="@{/logout}" method="POST">
+                <button type="submit">Logout</button>
+            </form>
+        </li>
+    </ul>
+</nav>
+
+<!--------FOOTER NAV-------->
+<footer th:fragment="footer" class="section">
+    <nav class="footer-nav">
+        <ul class="nav-left">
+            <li><a href="index.html">LOGO</a></li>
+            <li><a href="https://github.com/Progeny-Capstone">Github</a></li>
+        </ul>
+    </nav>
+</footer>
+
+</body>
+</html>
