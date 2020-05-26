@@ -1,14 +1,17 @@
-package com.model;
+package com.progeny.model;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(nullable = false, length = 50, unique = true)
+    private String username;
 
     @Column(nullable = false, length = 45)
     private String firstName;
@@ -31,16 +34,30 @@ public class User {
     @Column(columnDefinition = "text")
     private String bio;
 
-    @Column(nullable = false, columnDefinition = "boolean default false")
-    private Boolean isAdmin;
+    @Column(nullable =false, columnDefinition = "false")
+    private boolean isAdmin;
 
-    @Column(nullable = false, length = 50, unique = true)
-    private String username;
+
 
     public User(){}
 
+    public User(User copy){
+        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        username = copy.username;
+        firstName = copy.firstName;
+        lastName = copy.lastName;
+        email = copy.email;
+        password = copy.password;
+        profileImageUrl = copy.profileImageUrl;
+        location = copy.location;
+        bio = copy.bio;
+        isAdmin = copy.isAdmin;
 
-    public User(long id, String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, Boolean isAdmin) {
+
+    }
+
+
+    public User(long id, String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, boolean isAdmin) {
         this.id = id;
         this.username = username;
         this.firstName = firstName;
@@ -53,7 +70,7 @@ public class User {
         this.isAdmin = isAdmin;
     }
 
-    public User(String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, Boolean isAdmin) {
+    public User(String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, boolean isAdmin) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -129,11 +146,19 @@ public class User {
         this.bio = bio;
     }
 
-    public Boolean getAdmin() {
+    public boolean getAdmin() {
         return isAdmin;
     }
 
-    public void setAdmin(Boolean admin) {
-        isAdmin = admin;
+    public void setAdmin(boolean admin) {
+        this.isAdmin = admin;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
