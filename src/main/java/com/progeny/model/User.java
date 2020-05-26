@@ -34,7 +34,7 @@ public class User {
     @Column(columnDefinition = "text")
     private String bio;
 
-    @Column(nullable =false, columnDefinition = "false")
+    @Column(nullable =false, columnDefinition = "boolean default false")
     private boolean isAdmin;
 
 
