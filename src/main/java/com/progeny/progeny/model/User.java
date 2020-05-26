@@ -1,4 +1,4 @@
-package progeny.model;
+package com.progeny.progeny.model;
 
 import javax.persistence.*;
 

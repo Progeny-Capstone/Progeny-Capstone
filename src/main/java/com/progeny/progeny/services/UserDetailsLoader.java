@@ -1,14 +1,16 @@
-package progeny.services;
+package com.progeny.progeny.services;
 
 
 
-import progeny.model.User;
-import progeny.model.UserWithRoles;
+import com.progeny.progeny.model.UserWithRoles;
+import com.progeny.progeny.repositories.UserRepository;
+import com.progeny.progeny.model.User;
+import com.progeny.progeny.model.UserWithRoles;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import progeny.repositories.UserRepository;
+import com.progeny.progeny.repositories.UserRepository;
 
 @Service
 public class UserDetailsLoader implements UserDetailsService {

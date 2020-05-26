@@ -1,8 +1,8 @@
-package progeny.controllers;
+package com.progeny.progeny.controllers;
 
 
-import progeny.model.User;
-import progeny.repositories.UserRepository;
+import com.progeny.progeny.model.User;
+import com.progeny.progeny.repositories.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

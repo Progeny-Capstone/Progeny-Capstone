@@ -1,6 +1,6 @@
-package progeny.repositories;
+package com.progeny.progeny.repositories;
 
-import progeny.model.User;
+import com.progeny.progeny.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {

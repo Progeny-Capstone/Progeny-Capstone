@@ -1,4 +1,4 @@
-package progeny;
+package com.progeny.progeny;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
