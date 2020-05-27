@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Top Nav</title>
+
+</head>
+<body>
+
+
+<!--------TOP NAVIGATION-------->
+<nav th:fragment="navbar">
+    <ul class="main-nav">
+
+        <li><a href="index.html">Progeny</a></li>
+        <li><a href="#">Features</a></li>
+        <li><a href="#">Stories</a></li>
+        <li><a href="#">About</a></li>
+
+        <!--------SHOW FOR VISITOR-------->
+        <li sec:authorize="isAnonymous()"><a href="/register">Sign-Up</a></li>
+        <li sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
+
+        <!--------SHOW FOR REGISTERED/LOGGED IN USER-------->
+        <li sec:authorize="isAuthenticated()">
+            <li><a href="#">Profile</a></li>
+            <form th:action="@{/logout}" method="POST"> <!-- form to get submit to be post method -->
+                <button type="submit">Logout</button>
+            </form>
+        </li>
+
+    </ul>
+</nav>
+
+</body>
+</html>
