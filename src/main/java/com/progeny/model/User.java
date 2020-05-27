@@ -1,6 +1,7 @@
 package com.progeny.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -52,6 +53,21 @@ public class User {
     // 10. Determine if the user has admin privileges (true or false, 0 or 1)
     @Column(nullable =false, columnDefinition = "boolean default false")
     private boolean isAdmin;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Recording> recordings;
+
+
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="users_friends",
+            joinColumns={@JoinColumn(name="user_id1")},
+            inverseJoinColumns={@JoinColumn(name="user_id2")}
+    )
+    private List<User> friendList;
+
+
 
 
     // ---------- CONSTRUCTOR METHOD(S) -----------
