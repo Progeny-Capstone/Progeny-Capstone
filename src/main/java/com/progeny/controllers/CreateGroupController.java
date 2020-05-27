@@ -8,7 +8,7 @@ public class CreateGroupController {
 
     @GetMapping("/group/create")
     public String index() {
-        return "createGroup";
+        return "groups/createGroup";
     }
 
 }

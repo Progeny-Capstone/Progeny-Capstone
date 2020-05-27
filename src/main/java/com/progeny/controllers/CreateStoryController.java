@@ -8,7 +8,7 @@ public class CreateStoryController {
 
     @GetMapping("/story/create")
     public String index() {
-        return "createstory";
+        return "stories/createStory";
     }
 
 }

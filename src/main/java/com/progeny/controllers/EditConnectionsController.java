@@ -8,7 +8,7 @@ public class EditConnectionsController {
 
     @GetMapping("/connections/edit")
     public String index() {
-        return "editConnections";
+        return "users/editConnections";
     }
 
 }

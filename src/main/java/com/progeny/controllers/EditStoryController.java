@@ -8,7 +8,7 @@ public class EditStoryController {
 
     @GetMapping("/story/edit")
     public String index() {
-        return "editstory";
+        return "stories/editStory";
     }
 
 }

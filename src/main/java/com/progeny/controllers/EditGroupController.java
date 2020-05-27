@@ -8,7 +8,7 @@ public class EditGroupController {
 
     @GetMapping("/group/edit")
     public String index() {
-        return "editGroup";
+        return "groups/editGroup";
     }
 
 }

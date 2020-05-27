@@ -8,7 +8,7 @@ public class ShowStoryController {
 
     @GetMapping("/story")
     public String index() {
-        return "showstory";
+        return "stories/showStory";
     }
 
 }

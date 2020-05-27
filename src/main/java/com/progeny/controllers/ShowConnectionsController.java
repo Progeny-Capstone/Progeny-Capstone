@@ -8,7 +8,7 @@ public class ShowConnectionsController {
 
     @GetMapping("/connections")
     public String index() {
-        return "showConnections";
+        return "users/showConnections";
     }
 
 }
