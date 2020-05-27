@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="partials/head :: head">
     <meta charset="UTF-8">
     <title>Progeny</title>
 </head>
 <body>
 
-<h1>This is the INDEX :)</h1>
+<!---------- TOP NAVIGATION BAR ---------->
+<nav th:replace="partials/topnav :: navbar"></nav>
+
+<!---------- MAIN CONTAINER ---------->
+<article class="main-container">
+
+    <!---------- SECTION ---------->
+    <section class="section-container">
+        <h1>This is the INDEX :)</h1>
+
+    </section>
+</article>
+
+
+<!---------- FOOTER ---------->
+<nav th:replace="partials/footer :: footer"></nav>
+
 
 </body>
 </html>

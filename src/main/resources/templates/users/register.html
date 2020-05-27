@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials :: head">
+<head th:replace="partials/head :: head">
     <meta charset="UTF-8">
     <title>register</title>
 </head>
 <body>
+
+<!---------- TOP NAVIGATION BAR ---------->
+<nav th:replace="partials/topnav :: navbar"></nav>
 
 <!---------- Main Container ---------->
 <article class="main-container">
@@ -16,7 +19,7 @@
         <h1 class="section-header">Create an account</h1>
 
         <!---------- CREATE ACCOUNT FORM ---------->
-        <form th:action="@{/sign-up}" method="POST" th:object="${user}">
+        <form th:action="@{/register}" method="POST" th:object="${user}">
             <label for="username">Username</label>
             <input id="username" th:field="*{username}"/>
 
@@ -36,7 +39,7 @@
 </article>
 
 <!---------- FOOTER ---------->
-<nav th:replace="partials :: footer"></nav>
+<nav th:replace="partials/footer :: footer"></nav>
 
 </body>
 </html>

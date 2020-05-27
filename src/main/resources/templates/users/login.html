@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="head :: head">
+<head th:replace="partials/head :: head">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 
-<nav th:replace="topnav :: navbar"></nav>
+<!---------- TOP NAVIGATION BAR ---------->
+<nav th:replace="partials/topnav :: navbar"></nav>
 
 <!---------- MAIN CONTAINER ---------->
 <article class="main-container">
@@ -48,7 +49,7 @@
 
 
 <!---------- FOOTER ---------->
-<nav th:replace="footer :: footer"></nav>
+<nav th:replace="partials/footer :: footer"></nav>
 
 </body>
 </html>
