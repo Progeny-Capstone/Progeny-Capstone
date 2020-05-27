@@ -13,17 +13,27 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class UserController {
 
+    // --------- INITIALIZE ------------
     private UserRepository users;
     private PasswordEncoder passwordEncoder;
+
+
+    // ------------ CONSTRUCTOR METHOD ---------------
+    // --------- AKA DEPENDENCY INJECTION ------------
     public UserController(UserRepository users, PasswordEncoder passwordEncoder) {
         this.users = users;
         this.passwordEncoder = passwordEncoder;
     }
+
+
+    // --------- CREAT USER (GET) ------------
     @GetMapping("/register")
     public String showSignupForm(Model model){
         model.addAttribute("user", new User());
         return "/users/register";
     }
+
+    // --------- CREAT USER (POST)------------
     @PostMapping("/register")
     public String saveUser(@ModelAttribute User user){
         String hash = passwordEncoder.encode(user.getPassword());
