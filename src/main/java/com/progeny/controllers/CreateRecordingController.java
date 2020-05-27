@@ -9,7 +9,7 @@ public class CreateRecordingController {
 
     @GetMapping("/recording/create")
     public String index() {
-        return "createRecording";
+        return "recordings/createRecording";
     }
 
 }

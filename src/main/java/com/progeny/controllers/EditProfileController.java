@@ -8,7 +8,7 @@ public class EditProfileController {
 
     @GetMapping("/profile/edit")
     public String index() {
-        return "editProfile";
+        return "users/editProfile";
     }
 
 }

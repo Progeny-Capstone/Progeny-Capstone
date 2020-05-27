@@ -8,7 +8,7 @@ public class ShowGroupController {
 
     @GetMapping("/group/show")
     public String index() {
-        return "showGroup";
+        return "groups/showGroup";
     }
 
 }

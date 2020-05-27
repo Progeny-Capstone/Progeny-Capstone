@@ -8,7 +8,7 @@ public class EditRecordingController {
 
     @GetMapping("/recording/edit")
     public String index() {
-        return "editConnections";
+        return "recordings/editRecording";
     }
 
 }

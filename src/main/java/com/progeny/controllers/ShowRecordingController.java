@@ -8,7 +8,7 @@ public class ShowRecordingController {
 
     @GetMapping("/recording/show")
     public String index() {
-        return "showRecording";
+        return "recordings/showRecording";
     }
 
 }
