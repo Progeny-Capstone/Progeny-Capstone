@@ -104,7 +104,7 @@ public class User {
 
 
 
-    // ---------- GET AND SET -----------
+    // ---------- GET AND SET METHODS -----------
     public long getId() {
         return id;
     }
