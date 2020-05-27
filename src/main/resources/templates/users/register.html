@@ -1,10 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>register</title>
 </head>
 <body>
+
+<!---------- TOP NAVIGATION BAR ---------->
+<nav th:replace="partials/topnav :: navbar"></nav>
+
+<!---------- Main Container ---------->
+<article class="main-container">
+
+    <!---------- CREATE ACCOUNT SECTION ---------->
+    <section class="section-container">
+
+        <!---------- CREATE ACCOUNT HEADER ---------->
+        <h1 class="section-header">Create an account</h1>
+
+        <!---------- CREATE ACCOUNT FORM ---------->
+        <form th:action="@{/register}" method="POST" th:object="${user}" class="form-label-group">
+
+            <!---------- SET FIRST NAME ---------->
+            <label for="firstName">First Name</label>
+            <input class="form-control" id="firstName" th:field="*{firstName}"/>
+
+            <!---------- SET LAST NAME ---------->
+            <label for="lastName">Last Name</label>
+            <input class="form-control" id="lastName" th:field="*{lastName}"/>
+
+            <!---------- SET USERNAME ---------->
+            <label for="username">Username</label>
+            <input class="form-control" id="username" th:field="*{username}"/>
+
+            <!---------- SET EMAIL ---------->
+            <label for="email">Email</label>
+            <input class="form-control" id="email" th:field="*{email}"/>
+
+            <!---------- SET PASSWORD ---------->
+            <label for="password">Password</label>
+            <input class="form-control" id="password" type="password" th:field="*{password}"/>
+
+            <!---------- SUBMIT FORM ---------->
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+        </form>
+
+    </section>
+</article>
+
+<!---------- FOOTER ---------->
+<nav th:replace="partials/footer :: footer"></nav>
+
+<!---------- SCRIPTS ---------->
+<script th:replace="partials/scripts :: scripts"></script>
 
 </body>
 </html>

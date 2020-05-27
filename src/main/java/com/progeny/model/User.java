@@ -6,42 +6,61 @@ import javax.persistence.*;
 @Table(name = "users")
 public class User {
 
+    // --------------------------------------------
+    // -------------------BEAN---------------------
+    // --------------------------------------------
+
+    // ---------- TABLE SETUP -----------
+
+    // 1. Create a primary key for the progeny_db table of users
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    // 2. A username that is unique and is required with a character limit of 50.
     @Column(nullable = false, length = 50, unique = true)
     private String username;
 
+    // 3. A user first name the is required with a character limit of 45
     @Column(nullable = false, length = 45)
     private String firstName;
 
+    // 4. A user last name the is required with a character limit of 45
     @Column(nullable = false, length = 45)
     private String lastName;
 
+    // 5. An email that is required and unique with a character limit of 60 (MAYBE HAVE NO CHARACTER LIMIT HERE?)
     @Column(nullable = false, length = 60, unique = true)
     private String email;
 
+    // 6. A password column that is required with a character limit of 60.
     @Column(nullable = false, length = 60)
     private String password;
 
+    // 7. A user profile picture url (FILE STACK)
     @Column
     private String profileImageUrl;
 
+    // 8. A user location (STRETCH: USE LOCATION DATA TYPE)
     @Column
     private String location;
 
+    // 9. A user bio with unlimited length. (WE REALLY SHOULD LIMIT THIS)
     @Column(columnDefinition = "text")
     private String bio;
 
+    // 10. Determine if the user has admin privileges (true or false, 0 or 1)
     @Column(nullable =false, columnDefinition = "boolean default false")
     private boolean isAdmin;
 
 
+    // ---------- CONSTRUCTOR METHOD(S) -----------
 
+    // ----- MEMORY SPACE CONSTRUCTOR ----
     public User(){}
 
-    public User(User copy){
+    // ----- COPY CONSTRUCTOR ----
+    public User(User copy){ //  It is used as an alternative to cloning an object
         id = copy.id; // This line is SUPER important! Many things won't work if it's absent
         username = copy.username;
         firstName = copy.firstName;
@@ -52,11 +71,10 @@ public class User {
         location = copy.location;
         bio = copy.bio;
         isAdmin = copy.isAdmin;
-
-
     }
+    //----------------------------
 
-
+    // ----- WITH ID CONSTRUCTOR ----
     public User(long id, String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, boolean isAdmin) {
         this.id = id;
         this.username = username;
@@ -70,6 +88,7 @@ public class User {
         this.isAdmin = isAdmin;
     }
 
+    // ----- WITHOUT ID CONSTRUCTOR ----
     public User(String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, boolean isAdmin) {
         this.username = username;
         this.firstName = firstName;
@@ -82,6 +101,10 @@ public class User {
         this.isAdmin = isAdmin;
     }
 
+
+
+
+    // ---------- GET AND SET METHODS -----------
     public long getId() {
         return id;
     }

@@ -1,10 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+
+<!---------- TOP NAVIGATION BAR ---------->
+<nav th:replace="partials/topnav :: navbar"></nav>
+
+<!---------- MAIN CONTAINER ---------->
+<article class="main-container">
+
+    <!---------- LOGIN SECTION ---------->
+    <section class="section-container">
+
+        <!---------- LOGIN HEADER ---------->
+        <h1 class="section-header">Log In</h1>
+
+        <!---------- ERROR: INCORRECT ---------->
+        <div th:if="${param.error}">
+            Invalid Username and Password.
+        </div>
+
+        <!---------- ALERT: LOGGED OUT ---------->
+        <div th:if="${param.logout}">
+            You have been logged out.
+        </div>
+
+        <!---------- LOGIN FORM ---------->
+        <form th:action="@{/login}" method="post" class="form-signin">
+
+            <!---------- LOGIN ---------->
+            <div class="form-label-group">
+                <label for="username" >Username</label>
+                <input class="form-control" id="username" name="username" type="text"/>
+            </div>
+
+            <!---------- PASSWORD ---------->
+            <div class="form-label-group">
+                <label for="password" >Password</label>
+                <input class="form-control" id="password" name="password" type="password"/>
+            </div>
+
+            <!---------- SUBMIT FORM ---------->
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+        </form>
+
+    </section>
+</article>
+
+
+<!---------- FOOTER ---------->
+<nav th:replace="partials/footer :: footer"></nav>
+
+<!---------- SCRIPTS ---------->
+<script th:replace="partials/scripts :: scripts"></script>
 
 </body>
 </html>
