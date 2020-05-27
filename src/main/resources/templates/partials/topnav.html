@@ -23,8 +23,9 @@
 
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
-
-            <li class="nav-item active"><a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a></li>
+            <li class="nav-item active"><a class="nav-link" href="#"><span class="sr-only">(current)</span></a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
             <li class="nav-item"><a class="nav-link" href="#">Features</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Stories</a></li>
             <li class="nav-item"><a class="nav-link" href="#">About</a></li>
@@ -35,10 +36,12 @@
 
             <!--------SHOW FOR REGISTERED/LOGGED IN USER-------->
             <li sec:authorize="isAuthenticated()">
-                <li class="nav-item"><a class="nav-link" href="#" sec:authorize="isAuthenticated()">Profile</a></li>
-                <form th:action="@{/logout}" method="POST" class="nav-item"> <!-- form to get submit to be post method -->
-                    <button class="btn btn-sm btn-outline-danger my-2 my-sm-0" type="submit" sec:authorize="isAuthenticated()">Logout</button>
-                </form>
+            <li class="nav-item"><a class="nav-link" href="#" sec:authorize="isAuthenticated()">Profile</a></li>
+            <form th:action="@{/logout}" method="POST" class="nav-item"> <!-- form to get submit to be post method -->
+                <button class="btn btn-sm btn-outline-danger my-2 my-sm-0" type="submit"
+                        sec:authorize="isAuthenticated()">Logout
+                </button>
+            </form>
             </li>
         </ul>
     </div>
