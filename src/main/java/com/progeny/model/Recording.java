@@ -24,14 +24,15 @@ public class Recording {
     @Column(nullable = false)
     private Timestamp timestamp;
 
-    @Column(nullable = false, name = "user_id")
-    private long userId;
-
     @Column(nullable = false, length = 45)
     private String title;
 
     @Column(nullable = false, name = "group_id")
     private long groupId;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 
 
@@ -46,7 +47,6 @@ public class Recording {
         id = copy.id;
         recordingUrl = copy.recordingUrl;
         timestamp = copy.timestamp;
-        userId = copy.userId;
         title = copy.title;
         groupId = copy.groupId;
     }
@@ -54,25 +54,32 @@ public class Recording {
 
 
     // ----- WITH ID CONSTRUCTOR ----
-    public Recording(long id, String recordingUrl, Timestamp timestamp, long userId, String title, long groupId) {
+    public Recording(long id, String recordingUrl, Timestamp timestamp, String title, User user, long groupId) {
         this.id = id;
         this.recordingUrl = recordingUrl;
         this.timestamp = timestamp;
-        this.userId = userId;
         this.title = title;
+        this.user =user;
         this.groupId = groupId;
     }
 
 
     // ----- WITHOUT ID CONSTRUCTOR ----
-    public Recording(String recordingUrl, Timestamp timestamp, long userId, String title, long groupId) {
+    public Recording(String recordingUrl, Timestamp timestamp, String title, User user, long groupId) {
         this.recordingUrl = recordingUrl;
         this.timestamp = timestamp;
-        this.userId = userId;
         this.title = title;
+        this.user = user;
         this.groupId = groupId;
     }
 
+    // ----- WITHOUT ID & USER CONSTRUCTOR ----
+    public Recording(String recordingUrl, Timestamp timestamp, String title, long groupId) {
+        this.recordingUrl = recordingUrl;
+        this.timestamp = timestamp;
+        this.title = title;
+        this.groupId = groupId;
+    }
 
     // ---------- GET AND SET METHODS -----------
 
@@ -101,13 +108,6 @@ public class Recording {
         this.timestamp = timestamp;
     }
 
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
 
     public String getTitle() {
         return title;
@@ -123,5 +123,14 @@ public class Recording {
 
     public void setGroupId(long groupId) {
         this.groupId = groupId;
+    }
+
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
