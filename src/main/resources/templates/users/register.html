@@ -19,20 +19,30 @@
         <h1 class="section-header">Create an account</h1>
 
         <!---------- CREATE ACCOUNT FORM ---------->
-        <form th:action="@{/register}" method="POST" th:object="${user}">
+        <form th:action="@{/register}" method="POST" th:object="${user}" class="form-label-group">
+
+            <!---------- SET FIRST NAME ---------->
+            <label for="firstName">First Name</label>
+            <input class="form-control" id="firstName" th:field="*{firstName}"/>
+
+            <!---------- SET LAST NAME ---------->
+            <label for="lastName">Last Name</label>
+            <input class="form-control" id="lastName" th:field="*{lastName}"/>
+
+            <!---------- SET USERNAME ---------->
             <label for="username">Username</label>
-            <input id="username" th:field="*{username}"/>
+            <input class="form-control" id="username" th:field="*{username}"/>
 
             <!---------- SET EMAIL ---------->
             <label for="email">Email</label>
-            <input id="email" th:field="*{email}"/>
+            <input class="form-control" id="email" th:field="*{email}"/>
 
             <!---------- SET PASSWORD ---------->
             <label for="password">Password</label>
-            <input id="password" type="password" th:field="*{password}"/>
+            <input class="form-control" id="password" type="password" th:field="*{password}"/>
 
             <!---------- SUBMIT FORM ---------->
-            <input value="Sign me up!" type="submit"/>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
         </form>
 
     </section>

@@ -29,18 +29,22 @@
         </div>
 
         <!---------- LOGIN FORM ---------->
-        <form th:action="@{/login}" method="post">
+        <form th:action="@{/login}" method="post" class="form-signin">
 
             <!---------- LOGIN ---------->
-            <label for="username">Username</label>
-            <input id="username" name="username" type="text"/>
+            <div class="form-label-group">
+                <label for="username" >Username</label>
+                <input class="form-control" id="username" name="username" type="text"/>
+            </div>
 
             <!---------- PASSWORD ---------->
-            <label for="password">Password</label>
-            <input id="password" name="password" type="password"/>
+            <div class="form-label-group">
+                <label for="password" >Password</label>
+                <input class="form-control" id="password" name="password" type="password"/>
+            </div>
 
             <!---------- SUBMIT FORM ---------->
-            <input type="submit" value="Log In"/>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 
         </form>
 
