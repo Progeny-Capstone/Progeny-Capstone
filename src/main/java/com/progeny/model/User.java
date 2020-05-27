@@ -45,8 +45,8 @@ public class User {
     @Column
     private String location;
 
-    // 9. A user bio with unlimited length. (WE REALLY SHOULD LIMIT THIS)
-    @Column(columnDefinition = "text")
+    // 9. A user bio with a character length of 120 characters
+    @Column(length = 120)
     private String bio;
 
     // 10. Determine if the user has admin privileges (true or false, 0 or 1)
