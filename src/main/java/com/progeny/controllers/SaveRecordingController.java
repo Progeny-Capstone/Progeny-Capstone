@@ -8,7 +8,7 @@ public class SaveRecordingController {
 
     @GetMapping("/recording/save")
     public String index() {
-        return "saveRecording";
+        return "recordings/saveRecording";
     }
 
 }
