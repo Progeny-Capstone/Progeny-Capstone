@@ -43,7 +43,6 @@ input[type="text"]:focus , input[type="password"]:focus{
     box-shadow: none;
 }
 
-
 /*------------- RECORD -------------*/
 
 #record {
@@ -82,10 +81,6 @@ input[type="text"]:focus , input[type="password"]:focus{
     border-radius: 50%;
     left: 100px;
     right: 100px;
-    position: relative;
-}
-h2 {
-    left: 100px;
     position: relative;
 }
 #recordedAudio {
