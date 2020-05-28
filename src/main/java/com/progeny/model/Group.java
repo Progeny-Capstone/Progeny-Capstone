@@ -1,6 +1,7 @@
 package com.progeny.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "groups")
@@ -22,6 +23,10 @@ public class Group {
 
     @Column(nullable = false, length = 120)
     private String description;
+
+
+    @ManyToMany(mappedBy = "groupList")
+    private List<User> users;
 
     // ---------- CONSTRUCTOR METHOD(S) -----------
 
