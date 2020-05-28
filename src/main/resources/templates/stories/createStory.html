@@ -11,8 +11,48 @@
 <!---------- Main Container ---------->
 <article class="main-container">
 
-    <!---------- CREATE ACCOUNT SECTION ---------->
+    <!---------- CREATE STORY SECTION ---------->
     <section class="section-container">
+
+        <!---------- CREATE ACCOUNT HEADER ---------->
+        <h1 class="section-header">Create an account</h1>
+
+        <!---------- CREATE STORY FORM ---------->
+        <form th:action="@{/story}" method="POST" th:object="${story}" class="form-label-group">
+
+            <!---------- SET BOOK TITLE ---------->
+            <label for="bookTitle">Book Title</label>
+            <input class="form-control" id="bookTitle" th:field="*{bookTitle}"/>
+
+            <!---------- SET AUTHOR FIRST NAME ---------->
+            <label for="firstName">Author's First Name</label>
+            <input class="form-control" id="firstName" th:field="*{authorFirstName}"/>
+
+            <!---------- SET AUTHOR LAST NAME ---------->
+            <label for="lastName">Author's Last Name</label>
+            <input class="form-control" id="lastName" th:field="*{authorLastName}"/>
+
+            <!---------- SET PUBLISHER ---------->
+            <label for="publisher">Publisher</label>
+            <input class="form-control" id="publisher" th:field="*{publisher}"/>
+
+            <!---------- SET PUBLISHED YEAR ---------->
+            <label for="publishedYear">Published Year</label>
+            <input class="form-control" id="publishedYear" th:field="*{publishedYear}"/>
+
+            <!---------- SET STORY FILE ---------->
+            <label for="storyFile">Story File</label>
+            <input class="form-control" id="storyFile" th:field="*{storyFile}"/>
+
+            <!---------- SET BOOK COVER IMAGE ---------->
+            <label for="bookImage">Book Image</label>
+            <input class="form-control" id="bookImage" th:field="*{bookImage}"/>
+
+
+            <!---------- SUBMIT FORM ---------->
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+        </form>
+
 
     </section>
 
