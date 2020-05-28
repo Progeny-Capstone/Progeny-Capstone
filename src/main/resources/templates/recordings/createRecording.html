@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/head :: head">
-    <meta charset="UTF-8">
-    <title>Progeny</title>
+<head th:insert="partials/head :: head('Progeny - Create Recording')">
+    <link rel="stylesheet" href="/record.css" type="text/css">
 </head>
 <body>
 
@@ -33,6 +32,8 @@
 
 <!---------- SCRIPTS ---------->
 <script th:replace="partials/scripts :: scripts"></script>
+
+<script src="/record.js"></script>
 
 
 </body>
