@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head('Progeny - Create Story')">
 
 </head>
-<body>
+<body sec:authorize="isAuthenticated()">
 
 <!---------- TOP NAVIGATION BAR ---------->
 <nav th:replace="partials/topnav :: navbar"></nav>
@@ -18,35 +18,35 @@
         <h1 class="section-header">Create an account</h1>
 
         <!---------- CREATE STORY FORM ---------->
-        <form th:action="@{/story}" method="POST" th:object="${story}" class="form-label-group">
+        <form th:action="@{/story/create}" method="POST" th:object="${story}" class="form-label-group">
 
             <!---------- SET BOOK TITLE ---------->
             <label for="bookTitle">Book Title</label>
-            <input class="form-control" id="bookTitle" th:field="*{bookTitle}"/>
+            <input class="form-control" id="bookTitle" th:field="*{bookTitle}" type="text"/>
 
             <!---------- SET AUTHOR FIRST NAME ---------->
             <label for="firstName">Author's First Name</label>
-            <input class="form-control" id="firstName" th:field="*{authorFirstName}"/>
+            <input class="form-control" id="firstName" th:field="*{authorFirstName}" type="text"/>
 
             <!---------- SET AUTHOR LAST NAME ---------->
             <label for="lastName">Author's Last Name</label>
-            <input class="form-control" id="lastName" th:field="*{authorLastName}"/>
+            <input class="form-control" id="lastName" th:field="*{authorLastName}" type="text"/>
 
             <!---------- SET PUBLISHER ---------->
             <label for="publisher">Publisher</label>
-            <input class="form-control" id="publisher" th:field="*{publisher}"/>
+            <input class="form-control" id="publisher" th:field="*{publisher}" type="text"/>
 
             <!---------- SET PUBLISHED YEAR ---------->
             <label for="publishedYear">Published Year</label>
-            <input class="form-control" id="publishedYear" th:field="*{publishedYear}"/>
+            <input class="form-control" id="publishedYear" th:field="*{publishedYear}" type="text"/>
 
             <!---------- SET STORY FILE ---------->
             <label for="storyFile">Story File</label>
-            <input class="form-control" id="storyFile" th:field="*{storyFile}"/>
+            <input class="form-control" id="storyFile" th:field="*{storyFile}" type="text"/>
 
             <!---------- SET BOOK COVER IMAGE ---------->
             <label for="bookImage">Book Image</label>
-            <input class="form-control" id="bookImage" th:field="*{bookImage}"/>
+            <input class="form-control" id="bookImage" th:field="*{bookImage}" type="text"/>
 
 
             <!---------- SUBMIT FORM ---------->
