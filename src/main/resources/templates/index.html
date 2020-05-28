@@ -29,11 +29,29 @@
 </article>
 
 
+<div class="container">
+
+    <h1>Hello! Create a new recording</h1>
+
+    <h2>Record</h2>
+    <p>
+        <button id=record></button>
+        <button id=stopRecord disabled>Stop</button>
+    </p>
+    <p>
+        <audio id=recordedAudio></audio>
+
+    </p>
+
+</div>
+
+
 <!---------- FOOTER ---------->
 <nav th:replace="partials/footer :: footer"></nav>
 
 <!---------- SCRIPTS ---------->
 <script th:replace="partials/scripts :: scripts"></script>
+<script th:src="@{record.js}"></script>
 
 </body>
 </html>
