@@ -1,6 +1,7 @@
 package com.progeny.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -41,6 +42,9 @@ public class Story {
 
     @Column(name = "cover_image")
     private String coverImageUrl;
+
+    @ManyToMany(mappedBy = "recordingList")
+    private List<Recording> recordings;
 
     // ---------- CONSTRUCTOR METHOD(S) -----------
 
