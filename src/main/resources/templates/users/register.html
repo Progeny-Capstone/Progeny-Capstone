@@ -23,23 +23,23 @@
 
             <!---------- SET FIRST NAME ---------->
             <label for="firstName">First Name</label>
-            <input class="form-control" id="firstName" th:field="*{firstName}"/>
+            <input class="form-control" id="firstName" th:field="*{firstName}" type="text"/>
 
             <!---------- SET LAST NAME ---------->
             <label for="lastName">Last Name</label>
-            <input class="form-control" id="lastName" th:field="*{lastName}"/>
+            <input class="form-control" id="lastName" th:field="*{lastName}" type="text"/>
 
             <!---------- SET USERNAME ---------->
             <label for="username">Username</label>
-            <input class="form-control" id="username" th:field="*{username}"/>
+            <input class="form-control" id="username" th:field="*{username}" type="text"/>
 
             <!---------- SET EMAIL ---------->
             <label for="email">Email</label>
-            <input class="form-control" id="email" th:field="*{email}"/>
+            <input class="form-control" id="email" th:field="*{email}" type="email"/>
 
             <!---------- SET PASSWORD ---------->
             <label for="password">Password</label>
-            <input class="form-control" id="password" type="password" th:field="*{password}"/>
+            <input class="form-control" id="password" th:field="*{password}" type="password"/>
 
             <!---------- SUBMIT FORM ---------->
             <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
