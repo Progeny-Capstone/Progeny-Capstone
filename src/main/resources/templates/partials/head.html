@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:fragment="head">
+<head th:fragment="head(title)">
 
     <meta charset="UTF-8">
-    <title>Progeny</title>
+    <title th:text="${title}"></title>
 
     <!-- BOOTSTRAP CSS -->
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">

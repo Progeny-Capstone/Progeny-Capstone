@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head('Progeny - Edit Profile')">
+
 </head>
 <body>
+
+<!---------- TOP NAVIGATION BAR ---------->
+<nav th:replace="partials/topnav :: navbar"></nav>
+
+<!---------- Main Container ---------->
+<article class="main-container">
+
+    <!---------- CREATE ACCOUNT SECTION ---------->
+    <section class="section-container">
+
+    </section>
+
+</article>
+
+
+<!---------- FOOTER ---------->
+<nav th:replace="partials/footer :: footer"></nav>
+
+<!---------- SCRIPTS ---------->
+<script th:replace="partials/scripts :: scripts"></script>
 
 </body>
 </html>

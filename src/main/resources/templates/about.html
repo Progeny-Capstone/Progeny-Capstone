@@ -1,18 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>About Progeny</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head('Progeny - About')">
+
 </head>
 <body>
 
-<h1>About page</h1>
 
-<ul>
-    <li>Taryn</li>
-    <li>Mitchel</li>
-    <li>Johnny</li>
-</ul>
+<!---------- TOP NAVIGATION BAR ---------->
+<nav th:replace="partials/topnav :: navbar"></nav>
+
+
+<!---------- MAIN CONTAINER ---------->
+<article class="main-container">
+
+    <!---------- SECTION ---------->
+    <section class="section-container">
+
+        <div class="row">
+            <div class="card">
+                <img src="" alt="A professional portrait of Mitchel Sandidge" class="card-img">
+                <h1 class="card-title">Mitchel Sandidge</h1>
+                <p class="card-body"></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="card">
+                <img src="" alt="A professional portrait of Taryn McKenzie" class="card-img">
+                <h1 class="card-title">Taryn McKenzie</h1>
+                <p class="card-body"></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="card">
+                <img src="" alt="A professional portrait of Johnny Delgado" class="card-img">
+                <h1 class="card-title">Johnny Delgado</h1>
+                <p class="card-body"></p>
+            </div>
+        </div>
+
+    </section>
+
+</article>
+
+<!---------- FOOTER ---------->
+<nav th:replace="partials/footer :: footer"></nav>
+
+<!---------- SCRIPTS ---------->
+<script th:replace="partials/scripts :: scripts"></script>
 
 </body>
 </html>
