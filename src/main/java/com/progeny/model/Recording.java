@@ -4,6 +4,7 @@ package com.progeny.model;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "recordings")
@@ -33,6 +34,14 @@ public class Recording {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="story_recordings",
+            joinColumns={@JoinColumn(name="recordings_id")},
+            inverseJoinColumns={@JoinColumn(name="stories_id")}
+    )
+    private List<Recording> recordingList;
 
 
 
