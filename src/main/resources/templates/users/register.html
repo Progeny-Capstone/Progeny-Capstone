@@ -19,7 +19,7 @@
         <h1 class="section-header">Create an account</h1>
 
         <!---------- CREATE ACCOUNT FORM ---------->
-        <form th:action="@{/register}" method="POST" th:object="${user}" class="form-label-group">
+        <form th:action="@{/register}" method="POST" th:object="${user}" class="form-register">
 
             <!---------- SET FIRST NAME ---------->
             <label for="firstName">First Name</label>
@@ -41,8 +41,12 @@
             <label for="password">Password</label>
             <input class="form-control" id="password" th:field="*{password}" type="password"/>
 
-            <!---------- SUBMIT FORM ---------->
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+            <div class="form-btn-group">
+                <!---------- NEED TO REGISTER LINK ---------->
+                <a href="/login" class="login-link"><em>Already have an account with us?</em></a>
+                <!---------- SUBMIT FORM ---------->
+                <button class="btn btn-sm btn-dark" type="submit">Register</button>
+            </div>
         </form>
 
     </section>
