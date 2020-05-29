@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head('Progeny - Profile')">
 
 </head>
-<body>
+<body sec:authorize="isAuthenticated()" >
 
 <!---------- TOP NAVIGATION BAR ---------->
 <nav th:replace="partials/topnav :: navbar"></nav>
@@ -13,6 +13,8 @@
 
     <!---------- CREATE ACCOUNT SECTION ---------->
     <section class="section-container">
+
+        <h2> Welcome back, <span th:text="${currentUser.getUsername()}"></span></h2>
 
     </section>
 
