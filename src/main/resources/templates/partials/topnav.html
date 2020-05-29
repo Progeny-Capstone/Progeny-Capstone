@@ -14,29 +14,29 @@
 
 <nav th:fragment="navbar" class="navbar navbar-expand-lg">
 
-    <a class="navbar-brand" href="/">Progeny</a>
+    <a class="navbar-brand text-dark" href="/">Progeny</a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active"><a class="nav-link" href="/"><span class="sr-only">(current)</span></a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li class="nav-item"><a class="nav-link" href="/features">Features</a></li>
-            <li class="nav-item"><a class="nav-link" href="/stories">Stories</a></li>
-            <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="/features">Features</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="/stories">Stories</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="/about">About</a></li>
 
             <!--------SHOW FOR VISITOR-------->
-            <li sec:authorize="isAnonymous()" class="nav-item"><a class="nav-link" href="/register">Register</a></li>
-            <li sec:authorize="isAnonymous()" class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+            <li sec:authorize="isAnonymous()" class="nav-item"><a class="nav-link text-dark" href="/register">Register</a></li>
+            <li sec:authorize="isAnonymous()" class="nav-item"><a class="nav-link text-dark" href="/login">Login</a></li>
 
             <!--------SHOW FOR REGISTERED/LOGGED IN USER-------->
             <li sec:authorize="isAuthenticated()">
-            <li class="nav-item"><a class="nav-link" href="/profile" sec:authorize="isAuthenticated()">Profile</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="/profile" sec:authorize="isAuthenticated()">Profile</a></li>
             <form th:action="@{/logout}" method="POST" class="nav-item"> <!-- form to get submit to be post method -->
                 <button class="btn btn-sm btn-outline-danger my-2 my-sm-0" type="submit"
                         sec:authorize="isAuthenticated()">Logout
