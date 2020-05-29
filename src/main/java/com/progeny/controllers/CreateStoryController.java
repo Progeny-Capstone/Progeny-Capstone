@@ -33,12 +33,15 @@ public class CreateStoryController {
         return "stories/createStory";
     }
 
-    // --------- CREATE STORY (POST)------------
+//    // --------- CREATE STORY (POST)------------
     @PostMapping("/story/create")
-    public String saveUser(@ModelAttribute Story story){
+    public String create(@ModelAttribute Story story) {
+
         stories.save(story);
-        return "redirect:/login";
+
+        return "redirect:/story";
     }
+
 
 
 }

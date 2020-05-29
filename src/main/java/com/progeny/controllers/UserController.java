@@ -3,6 +3,7 @@ package com.progeny.controllers;
 
 import com.progeny.model.User;
 import com.progeny.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,14 +27,18 @@ public class UserController {
     }
 
 
-    // --------- CREAT USER (GET) ------------
+    // --------- CREATE USER (GET) ------------
     @GetMapping("/register")
     public String showRegisterForm(Model model){
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+
         model.addAttribute("user", new User());
         return "users/register";
     }
 
-    // --------- CREAT USER (POST)------------
+    // --------- CREATE USER (POST)------------
     @PostMapping("/register")
     public String saveUser(@ModelAttribute User user){
         String hash = passwordEncoder.encode(user.getPassword());
