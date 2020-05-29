@@ -2,6 +2,7 @@ package com.progeny.controllers;
 
 import com.progeny.model.User;
 import com.progeny.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -21,15 +22,12 @@ public class ProfileController {
 
 
 
-    @GetMapping("/profile/{id}")
-    public String index(@PathVariable long id, Model model, ModelMap modelMap) {
+    @GetMapping("/profile")
+    public String index(Model model) {
 
-        model.addAttribute("currentUser", userRepo.getOne(id));
-        String currentName = userRepo.findById(id).getFirstName();
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-
-        modelMap.addAttribute("currentName", currentName);
-
+        model.addAttribute("currentUser", currentUser);
 
         return "users/profile";
     }
