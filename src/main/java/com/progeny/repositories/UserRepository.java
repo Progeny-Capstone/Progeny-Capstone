@@ -9,4 +9,5 @@ public interface UserRepository extends JpaRepository<User, Long> { // < What we
     // We will extend this class and define the type of objects it will be manipulating, as well as the data type of the entity's id.
 
     User findByUsername(String username);
+    User findById(long id);
 }
