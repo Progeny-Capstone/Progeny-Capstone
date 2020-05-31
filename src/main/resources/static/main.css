@@ -18,24 +18,21 @@ body{
     font-family: 'Roboto', sans-serif;
     background: var(--Light-color);
 }
-.section-container{
-    margin: 5% 10% 5% 10%;
-}
 
 /*------------- SECTION BASICS -------------*/
+a{
+    color: var(--coral-color);
+}
+.section-container{
+    margin: 10% 10% 5% 10%;
+    background: var(--Light-color);
+}
 .section-header{
     font-family: 'DM Serif Display', serif;
     text-align: center;
-
-
     font-size: calc(40px + (80 - 40) * ((100vw - 300px) / (1600 - 300)));
     /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
 
-}
-
-.section-container {
-    height: 100vh;
-    background: var(--Light-color);
 }
 
 /*------------- FORM -------------*/
@@ -83,6 +80,7 @@ input[type="text"]:focus , input[type="password"]:focus, input[type="email"]:foc
     text-align: center;
     background: transparent;
     border: none;
+    border-radius: 50%;
 }
 .card-img-top{
     object-fit: cover;
@@ -91,12 +89,12 @@ input[type="text"]:focus , input[type="password"]:focus, input[type="email"]:foc
     margin: 10%;
 }
 .card-title{
-    font-size: calc(14px + (25 - 14) * ((100vw - 300px) / (1600 - 300)));
+    font-size: calc(18px + (25 - 18) * ((100vw - 300px) / (1600 - 300)));
     /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
 
 }
 .card-subtitle{
-    font-size: calc(12px + (14 - 12) * ((100vw - 300px) / (1600 - 300)));
+    font-size: calc(14px + (16 - 14) * ((100vw - 300px) / (1600 - 300)));
     /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
 }
 .card-body{
