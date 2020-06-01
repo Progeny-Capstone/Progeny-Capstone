@@ -1,3 +1,35 @@
 /*-----------------------------------------*/
 /*--- THIS CSS IS FOR THE NAV BAR STYLE ---*/
 /*-----------------------------------------*/
+
+body{
+    font-family: 'Roboto', sans-serif;
+    background: var(--Light-color);
+    color: var(--navy-color);
+}
+
+a.navbar-brand{
+
+    margin: 0 0 0 10%;
+
+    color: var(--navy-color);
+    font-family: 'DM Serif Display', serif;
+    font-size: calc(20px + (30 - 20) * ((100vw - 300px) / (1600 - 300)));
+    /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
+
+}
+
+.navbar-expand-lg{
+    margin: 3% 10% 0 0;
+}
+a.nav-link {
+    color: var(--navy-color);
+    font-size: calc(15px + (18 - 15) * ((100vw - 300px) / (1600 - 300)));
+    /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
+    padding: 0 3%;
+}
+
+
+.navbar-toggler-icon{
+fill: var(--navy-color);
+}
