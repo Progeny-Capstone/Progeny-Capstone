@@ -3,7 +3,7 @@
 <head th:replace="partials/head :: head('Progeny - Profile')">
 
 </head>
-<body sec:authorize="isAuthenticated()" >
+<body sec:authorize="isAuthenticated()">
 
 <!---------- TOP NAVIGATION BAR ---------->
 <nav th:replace="partials/topnav :: navbar"></nav>
@@ -11,13 +11,51 @@
 <!---------- Main Container ---------->
 <article class="main-container">
 
-    <!---------- CREATE ACCOUNT SECTION ---------->
     <section class="section-container">
 
-        <h2> Welcome back, <span th:text="${currentUser.getFirstName()}"></span></h2>
+        <h1 class="section-header text-center"> Welcome back, <span th:text="${currentUser.getFirstName()}"></span></h1>
 
     </section>
 
+    <section class="section-container d-flex flex-row">
+        <!---------- USER ACCOUNT DETAILS ---------->
+        <section class="sub-section-container col-lg-6 col-md-12 d-flex flex-column">
+
+            <!---------- USER PROFILE IMAGE ---------->
+            <div class="profile-image-container">
+                <img src="/images/compressed_portrait_taryn.jpg" alt="Temporary image of Taryn">
+            </div>
+
+            <!---------- EDIT PROFILE LINK ---------->
+            <a href="#" class="text-right">Edit Profile</a>
+
+            <!---------- USER NAME ---------->
+            <h3 class="text-left"><span
+                    th:text="${currentUser.getFirstName()} + ' ' + ${currentUser.getLastName()}"></span></h3>
+
+            <!---------- USER LOCATION ---------->
+            <h5 class="text-left"><span th:text="${currentUser.getLocation()}"></span></h5>
+
+            <!---------- USER BIO ---------->
+            <p class="text-left"><span th:text="${currentUser.getBio()}"></span></p>
+
+
+        </section>
+
+        <!---------- USER RECORDINGS ---------->
+        <section class="sub-section-container col-lg-6 col-md-12 ">
+
+            <!---------- EDIT RECORDINGS ---------->
+            <a class="text-right" href="#">Edit Recordings</a>
+
+            <!---------- SHOW RECORDINGS ---------->
+            <div class="user-recordings card">
+                <h1 class="card-title text-left">This is the recording title</h1>
+                <p class="card-subtitle text-left">This is the recording timestamp (day, month, year)</p>
+                <p class="card-body text-left">This is the recording</p>
+            </div>
+        </section>
+    </section>
 </article>
 
 

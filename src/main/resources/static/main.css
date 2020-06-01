@@ -38,6 +38,16 @@ a{
     margin: 3% 0;
     width: 50%;
 }
+/*------------- PROFILE -------------*/
+.profile-image-container {
+    object-fit: cover;
+}
+.profile-image-container img {
+    vertical-align: middle;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+}
 
 /*------------- FORM -------------*/
 input[type="text"], input[type="password"], input[type="email"] {
