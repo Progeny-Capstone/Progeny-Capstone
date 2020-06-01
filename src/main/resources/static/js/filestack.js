@@ -1,18 +1,4 @@
 
-// -------------- PICKER --------------
-window.addEventListener('DOMContentLoaded', function () {
-    const apikey = fileStackKey;
-    const client = filestack.init(apikey);
-    const options = {
-        maxFiles: 20,
-        uploadInBackground: false,
-        onOpen: () => console.log('opened!'),
-        onUploadDone: (res) => console.log(res),
-    };
-    client.picker(options).open();
-});
-
-
 
 // -------------- FILESTACK --------------
 window.addEventListener('DOMContentLoaded', function () {
@@ -28,7 +14,12 @@ window.addEventListener('DOMContentLoaded', function () {
         maxFiles: 20,
         uploadInBackground: false,
         onUploadDone: (res) => console.log(res),
+
+
     };
+
+
+
 
     // -------------- FILE PICKER --------------
     const picker = client.picker(options);
@@ -42,3 +33,39 @@ window.addEventListener('DOMContentLoaded', function () {
     closeBtn.addEventListener('click', () => picker.close());
 
 });
+
+
+
+
+function updatePhotoForm(result) {
+    const fileData = result.filesUploaded[0];
+    photoInput.value = fileData.url; //this is the good part
+    console.log(fileData.url);
+    console.log(photoInput.value);
+};
+
+
+
+// -------------- FILESTACK IMG UPLOAD --------------
+// const client = filestack.init(fileStackKey);
+//
+// let options = {
+//     "displayMode": "inline",
+//     "container": ".picker-content",
+//     "maxFiles": 4,
+//     "accept": [
+//         ""
+//     ],
+//     "storeTo": {
+//         "container": "devportal-customers-assets",
+//         "path": "user-uploads/",
+//         "region": "us-east-1"
+//     },
+//     "fromSources": [
+//         "url"
+//     ],
+//     "uploadInBackground": false
+// };
+//
+// picker = this.client.picker(options);
+// picker.open();
