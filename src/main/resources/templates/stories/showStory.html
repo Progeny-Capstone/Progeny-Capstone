@@ -9,17 +9,17 @@
 <nav th:replace="partials/topnav :: navbar"></nav>
 
 <!---------- Main Container ---------->
-<div class="main-container d-flex">
+<div class="main-container">
 
-    <iframe style="width: 100%; height: 400px" class="bibi-frame" frameborder="0" scrolling="auto" allowfullscreen="true" src="https://www.codeup.com"></iframe>
+    <iframe style="width: 100%; height: 400px" class="bibi-frame" frameborder="0" scrolling="auto" allowfullscreen="true" src="../bibi/bibi/index.html"></iframe>
 
 <!--    <div class="story-frame justify-content-center">-->
 <!--        <iframe style='width:900px;height:500px' src='https://online.pubhtml5.com/ajug/lovg/' seamless='seamless'-->
 <!--                scrolling='no' frameborder='0' allowtransparency='true' allowfullscreen='true'></iframe>-->
 <!--    </div>-->
-    <section class="section-container">
-        <a href="https://progenystories.com/src/main/resources/bibi/bibi/?book=page-blanche-bitmaps-in-spine" data-bibi="embed" data-bibi-style="width: 100%; height: 400px;">MY BOOK</a><script src="https://progenystories.com/src/main/resources/bibi/bibi/and/jo.js"></script>
-    </section>
+<!--    <section class="section-container">-->
+<!--        <a href="https://progenystories.com/src/main/resources/bibi/bibi/?book=page-blanche-bitmaps-in-spine" data-bibi="embed" data-bibi-style="width: 100%; height: 400px;">MY BOOK</a><script src="../../bibi-bookshelf"></script>-->
+<!--    </section>-->
 
 </div>
 
@@ -48,6 +48,7 @@
 <script th:replace="partials/scripts :: scripts"></script>
 
 <script src="/record.js"></script>
+<script src="../../resources/bibi/bibi/and/jo.js"></script>
 
 </body>
 </html>
