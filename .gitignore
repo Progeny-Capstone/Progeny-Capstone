@@ -31,7 +31,11 @@ build/
 .vscode/
 
 
+### Application properies ###
 src/main/resources/application.properties
 
-
+### .DS_STORE ###
 .DS_STORE
+
+### Keys ###
+js/keys.js
