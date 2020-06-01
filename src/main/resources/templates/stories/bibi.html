@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head('Progeny - Stories')">
+
+</head>
+<body>
+
+<!---------- TOP NAVIGATION BAR ---------->
+<nav th:replace="partials/topnav :: navbar"></nav>
+
+<!---------- Main Container ---------->
+<!--<article class="main-container">-->
+<!--    &lt;!&ndash;    <iframe src="../bibi/bibi/index.html" frameborder="0"></iframe>&ndash;&gt;-->
+
+<!--    <iframe style="width: 100%; height: 400px" class="bibi-frame" frameborder="0" scrolling="auto" allowfullscreen="true" src="https://www.codeup.com"></iframe>-->
+<!--    &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; CREATE ACCOUNT SECTION &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--    <section class="section-container">-->
+
+
+<!--        <a href="https://progenystories.com/src/main/resources/bibi/bibi/?book=page-blanche-bitmaps-in-spine" data-bibi="embed" data-bibi-style="width: 100%; height: 400px;">MY BOOK</a><script src="https://progenystories.com/src/main/resources/bibi/bibi/and/jo.js"></script>-->
+<!--    </section>-->
+
+<!--</article>-->
+
+
+<a href="../bibi/bibi/bibi-bookshelf/?book=grimmsfairytales.epub" data-bibi="embed" data-bibi-style="width: 100%; height: 400px;">
+    マイ・グレート・コミック</a><script src="../bibi/bibi/and/jo.js"></script>
+
+<!---------- FOOTER ---------->
+<nav th:replace="partials/footer :: footer"></nav>
+
+<!---------- SCRIPTS ---------->
+<script th:replace="partials/scripts :: scripts"></script>
+
+</body>
+</html>
