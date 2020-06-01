@@ -39,14 +39,19 @@ a{
     width: 50%;
 }
 /*------------- PROFILE -------------*/
+.profile-details-container{
+    margin: 0 10% 10% 0;
+}
 .profile-image-container {
-    object-fit: cover;
+    height: 300px;
+    width: auto;
 }
 .profile-image-container img {
     vertical-align: middle;
+    object-fit: cover;
     width: 100%;
     max-width: 300px;
-    height: auto;
+    height: 100%;
 }
 
 /*------------- FORM -------------*/
