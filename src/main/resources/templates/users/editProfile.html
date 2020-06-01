@@ -21,36 +21,36 @@
         <form th:action="@{/profile/edit}" method="POST" th:object="${user}" class="form-register">
 
             <!---------- SET PROFILE IMAGE ---------->
-            <label for="profileImage">First Name</label>
-            <input class="form-control" id="profileImage" th:field="*{profileImage}" type="text" required/>
+            <label for="profileImage">Profile Iamge</label>
+            <input class="form-control" id="profileImage" th:field="*{profileImageUrl}" type="text" th:value="${user.profileImageUrl}"/>
 
             <!---------- SET FIRST NAME ---------->
             <label for="firstName">First Name</label>
-            <input class="form-control" id="firstName" th:field="*{firstName}" type="text" required/>
+            <input class="form-control" id="firstName" th:field="*{firstName}" type="text" required th:value="${user.firstName}"/>
 
             <!---------- SET LAST NAME ---------->
             <label for="lastName">Last Name</label>
-            <input class="form-control" id="lastName" th:field="*{lastName}" type="text" required/>
+            <input class="form-control" id="lastName" th:field="*{lastName}" type="text" required th:value="${user.lastName}"/>
 
             <!---------- SET USERNAME ---------->
             <label for="username">Username</label>
-            <input class="form-control" id="username" th:field="*{username}" type="text" required/>
+            <input class="form-control" id="username" th:field="*{username}" type="text" required th:value="${user.username}"/>
 
             <!---------- SET EMAIL ---------->
             <label for="email">Email</label>
-            <input class="form-control" id="email" th:field="*{email}" type="email" required/>
+            <input class="form-control" id="email" th:field="*{email}" type="email" required th:value="${user.email}"/>
 
             <!---------- SET LOCATION ---------->
-            <label for="profileLocation">First Name</label>
-            <input class="form-control" id="profileLocation" th:field="*{profileLocation}" type="text" required/>
+            <label for="profileLocation">Location</label>
+            <input class="form-control" id="profileLocation" th:field="*{location}" type="text" th:value="${user.location}"/>
 
             <!---------- SET BIO ---------->
-            <label for="profileBio">First Name</label>
-            <input class="form-control" id="profileBio" th:field="*{profileBio}" type="text" required/>
+            <label for="profileBio">Profile Bio</label>
+            <input class="form-control" id="profileBio" th:field="*{bio}" type="text" th:value="${user.bio}"/>
 
             <!---------- SET PASSWORD ---------->
             <label for="password">Password</label>
-            <input class="form-control" id="password" th:field="*{password}" type="password" required/>
+            <input class="form-control" id="password" th:field="*{password}" type="password" required th:value="${user.password}"/>
 
             <div class="form-btn-group">
                 <!---------- SUBMIT FORM ---------->
