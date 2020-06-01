@@ -9,19 +9,34 @@
 <nav th:replace="partials/topnav :: navbar"></nav>
 
 <!---------- Main Container ---------->
-<article class="main-container">
-<!--    <iframe src="../bibi/bibi/index.html" frameborder="0"></iframe>-->
+<div class="main-container d-flex">
 
-    <iframe style="width: 100%; height: 400px" class="bibi-frame" frameborder="0" scrolling="auto" allowfullscreen="true" src="http://progenystories.com/story/bibi/?book= grimmsfairytales.epub"></iframe>
+    <iframe style="width: 100%; height: 400px" class="bibi-frame" frameborder="0" scrolling="auto" allowfullscreen="true" src="https://www.codeup.com"></iframe>
 
-    <!---------- CREATE ACCOUNT SECTION ---------->
+<!--    <div class="story-frame justify-content-center">-->
+<!--        <iframe style='width:900px;height:500px' src='https://online.pubhtml5.com/ajug/lovg/' seamless='seamless'-->
+<!--                scrolling='no' frameborder='0' allowtransparency='true' allowfullscreen='true'></iframe>-->
+<!--    </div>-->
     <section class="section-container">
-
-
         <a href="https://progenystories.com/src/main/resources/bibi/bibi/?book=page-blanche-bitmaps-in-spine" data-bibi="embed" data-bibi-style="width: 100%; height: 400px;">MY BOOK</a><script src="https://progenystories.com/src/main/resources/bibi/bibi/and/jo.js"></script>
     </section>
 
-</article>
+</div>
+
+<!-----------record section-------------->
+<h2>Record</h2>
+<div style="max-width: 28em;">
+    <div id="controls">
+        <button id="recordButton">Record</button>
+        <button id="pauseButton" disabled>Pause</button>
+        <button id="stopButton" disabled>Stop</button>
+    </div>
+    <div id="formats"></div>
+    <p><strong>Recordings:</strong></p>
+    <ol id="recordingsList"></ol>
+</div>
+
+</div>
 
 
 <!---------- FOOTER ---------->
@@ -29,6 +44,10 @@
 
 <!---------- SCRIPTS ---------->
 <script th:replace="partials/scripts :: scripts"></script>
+
+<script th:replace="partials/scripts :: scripts"></script>
+
+<script src="/record.js"></script>
 
 </body>
 </html>
