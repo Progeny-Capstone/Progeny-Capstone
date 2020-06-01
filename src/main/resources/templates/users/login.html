@@ -17,12 +17,12 @@
         <h1 class="section-header">Log In</h1>
 
         <!---------- ERROR: INCORRECT ---------->
-        <div th:if="${param.error}">
+        <div th:if="${param.error}" class="text-danger text-center">
             Invalid Username and Password.
         </div>
 
         <!---------- ALERT: LOGGED OUT ---------->
-        <div th:if="${param.logout}">
+        <div th:if="${param.logout}" class="text-danger text-center">
             You have been logged out.
         </div>
 
@@ -32,13 +32,13 @@
             <!---------- LOGIN ---------->
             <div class="form-label-group">
                 <label for="username">Username</label>
-                <input class="form-control" id="username" name="username" type="text"/>
+                <input class="form-control" id="username" name="username" type="text" required/>
             </div>
 
             <!---------- PASSWORD ---------->
             <div class="form-label-group">
                 <label for="password">Password</label>
-                <input class="form-control" id="password" name="password" type="password"/>
+                <input class="form-control" id="password" name="password" type="password" required/>
             </div>
 
             <div class="form-btn-group">
