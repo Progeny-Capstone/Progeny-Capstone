@@ -14,6 +14,51 @@
     <!---------- CREATE ACCOUNT SECTION ---------->
     <section class="section-container">
 
+        <!---------- CREATE ACCOUNT HEADER ---------->
+        <h1 class="section-header">Create an account</h1>
+
+        <!---------- CREATE ACCOUNT FORM ---------->
+        <form th:action="@{/profile/edit}" method="POST" th:object="${user}" class="form-register">
+
+            <!---------- SET PROFILE IMAGE ---------->
+            <label for="profileImage">First Name</label>
+            <input class="form-control" id="profileImage" th:field="*{profileImage}" type="text" required/>
+
+            <!---------- SET FIRST NAME ---------->
+            <label for="firstName">First Name</label>
+            <input class="form-control" id="firstName" th:field="*{firstName}" type="text" required/>
+
+            <!---------- SET LAST NAME ---------->
+            <label for="lastName">Last Name</label>
+            <input class="form-control" id="lastName" th:field="*{lastName}" type="text" required/>
+
+            <!---------- SET USERNAME ---------->
+            <label for="username">Username</label>
+            <input class="form-control" id="username" th:field="*{username}" type="text" required/>
+
+            <!---------- SET EMAIL ---------->
+            <label for="email">Email</label>
+            <input class="form-control" id="email" th:field="*{email}" type="email" required/>
+
+            <!---------- SET LOCATION ---------->
+            <label for="profileLocation">First Name</label>
+            <input class="form-control" id="profileLocation" th:field="*{profileLocation}" type="text" required/>
+
+            <!---------- SET BIO ---------->
+            <label for="profileBio">First Name</label>
+            <input class="form-control" id="profileBio" th:field="*{profileBio}" type="text" required/>
+
+            <!---------- SET PASSWORD ---------->
+            <label for="password">Password</label>
+            <input class="form-control" id="password" th:field="*{password}" type="password" required/>
+
+            <div class="form-btn-group">
+                <!---------- SUBMIT FORM ---------->
+                <button class="btn btn-sm btn-dark" type="submit">Save</button>
+            </div>
+
+        </form>
+
     </section>
 
 </article>
