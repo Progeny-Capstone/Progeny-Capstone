@@ -11,8 +11,25 @@
 <!---------- Main Container ---------->
 <article class="main-container">
 
-    <!---------- CREATE ACCOUNT SECTION ---------->
+    <!---------- EDIT GROUP SECTION ---------->
     <section class="section-container">
+        <!---------- EDIT GROUP HEADER ---------->
+        <h1 class="section-header">Edit Group</h1>
+
+        <!---------- EDIT GROUP FORM ---------->
+        <form th:action="@{'/group/' + ${editGroup.getId()} +'/edit'}" method="POST" th:method="post" th:object="${editGroup}" class="form-label-group">
+            <!---------- SET GROUP NAME ---------->
+            <label for="groupName">Group Name</label>
+            <input class="form-control" id="groupName" th:field="*{name}" type="text" required th:value="${editGroup.name}"/>
+
+            <!---------- SET GROUP DESCRIPTION ---------->
+            <label for="groupDescription">Group Description</label>
+            <input class="form-control" id="groupDescription" th:field="*{description}" type="text" required th:value="${editGroup.description}"/>
+
+
+            <!---------- SUBMIT FORM ---------->
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
+        </form>
 
     </section>
 
