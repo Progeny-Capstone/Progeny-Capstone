@@ -11,11 +11,9 @@
 <!---------- Main Container ---------->
 <div class="main-container">
 
+    <h3 th:text="${currentStory.title}"></h3>
 
-    <iframe style='width:900px;height:500px' src='https://online.pubhtml5.com/ajug/egvs/'  seamless='seamless' scrolling='no' frameborder='0' allowtransparency='true' allowfullscreen='true' ></iframe>
-
-<!--        <iframe style='width:1200px;height:900px' src='https://online.pubhtml5.com/ajug/lovg/' seamless='seamless'-->
-<!--                scrolling='no' frameborder='20px' allowtransparency='true' allowfullscreen='true'></iframe>-->
+    <iframe style='width:900px;height:500px' th:src="${currentStory.storyFile}"  seamless='seamless' scrolling='no' frameborder='0' allowtransparency='true' allowfullscreen='true' ></iframe>
 
 
 </div>

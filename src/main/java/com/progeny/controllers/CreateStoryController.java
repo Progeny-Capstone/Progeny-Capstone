@@ -38,7 +38,7 @@ public class CreateStoryController {
 
         stories.save(story);
 
-        return "redirect:/story";
+        return "redirect:/story/{id}";
     }
 
 

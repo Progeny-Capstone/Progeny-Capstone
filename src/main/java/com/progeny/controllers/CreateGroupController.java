@@ -44,7 +44,4 @@ public class CreateGroupController {
         return "redirect:/group/{id}"; // REDIRECT: URL PATH
     }
 
-
-
-
 }
