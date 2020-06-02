@@ -18,10 +18,10 @@
         <h1 class="section-header">Create an account</h1>
 
         <!---------- CREATE ACCOUNT FORM ---------->
-        <form th:action="@{/profile/edit}" method="POST" th:object="${user}" class="form-register">
+        <form th:action="@{'/profile/edit/' + ${user.getUsername()}}" method="POST" th:object="${user}" class="form-register">
 
             <!---------- SET PROFILE IMAGE ---------->
-            <label for="profileImage">Profile Iamge</label>
+            <label for="profileImage">Profile Image</label>
             <input class="form-control" id="profileImage" th:field="*{profileImageUrl}" type="text" th:value="${user.profileImageUrl}"/>
 
             <!---------- SET FIRST NAME ---------->
@@ -49,8 +49,8 @@
             <input class="form-control" id="profileBio" th:field="*{bio}" type="text" th:value="${user.bio}"/>
 
             <!---------- SET PASSWORD ---------->
-            <label for="password">Password</label>
-            <input class="form-control" id="password" th:field="*{password}" type="password" required th:value="${user.password}"/>
+<!--            <label for="password">Verify Password</label>-->
+<!--            <input class="form-control" id="password" type="password" required/>-->
 
             <div class="form-btn-group">
                 <!---------- SUBMIT FORM ---------->

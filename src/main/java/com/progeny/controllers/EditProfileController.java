@@ -1,5 +1,6 @@
 package com.progeny.controllers;
 
+import com.progeny.model.Group;
 import com.progeny.model.User;
 import com.progeny.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -15,21 +17,21 @@ public class EditProfileController {
 
 
     // --------- INITIALIZE ------------
-    private UserRepository users;
+    private UserRepository usersRepo;
     private PasswordEncoder passwordEncoder;
 
 
     // ------------ CONSTRUCTOR METHOD ---------------
     // --------- AKA DEPENDENCY INJECTION ------------
-    public EditProfileController(UserRepository users, PasswordEncoder passwordEncoder) {
-        this.users = users;
+    public EditProfileController(UserRepository usersRepo, PasswordEncoder passwordEncoder) {
+        this.usersRepo = usersRepo;
         this.passwordEncoder = passwordEncoder;
     }
 
 
     // --------- Edit USER (GET) ------------
-    @GetMapping("/profile/edit")
-    public String index(Model model) {
+    @GetMapping("/profile/edit/{name}")
+    public String index(@PathVariable String name, Model model) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", user);
@@ -39,21 +41,21 @@ public class EditProfileController {
 
 
     // --------- Edit USER (POST)------------
-    @PostMapping("/profile/edit")
-    public String saveUser(@ModelAttribute User user){
+    @PostMapping("/profile/edit/{name}")
+    public String saveUser(@PathVariable String name, @ModelAttribute User user){
 
-        String hash = passwordEncoder.encode(user.getPassword());
-        user.setPassword(hash);
+        User currentUser = usersRepo.findByUsername(name);
+        System.out.println(currentUser);
 
-//        user.setFirstName();
-//        user.setLastName();
-//        user.setEmail();
-//        user.setProfileImageUrl();
-//        user.setLocation();
-//        user.setBio();
-//        user.setUsername();
+        currentUser.setFirstName(user.getFirstName());
+        currentUser.setLastName(user.getLastName());
+        currentUser.setEmail(user.getEmail());
+        currentUser.setProfileImageUrl(user.getProfileImageUrl());
+        currentUser.setLocation(user.getLocation());
+        currentUser.setBio(user.getBio());
+        currentUser.setUsername(user.getUsername());
 
-        users.save(user);
+        usersRepo.save(currentUser);
 
         return "redirect:/profile";
     }
