@@ -31,7 +31,7 @@ public class Story {
     @Column(nullable = false, name = "story_file")
     private String storyFile;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "text")
     private String summary;
 
     @Column(nullable = false, name = "published_year")
@@ -40,7 +40,7 @@ public class Story {
     @Column(nullable = false, length = 45)
     private String publisher;
 
-    @Column(name = "cover_image")
+    @Column(name = "cover_image", columnDefinition = "text")
     private String coverImageUrl;
 
     @ManyToMany(mappedBy = "recordingList")
