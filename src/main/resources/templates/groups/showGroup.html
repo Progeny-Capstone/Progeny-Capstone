@@ -8,11 +8,22 @@
 <!---------- TOP NAVIGATION BAR ---------->
 <nav th:replace="partials/topnav :: navbar"></nav>
 
-<!---------- Main Container ---------->
+<!---------- MAIN CONTAINER ---------->
 <article class="main-container">
 
-    <!---------- CREATE ACCOUNT SECTION ---------->
+    <!---------- GROUP SECTION ---------->
     <section class="section-container">
+
+        <!---------- GROUP ---------->
+        <div th:object="${currentGroup}">
+
+            <!---------- GROUP TITLE ---------->
+            <h1 class="section-header" th:text="${groupName}"></h1>
+
+            <!---------- GROUP ID ---------->
+            <p>Post id: <em th:text="${currentGroup.id}"></em></p>
+
+        </div>
 
     </section>
 
