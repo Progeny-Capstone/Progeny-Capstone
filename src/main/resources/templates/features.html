@@ -1,37 +1,80 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
-<!--<head th:replace="partials/head :: head('Progeny - Features')">-->
-<!--</head>-->
-<!--<body>-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head('Progeny - Features')">
+</head>
+<body>
 
-<!--&lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; TOP NAVIGATION BAR &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-<!--<nav th:replace="partials/topnav :: navbar"></nav>-->
+<!---------- TOP NAVIGATION BAR ---------->
+<nav th:replace="partials/topnav :: navbar"></nav>
 
 
-<!--&lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; MAIN CONTAINER &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-<!--<article class="main-container">-->
+<!---------- MAIN CONTAINER ---------->
+<article class="main-container">
 
-<!--    &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; SECTION &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-<!--    <section class="section-container">-->
+    <!---------- SECTION ---------->
+    <section class="section-container jumbotron jumbotron-fluid">
 
-<!--        <div id="content">-->
+        <div class="container">
 
-<!--        </div>-->
+            <!---------- SECTION HEADER ---------->
+            <h1 class="display-4 section-header text-left">Free Storytime Audio Recording</h1>
 
-<!--        <button id="open">Open Picker</button>-->
-<!--        <button id="close">Close Picker</button>-->
-<!--        <div id="inline" style="width:600px;height:500px;padding:20px;"></div>-->
+            <!---------- FEATURE LIST ---------->
+            <ul class="lead text-left">
+                <li>Free to read children's storybooks</li>
+                <li>Record yourself reading a story</li>
+                <li>Save your audio recordings to your Progeny profile</li>
+                <li>Download your audio recordings locally</li>
+            </ul>
+            <a class="text-left" href="/stories">Start Recording Your Storytime</a>
+        </div>
 
-<!--    </section>-->
+    </section>
 
-<!--</article>-->
+    <section class="section-container">
+        <!---------- SECTION HEADER ---------->
+        <h2 class="section-header">Our Mission</h2>
 
-<!--&lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; FOOTER &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-<!--<nav th:replace="partials/footer :: footer"></nav>-->
+        <div class="mission-cards container d-flex flex-row justify-content-between">
+            <!---------- MISSION CARDS (PURPOSE) ---------->
 
-<!--&lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; SCRIPTS &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-<!--<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>-->
-<!--<script th:replace="partials/scripts :: scripts"></script>-->
+            <!---------- CONNECT ---------->
+            <div class="card">
+                <h3 class="card-title">Connect Distanced Families</h3>
+                <p class="card-text">
+                    I'm baby retro poke health goth, air plant edison bulb kombucha helvetica leggings ethical
+                    gluten-free taxidermy activated charcoal fam viral blog.
+                </p>
+            </div>
 
-<!--</body>-->
-<!--</html>-->
+            <!---------- ENCOURAGE ---------->
+            <div class="card">
+                <h3 class="card-title">Encourage Reading</h3>
+                <p class="card-text">
+                    I'm baby retro poke health goth, air plant edison bulb kombucha helvetica leggings ethical
+                    gluten-free taxidermy activated charcoal fam viral blog.
+                </p>
+            </div>
+
+            <!----------  ---------->
+            <div class="card">
+                <h3 class="card-title">Sample Card Title</h3>
+                <p class="card-text">
+                    I'm baby retro poke health goth, air plant edison bulb kombucha helvetica leggings ethical
+                    gluten-free taxidermy activated charcoal fam viral blog.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+</article>
+
+<!---------- FOOTER ---------->
+<nav th:replace="partials/footer :: footer"></nav>
+
+<!---------- SCRIPTS ---------->
+<script th:replace="partials/scripts :: scripts"></script>
+
+</body>
+</html>

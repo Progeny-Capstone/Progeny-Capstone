@@ -11,27 +11,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class ShowStoryController {
 
+    // --------- INITIALIZE ------------
     private StoryRepository storyRepo;
 
+    // ------------ CONSTRUCTOR METHOD ---------------
+    // --------- AKA DEPENDENCY INJECTION ------------
     public ShowStoryController(StoryRepository stories) {
         this.storyRepo = stories;
     }
 
-//    @GetMapping("/story/{id}")
-//    public String index() {
-//        return "stories/showStory";
-//    }
-
+    // --------- SHOW STORY (GET) ------------
     @GetMapping("/story/{id}")
     public String index(@PathVariable long id, Model model) {
-        model.addAttribute("currentStory", storyRepo.getOne(id));
 
-        String storyTitle = storyRepo.getStoriesById(id).getTitle();
-        model.addAttribute("storyTitle", storyTitle);
-        String storySummary = storyRepo.getStoriesById(id).getSummary();
-        model.addAttribute("storySummary", storySummary);
-        String storyFile = storyRepo.getStoriesById(id).getStoryFile();
-        model.addAttribute("storyFile", storyFile);
+        model.addAttribute("currentStory", storyRepo.getOne(id));
 
         return "stories/showStory";
     }
