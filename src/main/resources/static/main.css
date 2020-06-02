@@ -78,10 +78,18 @@ input[type="text"]:focus , input[type="password"]:focus, input[type="email"]:foc
     border-radius: 16px;
     cursor: pointer;
     margin: 5% 0;
+    background: var(--navy-color);
+}
+#logout-btn{
+    background: none;
+}
+#logout-btn:hover{
+    color: darkred;
 }
 .register-link, .login-link{
     margin: 6% 0;
-    color: black;
+    color: var(--navy-color);
+    text-decoration: underline;
     font-size: calc(12px + (14 - 12) * ((100vw - 300px) / (1600 - 300)));
     /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
 }

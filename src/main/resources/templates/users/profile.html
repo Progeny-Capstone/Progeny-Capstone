@@ -23,11 +23,11 @@
 
             <!---------- USER PROFILE IMAGE ---------->
             <div class="profile-image-container">
-                <img src="/images/compressed_portrait_taryn.jpg" alt="Temporary image of Taryn">
+                <img th:src=" @{ ${currentUser.getProfileImageUrl()}}" alt="The current user's profile image">
             </div>
 
             <!---------- EDIT PROFILE LINK ---------->
-            <a href="/profile/edit" class="text-right">Edit Profile</a>
+            <a href="/profile/edit/{id}" class="text-right">Edit Profile</a>
 
             <!---------- USER NAME ---------->
             <h3 class="text-left"><span
@@ -42,19 +42,47 @@
 
         </section>
 
-        <!---------- USER RECORDINGS ---------->
+        <!---------- RIGHT SECTIONS---------->
         <section class="sub-section-container col-lg-8 col-md-12 ">
 
-            <!---------- EDIT RECORDINGS ---------->
-            <a class="text-right" href="#">Edit Recordings</a>
+            <!---------- RECORDINGS SSECTION---------->
+            <div class="recording-sub-section">
 
-            <!---------- SHOW RECORDINGS ---------->
-            <div class="user-recordings card">
-                <h1 class="card-title text-left">This is the recording title</h1>
-                <p class="card-subtitle text-left">This is the recording timestamp (day, month, year)</p>
-                <p class="card-body text-left">This is the recording</p>
+                <!---------- EDIT RECORDINGS ---------->
+                <a class="text-right" href="#">Edit Recordings</a>
+
+                <!---------- SHOW RECORDINGS ---------->
+                <div th:each="recording : ${recordings}" class="recording-card">
+
+                    <a th:href="@{|/recording/${recording.getId()}|}" class="recording-title-link">
+                        <h1 th:text="${recording.title}" class="recording-title"></h1>
+                    </a>
+                    <p th:text="${recording.timestamp} "></p>
+                    <p th:text="${recording.recording} " class="recording"></p>
+
+                </div>
             </div>
+
+            <!---------- GROUPS SECTION ---------->
+            <div class="groups-sub-section">
+
+                <!---------- EDIT RECORDINGS ---------->
+                <a class="text-right" href="#">Edit Groups</a>
+                <a class="text-right" href="#">Add Group</a>
+
+                <!---------- SHOW RECORDINGS ---------->
+                <div th:each="group : ${groups}" class="group-card">
+
+                    <a th:href="@{|/group/${group.getId()}|}" class="group-title-link">
+                        <h1 th:text="${group.name}" class="group-title"></h1>
+                    </a>
+                    <p th:text="${group.description} " class="group"></p>
+
+                </div>
+            </div>
+
         </section>
+
     </section>
 </article>
 
