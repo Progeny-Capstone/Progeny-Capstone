@@ -23,7 +23,7 @@
 
             <!---------- USER PROFILE IMAGE ---------->
             <div class="profile-image-container">
-                <img src="/images/compressed_portrait_taryn.jpg" alt="Temporary image of Taryn">
+                <img th:src=" @{ ${currentUser.getProfileImageUrl()}}" alt="The current user's profile image">
             </div>
 
             <!---------- EDIT PROFILE LINK ---------->
