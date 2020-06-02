@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class CreateStoryController {
 
-
     // --------- INITIALIZE ------------
     private StoryRepository stories;
 

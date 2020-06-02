@@ -11,8 +11,25 @@
 <!---------- Main Container ---------->
 <article class="main-container">
 
-    <!---------- CREATE ACCOUNT SECTION ---------->
+    <!---------- CREATE GROUP SECTION ---------->
     <section class="section-container">
+        <!---------- CREATE GROUP HEADER ---------->
+        <h1 class="section-header">Create a Group</h1>
+
+        <!---------- CREATE GROUP FORM ---------->
+        <form th:action="@{/group/create}" method="POST" th:method="post" th:object="${newGroup}" class="form-label-group">
+
+            <!---------- SET BOOK TITLE ---------->
+            <label for="groupName">Group Name</label>
+            <input class="form-control" id="groupName" th:field="*{name}" type="text" required/>
+
+            <label for="groupDescription">Group Description</label>
+            <input class="form-control" id="groupDescription" th:field="*{description}" type="text" required/>
+
+
+            <!---------- SUBMIT FORM ---------->
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
+        </form>
 
     </section>
 

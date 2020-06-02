@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ShowGroupController {
 
-    @GetMapping("/group/show")
+    @GetMapping("/group")
     public String index() {
         return "groups/showGroup";
     }
