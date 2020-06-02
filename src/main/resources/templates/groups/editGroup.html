@@ -17,8 +17,7 @@
         <h1 class="section-header">Edit Group</h1>
 
         <!---------- EDIT GROUP FORM ---------->
-        <form th:action="@{/group/{id}/edit}" method="POST" th:method="post" th:object="${editGroup}" class="form-label-group">
-
+        <form th:action="@{'/group/' + ${editGroup.getId()} +'/edit'}" method="POST" th:method="post" th:object="${editGroup}" class="form-label-group">
             <!---------- SET GROUP NAME ---------->
             <label for="groupName">Group Name</label>
             <input class="form-control" id="groupName" th:field="*{name}" type="text" required th:value="${editGroup.name}"/>

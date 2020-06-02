@@ -27,9 +27,12 @@ public class EditGroupController {
     @GetMapping("/group/{id}/edit")
     public String showCreateGroup(@PathVariable long id, Model model) {
 
+        System.out.println(id);
         Group editGroup = groupsRepo.getGroupById(id);
+        System.out.println(id);
 
         model.addAttribute("editGroup", editGroup);
+        System.out.println(editGroup);
 
         return "groups/editGroup"; // HTML PATH
     }
@@ -40,6 +43,7 @@ public class EditGroupController {
 
         System.out.println(id);
         Group currentGroupEdits = groupsRepo.getGroupById(id); // get the id of the Group
+
         System.out.println(currentGroupEdits);
 
         System.out.println(editGroup.getName());

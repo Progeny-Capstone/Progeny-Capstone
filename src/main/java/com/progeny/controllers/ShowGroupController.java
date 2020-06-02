@@ -28,6 +28,9 @@ public class ShowGroupController {
         String groupName = groupsRepo.getGroupById(id).getName();
         model.addAttribute("groupName", groupName);
 
+        String groupDescription = groupsRepo.getGroupById(id).getDescription();
+        model.addAttribute("groupDescription", groupDescription);
+
         return "groups/showGroup"; // HTML PATH
     }
 
