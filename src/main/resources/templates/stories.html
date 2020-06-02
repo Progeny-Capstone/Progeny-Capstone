@@ -14,6 +14,23 @@
     <!---------- CREATE ACCOUNT SECTION ---------->
     <section class="section-container">
 
+        <!---------- GROUPS SECTION ---------->
+        <div class="stories-sub-section">
+
+            <!---------- EDIT RECORDINGS ---------->
+            <a class="text-right" href="#">Edit Groups</a>
+            <a class="text-right" href="/stories">Add Group</a>
+
+            <!---------- SHOW RECORDINGS ---------->
+            <div th:each="story : ${stories}" class="story-card">
+
+                <a th:href="@{|/story/${story.getId()}|}" class="story-title-link">
+                    <img th:src="@{ ${story.coverImageUrl}}" alt="This is the cover image for the story">
+                    <h1 th:text="${story.title}" class="story-title"></h1>
+                </a>
+
+            </div>
+        </div>
 
     </section>
 
