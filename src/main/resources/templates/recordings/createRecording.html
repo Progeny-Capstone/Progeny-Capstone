@@ -9,7 +9,15 @@
 <nav th:replace="partials/topnav :: navbar"></nav>
 
 
-<div class="container">
+<article class="main-container">
+
+    <section class="section-container">
+        <h3 th:text="${currentStory.title}" class="section-header"></h3>
+        <h4 class="card-subtitle">By <span th:text="${currentStory.getAuthorFirstName()} + ' ' + ${currentStory.getAuthorLastName()}"></span></h4>
+
+        <iframe style='width:900px;height:500px' th:src="${currentStory.storyFile}"  seamless='seamless' scrolling='no' frameborder='0' allowtransparency='true' allowfullscreen='true' ></iframe>
+
+    </section>
 
     <h1>Hello! Create a new recording</h1>
 
@@ -59,7 +67,7 @@
         <ol id="recordingsList"></ol>
     </div>
 
-</div>
+</article>
 
 
 

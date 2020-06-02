@@ -9,31 +9,17 @@
 <nav th:replace="partials/topnav :: navbar"></nav>
 
 <!---------- Main Container ---------->
-<div class="main-container">
-
-    <h3 th:text="${currentStory.title}"></h3>
+<article class="main-container">
+<section class="section-container">
+    <h3 th:text="${currentStory.title}" class="section-header"></h3>
+    <h4 class="card-subtitle">By <span th:text="${currentStory.getAuthorFirstName()} + ' ' + ${currentStory.getAuthorLastName()}"></span></h4>
 
     <iframe style='width:900px;height:500px' th:src="${currentStory.storyFile}"  seamless='seamless' scrolling='no' frameborder='0' allowtransparency='true' allowfullscreen='true' ></iframe>
 
-
-</div>
-
-<!-----------record section-------------->
-<h2>Record</h2>
-<div style="max-width: 28em;">
-    <div id="controls">
-        <button id="recordButton">Record</button>
-        <button id="pauseButton" disabled>Pause</button>
-        <button id="stopButton" disabled>Stop</button>
-    </div>
-    <div id="formats"></div>
-    <p><strong>Recordings:</strong></p>
-    <ol id="recordingsList"></ol>
-</div>
-
-</div>
+</section>
 
 
+</article>
 <!---------- FOOTER ---------->
 <nav th:replace="partials/footer :: footer"></nav>
 
@@ -41,9 +27,6 @@
 <script th:replace="partials/scripts :: scripts"></script>
 
 <script th:replace="partials/scripts :: scripts"></script>
-
-<script src="../record.js"></script>
-<script src="../bibi/bibi/and/jo.js"></script>
 
 </body>
 </html>
