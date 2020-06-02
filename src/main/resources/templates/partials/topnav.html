@@ -39,7 +39,7 @@
             <li class="nav-item"><a class="nav-link" href="/profile" sec:authorize="isAuthenticated()">Profile</a></li>
             <form th:action="@{/logout}" method="POST" class="nav-item"> <!-- form to get submit to be post method -->
                 <button class="btn btn-sm btn-outline-danger my-2 my-sm-0" type="submit"
-                        sec:authorize="isAuthenticated()">Logout
+                        sec:authorize="isAuthenticated()" id="logout-btn">Logout
                 </button>
             </form>
             </li>
