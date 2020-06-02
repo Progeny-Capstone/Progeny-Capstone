@@ -19,7 +19,7 @@
         <h1 class="section-header">Create a Story</h1>
 
         <!---------- CREATE STORY FORM ---------->
-        <form th:action="@{'/story/edit/' + ${story.get}" method="POST" th:method="post" th:object="${story}" class="form-label-group">
+        <form th:action="@{'/story/' + ${story.getId()} + '/edit'}" method="POST" th:method="post" th:object="${story}" class="form-label-group">
 
             <!---------- SET BOOK TITLE ---------->
             <label for="bookTitle">Book Title</label>
