@@ -2,13 +2,13 @@
 /*--- THIS CSS IS FOR THE NAV BAR STYLE ---*/
 /*-----------------------------------------*/
 
-body{
+body {
     font-family: 'Roboto', sans-serif;
     background: var(--Light-color);
     color: var(--navy-color);
 }
 
-a.navbar-brand{
+a.navbar-brand {
 
     margin: 0 0 0 10%;
 
@@ -19,9 +19,10 @@ a.navbar-brand{
 
 }
 
-.navbar-expand-lg{
+.navbar-expand-lg {
     margin: 3% 10% 0 0;
 }
+
 a.nav-link {
     color: var(--navy-color);
     font-size: calc(15px + (18 - 15) * ((100vw - 300px) / (1600 - 300)));
@@ -30,6 +31,16 @@ a.nav-link {
 }
 
 
-.navbar-toggler-icon{
-fill: var(--navy-color);
+.navbar-toggler-icon {
+    fill: var(--navy-color);
+}
+
+/*----------FOOTER NAV----------*/
+.footer-section {
+    background: var(--navy-color);
+    color: var(--Light-color);
+}
+
+ul.list-inline {
+    margin: 0;
 }
