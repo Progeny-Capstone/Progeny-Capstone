@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -46,21 +47,37 @@ public class EditConnectionsController {
 
     // --------- ADD FRIEND (POST)------------
     @PostMapping("/profile/friends/edit")
-    public String addFriend(@ModelAttribute User friend, Model model) {
+    public String addFriend(@RequestParam long friendId, Model model) {
 
-        // --------- ADD FRIEND TO USER------------
-        model.addAttribute("friend", friend); // 1.Get the friend from form
-        List<User> friendToUser = new ArrayList<>(); // 2. Create a list for friends
-        friendToUser.add(friend); // 3. add the friend to the list
-        friend.setFriendList(friendToUser);
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
 
+        User friend = usersRepo.getUserById(friendId);
+
+        System.out.println(currentUser.getFirstName());
+        System.out.println(friend.getFirstName());
+
+        if(friend.getFriends() == null){ // if there is no friends list -->
+
+            List<User> newFriends = new ArrayList<>(); // 1. Make a new friends list
+            friend.setFriends(newFriends); // 2. give the new friends list to User
+
+        }
+        if(currentUser.getFriends() == null){ // if there is no friends list -->
+
+            List<User> newFriends = new ArrayList<>(); // 1. Make a new friends list
+            currentUser.setFriends(newFriends); // 2. give the new friends list to User
+
+        }
 
         // --------- ADD USER TO FRIEND-----------
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
-        List<User> userToFriend = new ArrayList<>(); // 2. Create a list for friends
-        userToFriend.add(currentUser); // 3. add the friend to the list
-        currentUser.setFriendList(userToFriend); // 2. save the list of friend to users friendList column
+        currentUser.getFriends().add(friend);
 
+        System.out.println(currentUser.getFriends().get(0).getUsername());
+
+        // --------- ADD FRIEND TO USER------------
+        friend.getFriends().add(currentUser);
+
+        System.out.println(friend.getFriends().get(0).getUsername());
 
         // --------- SAVE TO DB -----------
         usersRepo.save(currentUser); // 3. save the list of users to the current users information
