@@ -19,52 +19,35 @@
 
     </section>
 
-    <h1>Hello! Create a new recording</h1>
+    <div class="container">
 
-    <h2>Record</h2>
-<!--    <p>-->
-<!--        <button id=record></button>-->
-<!--        <button id=stopRecord disabled>Stop</button>-->
-<!--    </p>-->
-<!--    <p>-->
-<!--        <audio id=recordedAudio></audio>-->
+        <h1>Hello! Create a new recording</h1>
 
-<!--    </p>-->
+        <h4>How to create recording:</h4>
+        <p>1. Record the audio</p>
+        <p>2. Download the audio to your computer</p>
+        <p>3. Press "Save recording"</p>
 
 
+        <div style="max-width: 28em;">
+            <div id="controls">
+                <button id="recordButton">Record</button>
+                <button id="pauseButton" disabled>Pause</button>
+                <button id="stopButton" disabled>Stop</button>
+            </div>
+
+            <div>
+                <h5><a href="/recording/save">Save recording</a></h5>
+
+            </div>
 
 
-
-
-
-    <div style="max-width: 28em;">
-        <div id="controls">
-            <button id="recordButton">Record</button>
-            <button id="pauseButton" disabled>Pause</button>
-            <button id="stopButton" disabled>Stop</button>
+            <div id="formats"></div>
+            <p><strong>Recordings:</strong></p>
+            <ol id="recordingsList"></ol>
         </div>
 
-        <div>
-            <h5><a href="/recording/save">Save your recording:</a></h5>
 
-        </div>
-
-<!--        <div class="container">-->
-
-<!--            <video id="gum" autoplay muted playsinline></video>-->
-<!--            <video id="recorded" autoplay loop controls playsinline></video>-->
-
-<!--            <div>-->
-<!--                <button id="record">Start Recording</button>-->
-<!--                <button id="play" disabled>Play</button>-->
-<!--                <button id="download" disabled>Download</button>-->
-<!--            </div>-->
-
-<!--        </div>-->
-
-        <div id="formats"></div>
-        <p><strong>Recordings:</strong></p>
-        <ol id="recordingsList"></ol>
     </div>
 
 </article>
