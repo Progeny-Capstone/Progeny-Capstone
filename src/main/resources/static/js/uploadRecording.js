@@ -18,7 +18,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
             console.log(res.filesUploaded[0].url);
 
-            let filestackUrl = `<input type="hidden" name="filestackUrl" value="${res.filesUploaded[0].url}"/>`;
+            let filestackUrl = `<input type="hidden" name="recordingUrl" value="${res.filesUploaded[0].url}"/>`;
 
             $("#recording-form").append(filestackUrl);
 
