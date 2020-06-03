@@ -127,9 +127,35 @@ public class User {
     }
 
 
-
-
     // ---------- GET AND SET METHODS -----------
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public List<Recording> getRecordings() {
+        return recordings;
+    }
+
+    public void setRecordings(List<Recording> recordings) {
+        this.recordings = recordings;
+    }
+
+    public List<User> getFriendList() {
+        return friendList;
+    }
+
+    public void setFriendList(List<User> friendList) {
+        this.friendList = friendList;
+    }
+
+    public List<Group> getGroupList() {
+        return groupList;
+    }
+
+    public void setGroupList(List<Group> groupList) {
+        this.groupList = groupList;
+    }
+
     public long getId() {
         return id;
     }

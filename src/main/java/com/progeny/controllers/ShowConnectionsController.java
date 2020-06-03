@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ShowConnectionsController {
 
-    @GetMapping("/connections")
+    @GetMapping("/friends")
     public String index() {
         return "users/showConnections";
     }

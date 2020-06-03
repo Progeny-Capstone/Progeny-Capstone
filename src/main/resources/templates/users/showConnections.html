@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/head :: head('Progeny - Connections')">
+<head th:replace="partials/head :: head('Progeny - Friends List')">
 
 </head>
 <body>
@@ -8,11 +8,20 @@
 <!---------- TOP NAVIGATION BAR ---------->
 <nav th:replace="partials/topnav :: navbar"></nav>
 
-<!---------- Main Container ---------->
+<!---------- SECTION ---------->
 <article class="main-container">
 
-    <!---------- CREATE ACCOUNT SECTION ---------->
+    <!---------- SECTION ---------->
     <section class="section-container">
+
+            <!---------- SHOW FRIENDS ---------->
+            <div th:each="friend : ${friends}" class="friend-card">
+
+                <a th:href="@{|/friend/${friend.getId()}|}" class="friend-name-link">
+                    <p th:text="${friend.getFirstName() + ' ' +${friend.getFirstName()}}" class="friend-name"></p>
+                </a>
+
+            </div>
 
     </section>
 
