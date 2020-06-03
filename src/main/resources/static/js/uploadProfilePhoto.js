@@ -1,23 +1,48 @@
 
 
+// -------------- FILESTACK --------------
 window.addEventListener('DOMContentLoaded', function () {
+
+    // -------------- API KEY (Keys.js) --------------
     const apikey = fileStackKey;
     const client = filestack.init(apikey);
 
-    document.querySelector('input').addEventListener('change', (event) => {
-        const files = event.target.files;
-        const pickOptions = {
-            transformations: {
-                crop: {
-                    aspectRatio: 16/9,
-                },
-                circle: false
-            },
-            onUploadDone: res => console.log(res),
-        };
-        const picker = client.picker(pickOptions);
-        picker.crop(files);
-    });
+    // -------------- UPLOAD PREFERENCES --------------
+    const options = {
+        displayMode: 'inline',
+        container: '#inline',
+        maxFiles: 20,
+        uploadInBackground: false,
+        onUploadDone: function (res){
+            console.log(res);
+
+            console.log(res.filesUploaded[0].url);
+
+            let filestackUrl = `<input type="hidden" name="filestackUrl" value="${res.filesUploaded[0].url}"/>`;
+
+            $("#register-form").append(filestackUrl);
+
+
+        },
+
+
+
+    };
+
+
+
+
+    // -------------- FILE PICKER --------------
+    const picker = client.picker(options);
+
+    // -------------- HTML ELEMENTS --------------
+    const openBtn = document.getElementById('open');
+    const closeBtn = document.getElementById('close');
+
+    // -------------- EVENT LISTENERS --------------
+    openBtn.addEventListener('click', () => picker.open());
+    closeBtn.addEventListener('click', () => picker.close());
+
 });
 
 
