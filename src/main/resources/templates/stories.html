@@ -8,20 +8,21 @@
 <!---------- TOP NAVIGATION BAR ---------->
 <nav th:replace="partials/topnav :: navbar"></nav>
 
-<!---------- Main Container ---------->
+<!---------- MAIN CONTAINER ---------->
 <article class="main-container">
 
-    <!---------- CREATE ACCOUNT SECTION ---------->
+    <!---------- SECTION ---------->
     <section class="section-container">
 
-        <!---------- GROUPS SECTION ---------->
+        <!---------- STORIES SECTION ---------->
         <div class="stories-sub-section">
 
             <h1 class="section-header">Available Stories</h1>
 
-            <!---------- SHOW RECORDINGS ---------->
+            <!---------- SHOW STORIES ---------->
             <div th:each="story : ${stories}" class="story-card">
 
+                <!---------- STORIES CARDS ---------->
                 <a th:href="@{|/story/${story.getId()}|}" class="story-title-link">
                     <img th:src="@{ ${story.coverImageUrl}}" alt="This is the cover image for the story">
                     <h1 th:text="${story.title}" class="story-title"></h1>
@@ -31,6 +32,7 @@
 
         </div>
 
+        <!---------- EMAIL SUGGESTIONS LINK ---------->
         <a href="#">Don's see a story you like? Email us your suggestion.</a>
     </section>
 
