@@ -8,15 +8,28 @@
 <!---------- TOP NAVIGATION BAR ---------->
 <nav th:replace="partials/topnav :: navbar"></nav>
 
-<!---------- Main Container ---------->
+<!---------- MAIN CONTAINER ---------->
 <article class="main-container">
-<section class="section-container">
-    <h3 th:text="${currentStory.title}" class="section-header"></h3>
-    <h4 class="card-subtitle">By <span th:text="${currentStory.getAuthorFirstName()} + ' ' + ${currentStory.getAuthorLastName()}"></span></h4>
 
-    <iframe style='width:900px;height:500px' th:src="${currentStory.storyFile}"  seamless='seamless' scrolling='no' frameborder='0' allowtransparency='true' allowfullscreen='true' ></iframe>
+    <!---------- SECTION CONTAINER ---------->
+    <section class="section-container">
 
-</section>
+        <!---------- SECTION HEADER ---------->
+        <h3 th:text="${currentStory.title}" class="section-header"></h3>
+
+        <!---------- SECTION SUBTITLE ---------->
+        <h4 class="card-subtitle">By <span
+                th:text="${currentStory.getAuthorFirstName()} + ' ' + ${currentStory.getAuthorLastName()}"></span></h4>
+
+
+        <!---------- SECTION BOOK IFRAME ---------->
+        <iframe style='width:900px;height:500px' th:src="${currentStory.storyFile}" seamless='seamless' scrolling='no'
+                frameborder='0' allowtransparency='true' allowfullscreen='true'></iframe>
+
+
+        <!---------- EDIT BOOK ---------->
+        <a th:href="@{|/story/${currentStory.getId()}/edit|}">Edit Story</a>
+    </section>
 
 
 </article>
