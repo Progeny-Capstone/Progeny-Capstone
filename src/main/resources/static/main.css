@@ -46,6 +46,7 @@ a {
 .jumbotron {
     margin: 15% 0 5% 0;
     background: transparent;
+    text-align: right;
 }
 
 /*------------- GRAPHICS -------------*/
@@ -178,7 +179,25 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
 .icon-graphic:hover {
     fill: var(--coral-color);
 }
-
+/*------------- FEATURE -------------*/
+#feature-jumbotron{
+    background: var(--navy-color);
+    color: var(--light-coral-color);
+    padding: 6% 0;
+}
+.icon-graphic-feature{
+    height: 30px;
+    width: auto;
+    fill: var(--Light-color);
+    margin: 0 2%;
+}
+.feature-btn{
+    background: var(--Light-color);
+    color: var(--navy-color);
+}
+.feature-btn:hover{
+    background: var(--light-coral-color);
+}
 /*------------- RECORD -------------*/
 
 #record {
