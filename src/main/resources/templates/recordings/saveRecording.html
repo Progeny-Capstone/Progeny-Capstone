@@ -28,10 +28,6 @@
             <input class="form-control" id="groupId" th:field="*{groupId}" type="text" required/>
 
             <!---------- SET AUTHOR FIRST NAME ---------->
-            <label for="recordingUrl">Recording</label>
-            <input class="form-control" id="recordingUrl" th:field="*{recordingUrl}" type="text" required/>
-
-            <!---------- SET AUTHOR FIRST NAME ---------->
 <!--            <input class="form-control" id="userId" th:value="${currentUserId}" type="hidden" th:name="currentUserId" required/>-->
 
             <label for="currentUserId">User ID</label>
@@ -71,7 +67,8 @@
 
 <!---------- SCRIPTS ---------->
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
-<script src="js/uploadRecording.js"></script>
+<script src="../js/uploadRecording.js"></script>
+<script src="../js/keys.js"></script>
 <script th:replace="partials/scripts :: scripts"></script>
 
 </body>
