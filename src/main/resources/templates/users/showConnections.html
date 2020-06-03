@@ -42,14 +42,14 @@
         <div class="search-results my-5">
 
             <!---------- SHOW PROGENY USERS ---------->
-            <div th:each="user: ${users}" class="friend-card text-center d-flex flex-row justify-content-center">
+            <div th:each="potentialFriend : ${users}" class="friend-card text-center d-flex flex-row justify-content-center">
 
                 <!---------- ADD FRIEND FORM ---------->
                 <form th:action="@{/profile/friend/edit}" method="POST" th:object="${friend}" class="form-register">
 
                     <!---------- ADD FRIEND BUTTON(S) ---------->
                     <button class="btn btn-dark">
-                        <span th:text="${user.getFirstName()} + ' ' + ${user.getLastName()}" class="friend-name"></span>
+                        <span th:text="${potentialFriend.getFirstName()} + ' ' + ${potentialFriend.getLastName()}" class="friend-name"></span>
                     </button>
 
                 </form>

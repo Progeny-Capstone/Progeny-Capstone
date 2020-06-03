@@ -48,16 +48,23 @@ public class EditConnectionsController {
     @PostMapping("/profile/friends/edit")
     public String addFriend(@ModelAttribute User friend, Model model) {
 
+        // --------- ADD FRIEND TO USER------------
         model.addAttribute("friend", friend); // 1.Get the friend from form
-        System.out.println(friend);
-        List<User> friends = new ArrayList<>(); // 2. Create a list for friends
-        System.out.println(friends);
-        friends.add(friend); // 3. add the friend to the list
-        System.out.println(friends);
+        List<User> friendToUser = new ArrayList<>(); // 2. Create a list for friends
+        friendToUser.add(friend); // 3. add the friend to the list
+        friend.setFriendList(friendToUser);
 
+
+        // --------- ADD USER TO FRIEND-----------
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
-        currentUser.setFriendList(friends); // 2. save the list of friend to users friendList column
+        List<User> userToFriend = new ArrayList<>(); // 2. Create a list for friends
+        userToFriend.add(currentUser); // 3. add the friend to the list
+        currentUser.setFriendList(userToFriend); // 2. save the list of friend to users friendList column
+
+
+        // --------- SAVE TO DB -----------
         usersRepo.save(currentUser); // 3. save the list of users to the current users information
+        usersRepo.save(friend); // 3. save the list of users to the current users information
 
         return "users/showConnections";
     }
