@@ -34,8 +34,10 @@ public class EditConnectionsController {
     @GetMapping("/profile/friends/edit")
     public String showFriends(Model model) {
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); // 2. Get the current loggedin User
-        model.addAttribute("friends", usersRepo.findAllById(user.getId())); // 3. Show a list of users attached to current user
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
+
+        model.addAttribute("currentUser", currentUser);// 2. Show current user on form
+        model.addAttribute("friends", usersRepo.findAllById(currentUser.getId())); // 2. Show a list of users attached to current user
 
         model.addAttribute("users", usersRepo.findAll()); // 1. Show a list of users on Progeny
 
@@ -44,14 +46,20 @@ public class EditConnectionsController {
 
     // --------- ADD FRIEND (POST)------------
     @PostMapping("/profile/friends/edit")
-    public String addFriend(@ModelAttribute User friend, Model model, HttpSession session) {
+    public String addFriend(@ModelAttribute User friend, Model model) {
 
         model.addAttribute("friend", friend); // 1.Get the friend from form
+        System.out.println(friend);
         List<User> friends = new ArrayList<>(); // 2. Create a list for friends
+        System.out.println(friends);
         friends.add(friend); // 3. add the friend to the list
-        session.setAttribute("friends", friends); // 4. Keep list alive for session?
+        System.out.println(friends);
 
-        return "redirect:/profile";
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
+        currentUser.setFriendList(friends); // 2. save the list of friend to users friendList column
+        usersRepo.save(currentUser); // 3. save the list of users to the current users information
+
+        return "users/showConnections";
     }
 
 

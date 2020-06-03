@@ -17,7 +17,7 @@
 
     </section>
 
-    <section class="section-container d-flex flex-row">
+    <section class="section-container d-flex flex-row" id="profile-section">
         <!---------- USER ACCOUNT DETAILS ---------->
         <section class="sub-section-container profile-details-container col-lg-4 col-md-12 d-flex flex-column">
 
@@ -39,6 +39,24 @@
             <!---------- USER BIO ---------->
             <p class="text-left"><span th:text="${currentUser.getBio()}"></span></p>
 
+
+            <div class="friends-container my-5">
+
+                <!---------- FRIENDS HEADER ---------->
+                <h4 class="section-subheader">Your Friends</h4>
+
+                <!---------- EDIT FRIENDS---------->
+                <a href="profile/friends/edit">Edit your friends</a>
+
+                <!---------- SHOW FRIENDS ---------->
+                <div th:each="friend : ${friends}" class="friend-card my-5 text-center">
+
+                    <span th:text="${friend.getFirstName()} + ' ' +${friend.getLastName()}"
+                          class="friend-name badge badge-pill badge-info"></span>
+
+                </div>
+
+            </div>
 
         </section>
 
