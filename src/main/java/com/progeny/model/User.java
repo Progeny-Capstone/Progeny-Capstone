@@ -1,6 +1,8 @@
 package com.progeny.model;
 
+import javax.persistence.Entity;
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -54,20 +56,33 @@ public class User {
     @Column(nullable =false, columnDefinition = "boolean default false")
     private boolean isAdmin;
 
+    // 11. A list of recordings mapped by the user
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Recording> recordings;
 
 
+    // 12. a. A user -->
+//    @ManyToOne(cascade={CascadeType.ALL})
+//    @JoinColumn(name="user_id")
+//    private User user;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    // 12. b. can have many friends
+//    @OneToMany(mappedBy="user", fetch = FetchType.EAGER)
+//    private List<User> friends = new ArrayList<>();
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
-            name="users_friends",
-            joinColumns={@JoinColumn(name="user_id1")},
-            inverseJoinColumns={@JoinColumn(name="user_id2")}
+            name="tbl_friends",
+            joinColumns=@JoinColumn(name="user_Id", referencedColumnName = "id"),
+            inverseJoinColumns=@JoinColumn(name="friend_Id", referencedColumnName = "id")
     )
-    private List<User> friendList;
+    private List<User> friends = new ArrayList<User>();
+
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "friends")
+    private List<User> friendOf = new ArrayList<User>();
 
 
+    // 13. A user can have many groups and a group can have many users
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_groups",
@@ -96,6 +111,8 @@ public class User {
         location = copy.location;
         bio = copy.bio;
         isAdmin = copy.isAdmin;
+        friends = copy.friends;
+        friendOf = copy.friendOf;
     }
     //----------------------------
 
@@ -126,8 +143,26 @@ public class User {
         this.isAdmin = isAdmin;
     }
 
+    // ----- THE WHOLE SHEBANG ----
+    public User(long id, String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, boolean isAdmin, List<Recording> recordings, List<User> friends, List<User> friendOf, List<Group> groupList) {
+        this.id = id;
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.profileImageUrl = profileImageUrl;
+        this.location = location;
+        this.bio = bio;
+        this.isAdmin = isAdmin;
+        this.recordings = recordings;
+        this.friends = friends;
+        this.friendOf = friendOf;
+        this.groupList = groupList;
+    }
 
     // ---------- GET AND SET METHODS -----------
+
     public boolean isAdmin() {
         return isAdmin;
     }
@@ -140,13 +175,22 @@ public class User {
         this.recordings = recordings;
     }
 
-    public List<User> getFriendList() {
-        return friendList;
+    public List<User> getFriends() {
+        return friends;
     }
 
-    public void setFriendList(List<User> friendList) {
-        this.friendList = friendList;
+    public void setFriends(List<User> friends) {
+        this.friends = friends;
     }
+
+    public List<User> getFriendOf() {
+        return friendOf;
+    }
+
+    public void setFriendOf(List<User> friendOf) {
+        this.friendOf = friendOf;
+    }
+
 
     public List<Group> getGroupList() {
         return groupList;

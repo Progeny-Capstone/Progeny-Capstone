@@ -14,15 +14,48 @@
     <!---------- SECTION ---------->
     <section class="section-container">
 
-            <!---------- SHOW FRIENDS ---------->
-            <div th:each="friend : ${friends}" class="friend-card">
+        <!---------- SECTION HEADER---------->
+        <h1 class="section-header"><span th:text="${currentUser.getFirstName()}"></span>, here are the people you are
+            connected with</h1>
 
-                <a th:href="@{|/friend/${friend.getId()}|}" class="friend-name-link">
-                    <p th:text="${friend.getFirstName() + ' ' +${friend.getFirstName()}}" class="friend-name"></p>
-                </a>
+        <!---------- SHOW FRIENDS ---------->
+        <div th:each="friend : ${friends}" class="friend-card my-5 text-center">
+
+            <form th:action="@{/profile/friends/edit}" method="POST" th:object="${friend}" class="form-register">
+                <button class="btn btn-dark">
+                <span th:text="${friend.getFirstName()} + ' ' +${friend.getLastName()}" class="friend-name"></span>
+                </button>
+            </form>
+
+        </div>
+    </section>
+
+    <!---------- SECTION ---------->
+    <section class="section-container">
+
+        <!---------- SEARCH BAR ---------->
+        <div id="custom-search-input" class="input-group my-5 text-right">
+            <input type="text" class="search-query form-control" placeholder="Search for someone on Progeny"/>
+        </div>
+
+        <!---------- SEARCH PROGENY USERS ---------->
+        <div class="search-results my-5">
+
+            <!---------- SHOW PROGENY USERS ---------->
+            <div th:each="potentialFriend : ${users}" class="friend-card text-center d-flex flex-row justify-content-center">
+
+                <!---------- ADD FRIEND FORM ---------->
+                <form th:action="@{/profile/friends/edit}" method="POST" class="form-register">
+
+                    <!---------- ADD FRIEND BUTTON(S) ---------->
+                    <button class="btn btn-dark">
+                        <span th:text="${potentialFriend.getFirstName()} + ' ' + ${potentialFriend.getLastName()}" class="friend-name"></span>
+                    </button>
+                    <input type="hidden" th:name="friendId" th:value="${potentialFriend.id}">
+                </form>
 
             </div>
-
+        </div>
     </section>
 
 </article>
