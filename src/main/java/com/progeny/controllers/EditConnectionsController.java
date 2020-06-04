@@ -7,11 +7,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,8 +34,8 @@ public class EditConnectionsController {
     public String showFriends(Model model) {
 
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
-
         model.addAttribute("currentUser", currentUser);// 2. Show current user on form
+
         model.addAttribute("friends", usersRepo.findAllById(currentUser.getId())); // 2. Show a list of users attached to current user
 
         model.addAttribute("users", usersRepo.findAll()); // 1. Show a list of users on Progeny
@@ -49,9 +47,12 @@ public class EditConnectionsController {
     @PostMapping("/profile/friends/edit")
     public String addFriend(@RequestParam long friendId, Model model) {
 
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
+        User currentUser = new User(user); // 2. set new user to user ^
+        model.addAttribute("currentUser", currentUser);// 3. Show current user on page
 
         User friend = usersRepo.getUserById(friendId);
+        model.addAttribute("friend", friend);// 3. Show current user on page
 
         System.out.println(currentUser.getFirstName());
         System.out.println(friend.getFirstName());

@@ -21,7 +21,7 @@
         <!---------- SHOW FRIENDS ---------->
         <div th:each="friend : ${friends}" class="friend-card my-5 text-center">
 
-            <form th:action="@{/profile/friend/edit}" method="POST" th:object="${friend}" class="form-register">
+            <form th:action="@{/profile/friends/edit}" method="POST" th:object="${friend}" class="form-register">
                 <button class="btn btn-dark">
                 <span th:text="${friend.getFirstName()} + ' ' +${friend.getLastName()}" class="friend-name"></span>
                 </button>
