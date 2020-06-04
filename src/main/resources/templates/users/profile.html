@@ -49,7 +49,7 @@
                 <a href="profile/friends/edit">Edit your friends</a>
 
                 <!---------- SHOW FRIENDS ---------->
-                <div th:each="friend : ${friends}" class="friend-card my-5 text-center">
+                <div th:each="friend : ${friends}" class="friend-card my-5 text-center pull-left">
 
                     <span th:text="${friend.getFirstName()} + ' ' +${friend.getLastName()}"
                           class="friend-name badge badge-pill badge-info"></span>
