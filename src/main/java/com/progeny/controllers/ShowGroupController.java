@@ -31,6 +31,9 @@ public class ShowGroupController {
         String groupDescription = groupsRepo.getGroupById(id).getDescription();
         model.addAttribute("groupDescription", groupDescription);
 
+//        String groupRecordings = groupsRepo.getGroupById(id).getRecordings();
+//        model.addAttribute("groupRecordings", groupRecordings);
+
         return "groups/showGroup"; // HTML PATH
     }
 

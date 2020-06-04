@@ -41,18 +41,14 @@ public class EditGroupController {
     @PostMapping("/group/{id}/edit")
     public String createGroupForm(@PathVariable long id, @ModelAttribute Group editGroup){
 
-        System.out.println(id);
         Group currentGroupEdits = groupsRepo.getGroupById(id); // get the id of the Group
 
-        System.out.println(currentGroupEdits);
-
-        System.out.println(editGroup.getName());
         currentGroupEdits.setName(editGroup.getName());
         currentGroupEdits.setDescription(editGroup.getDescription());
 
         groupsRepo.save(editGroup);
 
-        return "redirect:/profile"; // REDIRECT: URL PATH
+        return "redirect:/group/{id}"; // REDIRECT: URL PATH
     }
 
 }

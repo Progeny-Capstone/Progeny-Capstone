@@ -41,7 +41,7 @@ public class CreateGroupController {
 
         groupsRepo.save(newGroup);
 
-        return "redirect:/group/{id}"; // REDIRECT: URL PATH
+        return "redirect:/profile"; // REDIRECT: URL PATH
     }
 
 }
