@@ -60,4 +60,12 @@ public class EditProfileController {
         return "redirect:/profile";
     }
 
+    //******************** method for deleting deleting a story from database ****************
+    @PostMapping("/profile/edit/{name}")
+    public String deleteProfile(@ModelAttribute User user){
+        User deleteProfile = usersRepo.getOne(user.getId());
+        usersRepo.delete(deleteProfile);
+        return "redirect:/";
+    }
+
 }

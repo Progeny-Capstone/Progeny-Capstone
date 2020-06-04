@@ -21,10 +21,32 @@
             <h1 class="section-header" th:text="${groupName}"></h1>
 
             <!---------- GROUP DESCRIPTION ---------->
-            <p th:text="${groupDescription}"></p>
+            <p th:text="${groupDescription}" class="text-center"></p>
 
-            <!---------- GROUP ID ---------->
-            <p>Post id: <em th:text="${currentGroup.id}"></em></p>
+
+
+            <!---------- RIGHT SECTIONS---------->
+<!--            <section class="sub-section-container col-lg-8 col-md-12 ">-->
+
+<!--                &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; RECORDINGS SSECTION&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--                <div class="recording-sub-section">-->
+
+<!--                    &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; EDIT RECORDINGS &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--                    <a class="text-right" href="#">Edit Recordings</a>-->
+
+<!--                    &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; SHOW RECORDINGS &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--                    <div th:each="recording : ${recordings}" class="recording-card">-->
+
+<!--                        <a th:href="@{|/recording/${recording.getId()}|}" class="recording-title-link">-->
+<!--                            <h1 th:text="${recording.title}" class="recording-title"></h1>-->
+<!--                        </a>-->
+
+
+<!--                    </div>-->
+<!--                </div>-->
+
+            <!---------- EDIT GROUP ---------->
+            <a href="/profile/edit/{id}" class="text-center">Edit Group</a>
 
         </div>
 

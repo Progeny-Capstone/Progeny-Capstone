@@ -18,15 +18,10 @@ window.addEventListener('DOMContentLoaded', function () {
 
             console.log(res.filesUploaded[0].url);
 
-            let filestackUrl = `<input type="hidden" name="filestackUrl" value="${res.filesUploaded[0].url}"/>`;
+            let filestackUrl = `<input type="hidden" name="profileImageUrl" value="${res.filesUploaded[0].url}"/>`;
 
-            $("#register-form").append(filestackUrl);
-
-
+            $("#editProfileForm").append(filestackUrl);
         },
-
-
-
     };
 
 

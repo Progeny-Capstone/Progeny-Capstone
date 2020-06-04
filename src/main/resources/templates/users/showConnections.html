@@ -42,7 +42,7 @@
         <div class="search-results my-5">
 
             <!---------- SHOW PROGENY USERS ---------->
-            <div th:each="potentialFriend : ${users}" class="friend-card text-center d-flex flex-row justify-content-center">
+            <div th:each="potentialFriend : ${users}" class="friend-card">
 
                 <!---------- ADD FRIEND FORM ---------->
                 <form th:action="@{/profile/friends/edit}" method="POST" class="form-register">
