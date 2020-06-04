@@ -22,8 +22,8 @@ public class Recording {
     @Column(nullable = false, name = "recording")
     private String recordingUrl;
 
-    @Column(nullable = false)
-    private Timestamp timestamp;
+//    @Column(nullable = false)
+//    private Timestamp timestamp;
 
     @Column(nullable = false, length = 45)
     private String title;
@@ -55,7 +55,6 @@ public class Recording {
     public Recording(Recording copy){
         id = copy.id;
         recordingUrl = copy.recordingUrl;
-        timestamp = copy.timestamp;
         title = copy.title;
         groupId = copy.groupId;
     }
@@ -63,10 +62,9 @@ public class Recording {
 
 
     // ----- WITH ID CONSTRUCTOR ----
-    public Recording(long id, String recordingUrl, Timestamp timestamp, String title, User user, long groupId) {
+    public Recording(long id, String recordingUrl, String title, User user, long groupId) {
         this.id = id;
         this.recordingUrl = recordingUrl;
-        this.timestamp = timestamp;
         this.title = title;
         this.user =user;
         this.groupId = groupId;
@@ -74,18 +72,16 @@ public class Recording {
 
 
     // ----- WITHOUT ID CONSTRUCTOR ----
-    public Recording(String recordingUrl, Timestamp timestamp, String title, User user, long groupId) {
+    public Recording(String recordingUrl, String title, User user, long groupId) {
         this.recordingUrl = recordingUrl;
-        this.timestamp = timestamp;
         this.title = title;
         this.user = user;
         this.groupId = groupId;
     }
 
     // ----- WITHOUT ID & USER CONSTRUCTOR ----
-    public Recording(String recordingUrl, Timestamp timestamp, String title, long groupId) {
+    public Recording(String recordingUrl, String title, long groupId) {
         this.recordingUrl = recordingUrl;
-        this.timestamp = timestamp;
         this.title = title;
         this.groupId = groupId;
     }
@@ -108,15 +104,6 @@ public class Recording {
     public void setRecordingUrl(String recordingUrl) {
         this.recordingUrl = recordingUrl;
     }
-
-    public Timestamp getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
-    }
-
 
     public String getTitle() {
         return title;

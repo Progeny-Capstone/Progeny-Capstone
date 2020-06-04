@@ -19,7 +19,7 @@
         <h1 class="section-header">Create an account</h1>
 
         <!---------- CREATE ACCOUNT FORM ---------->
-        <form th:action="@{/register}" method="POST" th:object="${user}" class="form-register">
+        <form th:action="@{/register}" method="POST" th:object="${user}" class="form-register" id="register-form">
 
             <!---------- SET FIRST NAME ---------->
             <label for="firstName">First Name</label>
@@ -47,15 +47,38 @@
                 <!---------- SUBMIT FORM ---------->
                 <button class="btn btn-sm btn-dark" type="submit">Register</button>
             </div>
+
+
+            <!---------- UPLOAD PROFILE PHOTO ---------->
+            <div class="form-row">
+                <div class="col">
+                    <button class="btn btn-dark form-control" type="button" id="open">Upload Profile Image</button>
+                    <br>
+                    <button class="btn btn-dark form-control" type="button" id="close">close</button>
+
+                    <div id="inline" style="width:600px;height:500px;padding:20px;"></div>
+
+                </div>
+            </div>
+            <br>
+
+
+
         </form>
 
     </section>
 </article>
 
+
+
 <!---------- FOOTER ---------->
 <nav th:replace="partials/footer :: footer"></nav>
 
 <!---------- SCRIPTS ---------->
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script src="js/uploadProfilePhoto.js"></script>
+<script src="js/keys.js"></script>
+<!--<script src="js/filestack.js"></script>-->
 <script th:replace="partials/scripts :: scripts"></script>
 
 </body>

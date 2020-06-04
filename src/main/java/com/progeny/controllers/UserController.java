@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
@@ -40,9 +41,10 @@ public class UserController {
 
     // --------- CREATE USER (POST)------------
     @PostMapping("/register")
-    public String saveUser(@ModelAttribute User user){
+    public String saveUser(@ModelAttribute User user, @RequestParam String filestackUrl){
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
+        user.setProfileImageUrl(filestackUrl);
         usersRepo.save(user);
         return "redirect:/login";
     }

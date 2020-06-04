@@ -11,20 +11,54 @@
 <!---------- MAIN CONTAINER ---------->
 <article class="main-container">
 
-    <!---------- SECTION ---------->
+    <!---------- CREATE STORY SECTION ---------->
     <section class="section-container">
 
-        <div id="content">
+        <!---------- CREATE ACCOUNT HEADER ---------->
+        <h1 class="section-header">Save your recording</h1>
 
-            <h2>This is where you save the recording</h2>
+        <!---------- CREATE STORY FORM ---------->
+        <form th:action="@{/recording/save}" method="post" th:object="${recording}" id="recording-form" class="form-label-group">
 
-        </div>
+            <!---------- SET BOOK TITLE ---------->
+            <label for="recordingTitle">Title</label>
+            <input class="form-control" id="recordingTitle" th:field="*{title}" type="text" required/>
 
-        <button id="open">Open Picker</button>
-        <button id="close">Close Picker</button>
-        <div id="inline" style="width:600px;height:500px;padding:20px;"></div>
+            <label for="groupId">Group Id</label>
+            <input class="form-control" id="groupId" th:field="*{groupId}" type="text" required/>
+
+            <!---------- SET AUTHOR FIRST NAME ---------->
+<!--            <input class="form-control" id="userId" th:value="${currentUserId}" type="hidden" th:name="currentUserId" required/>-->
+
+            <label for="currentUserId">User ID</label>
+            <input class="form-control" id="currentUserId" th:field="*{user}" type="text" required/>
+
+
+
+
+            <!---------- SUBMIT FORM ---------->
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
+
+
+
+            <!---------- UPLOAD RECORDING FROM FILE STACK---------->
+            <div class="form-row">
+                <div class="col">
+                    <button class="btn btn-dark form-control" type="button" id="open">Upload Recording</button>
+                    <br>
+                    <button class="btn btn-dark form-control" type="button" id="close">close</button>
+
+                    <div id="inline" style="width:600px;height:500px;padding:20px;"></div>
+
+                </div>
+            </div>
+            <br>
+
+        </form>
+
 
     </section>
+
 
 </article>
 
@@ -33,8 +67,8 @@
 
 <!---------- SCRIPTS ---------->
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
-<script src="js/keys.js"></script>
-<script src="js/filestack.js"></script>
+<script src="../js/uploadRecording.js"></script>
+<script src="../js/keys.js"></script>
 <script th:replace="partials/scripts :: scripts"></script>
 
 </body>

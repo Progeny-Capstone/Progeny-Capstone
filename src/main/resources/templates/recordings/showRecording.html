@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head('Progeny - Features')">
+
 </head>
 <body>
+
+<!---------- TOP NAVIGATION BAR ---------->
+<nav th:replace="partials/topnav :: navbar"></nav>
+
+
+<div class="container">
+
+    <h2>This is your recording</h2>
+</div>
+
+
+
+
+
+<!---------- FOOTER ---------->
+<nav th:replace="partials/footer :: footer"></nav>
+
+-------- SCRIPTS --------
+
+<script th:replace="partials/scripts :: scripts"></script>
+
 
 </body>
 </html>
