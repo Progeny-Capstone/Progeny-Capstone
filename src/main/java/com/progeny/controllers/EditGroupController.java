@@ -52,7 +52,7 @@ public class EditGroupController {
 
         groupsRepo.save(editGroup);
 
-        return "redirect:/group/{id}"; // REDIRECT: URL PATH
+        return "redirect:/profile"; // REDIRECT: URL PATH
     }
 
 }
