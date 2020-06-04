@@ -18,10 +18,14 @@ window.addEventListener('DOMContentLoaded', function () {
 
             console.log(res.filesUploaded[0].url);
 
-            let filestackUrl = `<input type="hidden" name="profileImageUrl" value="${res.filesUploaded[0].url}"/>`;
+            let filestackUrl = `<input type="hidden" name="coverImageUrl" value="${res.filesUploaded[0].url}"/>`;
 
-            $("#editProfileForm").append(filestackUrl);
+            $("#create-story-form").append(filestackUrl);
+
         },
+
+
+
     };
 
 
@@ -39,5 +43,3 @@ window.addEventListener('DOMContentLoaded', function () {
     closeBtn.addEventListener('click', () => picker.close());
 
 });
-
-

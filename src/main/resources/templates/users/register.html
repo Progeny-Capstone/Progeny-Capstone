@@ -48,19 +48,9 @@
                 <button class="btn btn-sm btn-dark" type="submit">Register</button>
             </div>
 
-
-            <!---------- UPLOAD PROFILE PHOTO ---------->
-            <div class="form-row">
-                <div class="col">
-                    <button class="btn btn-dark form-control" type="button" id="open">Upload Profile Image</button>
-                    <br>
-                    <button class="btn btn-dark form-control" type="button" id="close">close</button>
-
-                    <div id="inline" style="width:600px;height:500px;padding:20px;"></div>
-
-                </div>
-            </div>
-            <br>
+            <input type="hidden" name="filestackUrl" value="https://cdn.filestackcontent.com/sUIFHrXsRYWi6tQDfPQ4"/>
+<!--            Default profile pic-->
+<!--            https://cdn.filestackcontent.com/sUIFHrXsRYWi6tQDfPQ4-->
 
 
 
@@ -75,10 +65,6 @@
 <nav th:replace="partials/footer :: footer"></nav>
 
 <!---------- SCRIPTS ---------->
-<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
-<script src="js/uploadProfilePhoto.js"></script>
-<script src="js/keys.js"></script>
-<!--<script src="js/filestack.js"></script>-->
 <script th:replace="partials/scripts :: scripts"></script>
 
 </body>

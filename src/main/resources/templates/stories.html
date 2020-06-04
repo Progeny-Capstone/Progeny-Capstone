@@ -24,7 +24,9 @@
 
                 <!---------- STORIES CARDS ---------->
                 <a th:href="@{|/story/${story.getId()}|}" class="story-title-link">
-                    <img th:src="@{ ${story.coverImageUrl}}" alt="This is the cover image for the story">
+                    <div class="img-thumbnail">
+                        <img th:src="@{ ${story.coverImageUrl}}" alt="This is the cover image for the story" class="story-img-thumbnail">
+                    </div>
                     <h1 th:text="${story.title}" class="story-title"></h1>
                 </a>
 
@@ -33,7 +35,7 @@
         </div>
 
         <!---------- EMAIL SUGGESTIONS LINK ---------->
-        <a href="#">Don's see a story you like? Email us your suggestion.</a>
+        <a href="#">Don't see a story you like? Email us your suggestion.</a>
     </section>
 
 </article>

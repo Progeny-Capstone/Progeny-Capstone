@@ -35,7 +35,7 @@ public class ProfileController {
 
         model.addAttribute("currentUser", currentUser); // Show current user details on page
 
-        model.addAttribute("friends", userRepo.findAllById(currentUser.getId())); // Show a list of users attached to current user
+        model.addAttribute("friends", currentUser.getFriends()); // Show a list of users attached to current user
 
 
         model.addAttribute("recordings", recordingRepo.findAll()); // Place all the recordings on the page
@@ -44,6 +44,8 @@ public class ProfileController {
 
         return "users/profile";
     }
+
+
 
 
 

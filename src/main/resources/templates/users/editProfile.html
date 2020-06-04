@@ -18,11 +18,11 @@
         <h1 class="section-header">Create an account</h1>
 
         <!---------- CREATE ACCOUNT FORM ---------->
-        <form th:action="@{'/profile/edit/' + ${user.getUsername()}}" method="POST" th:object="${user}" class="form-register">
+        <form th:action="@{'/profile/edit/' + ${user.getUsername()}}" method="POST" th:object="${user}" class="form-register" id="editProfileForm">
 
             <!---------- SET PROFILE IMAGE ---------->
-            <label for="profileImage">Profile Image</label>
-            <input class="form-control" id="profileImage" th:field="*{profileImageUrl}" type="text" th:value="${user.profileImageUrl}"/>
+<!--            <label for="profileImage">Profile Image</label>-->
+<!--            <input class="form-control" id="profileImage" th:field="*{profileImageUrl}" type="text" th:value="${user.profileImageUrl}"/>-->
 
             <!---------- SET FIRST NAME ---------->
             <label for="firstName">First Name</label>
@@ -48,9 +48,18 @@
             <label for="profileBio">Profile Bio</label>
             <input class="form-control" id="profileBio" th:field="*{bio}" type="text" th:value="${user.bio}"/>
 
-            <!---------- SET PASSWORD ---------->
-<!--            <label for="password">Verify Password</label>-->
-<!--            <input class="form-control" id="password" type="password" required/>-->
+            <!---------- UPLOAD PROFILE PHOTO ---------->
+            <div class="form-row">
+                <div class="col">
+                    <button class="btn btn-dark form-control" type="button" id="open">Upload Profile Image</button>
+                    <br>
+                    <button class="btn btn-dark form-control" type="button" id="close">close</button>
+
+                    <div id="inline" style="width:600px;height:500px;padding:20px;"></div>
+
+                </div>
+            </div>
+            <br>
 
             <div class="form-btn-group">
                 <!---------- SUBMIT FORM ---------->
@@ -68,6 +77,9 @@
 <nav th:replace="partials/footer :: footer"></nav>
 
 <!---------- SCRIPTS ---------->
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script src="/js/uploadProfilePhoto.js" th:src="@{/js/uploadProfilePhoto.js}"></script>
+<script src="/js/keys.js" th:src="@{/js/keys.js}"></script>
 <script th:replace="partials/scripts :: scripts"></script>
 
 </body>

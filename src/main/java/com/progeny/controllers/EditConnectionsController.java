@@ -36,7 +36,7 @@ public class EditConnectionsController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
         model.addAttribute("currentUser", currentUser);// 2. Show current user on form
 
-        model.addAttribute("friends", usersRepo.findAllById(currentUser.getId())); // 2. Show a list of users attached to current user
+        model.addAttribute("friends", currentUser.getFriends()); // 2. Show a list of users attached to current user
 
         model.addAttribute("users", usersRepo.findAll()); // 1. Show a list of users on Progeny
 
@@ -46,6 +46,8 @@ public class EditConnectionsController {
     // --------- ADD FRIEND (POST)------------
     @PostMapping("/profile/friends/edit")
     public String addFriend(@RequestParam long friendId, Model model) {
+
+//        model.addAttribute("search", usersRepo.findAllByFirstNameLikeOrLastNameLike(search, search));// 1. Search Database
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
         User currentUser = new User(user); // 2. set new user to user ^

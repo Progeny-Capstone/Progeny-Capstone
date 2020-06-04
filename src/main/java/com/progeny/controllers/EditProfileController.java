@@ -1,6 +1,7 @@
 package com.progeny.controllers;
 
 import com.progeny.model.Group;
+import com.progeny.model.Story;
 import com.progeny.model.User;
 import com.progeny.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -59,5 +60,20 @@ public class EditProfileController {
 
         return "redirect:/profile";
     }
+//
+//    @GetMapping("/profile/edit/{name}")
+//    public String getDeleteStoryForm(@PathVariable String name, Model model){
+//        User deleteProfile = usersRepo.getOne(name);
+//        model.addAttribute("story", deleteProfile);
+//        return "stories/deleteStory";
+//    }
+//
+//    //******************** method for deleting deleting a story from database ****************
+//    @PostMapping("/profile/edit/{name}")
+//    public String deleteProfile(@PathVariable String name, @ModelAttribute User user){
+//        User deleteProfile = usersRepo.getOne(user.getId());
+//        usersRepo.delete(deleteProfile);
+//        return "redirect:/";
+//    }
 
 }

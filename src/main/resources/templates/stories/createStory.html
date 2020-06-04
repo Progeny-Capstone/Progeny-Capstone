@@ -18,7 +18,7 @@
         <h1 class="section-header">Create a Story</h1>
 
         <!---------- CREATE STORY FORM ---------->
-        <form th:action="@{/story/create}" method="POST" th:method="post" th:object="${story}" class="form-label-group">
+        <form th:action="@{/story/create}" method="POST" th:method="post" th:object="${story}" class="form-label-group" id="create-story-form">
 
             <!---------- SET BOOK TITLE ---------->
             <label for="bookTitle">Book Title</label>
@@ -48,8 +48,19 @@
             <input class="form-control" id="storyFile" th:field="*{storyFile}" type="text" required/>
 
             <!---------- SET BOOK COVER IMAGE ---------->
-            <label for="bookImage">Book Image</label>
-            <input class="form-control" id="bookImage" th:field="*{coverImageUrl}" type="text" required/>
+<!--            <label for="bookImage">Book Image</label>-->
+<!--            <input class="form-control" id="bookImage" th:field="*{coverImageUrl}" type="text" required/>-->
+
+            <div class="form-row">
+                <div class="col">
+                    <button class="btn btn-dark form-control" type="button" id="open">Upload Book Image</button>
+                    <br>
+                    <button class="btn btn-dark form-control" type="button" id="close">close</button>
+
+                    <div id="inline" style="width:600px;height:500px;padding:20px;"></div>
+
+                </div>
+            </div>
 
 
             <!---------- SUBMIT FORM ---------->
@@ -66,6 +77,9 @@
 <nav th:replace="partials/footer :: footer"></nav>
 
 <!---------- SCRIPTS ---------->
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script src="../js/uploadStoryPhoto.js"></script>
+<script src="../js/keys.js"></script>
 <script th:replace="partials/scripts :: scripts"></script>
 
 </body>
