@@ -45,9 +45,9 @@ public class EditConnectionsController {
 
     // --------- ADD FRIEND (POST)------------
     @PostMapping("/profile/friends/edit")
-    public String addFriend(@RequestParam long friendId, Model model, @RequestParam String search) {
+    public String addFriend(@RequestParam long friendId, Model model) {
 
-        model.addAttribute("search", usersRepo.findAllByFirstNameLikeOrLastNameLike(search, search));// 1. Search Database
+//        model.addAttribute("search", usersRepo.findAllByFirstNameLikeOrLastNameLike(search, search));// 1. Search Database
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
         User currentUser = new User(user); // 2. set new user to user ^
