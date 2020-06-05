@@ -70,6 +70,18 @@ public class User {
     @OneToMany(fetch = FetchType.EAGER, mappedBy="friend")
     private List<User> friends = new ArrayList<>();
 
+//     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//     @JoinTable(
+//             name="tbl_friends",
+//             joinColumns=@JoinColumn(name="user_Id"),
+//             inverseJoinColumns=@JoinColumn(name="friend_Id")
+//     )
+//     private List<User> friends = new ArrayList<User>();
+
+//     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "friends")
+//     private List<User> friendOf = new ArrayList<User>();
+
+
     // --------------- GROUPS ----------------
     // 13. A user can have many groups and a group can have many users
     @ManyToMany(cascade = CascadeType.ALL)
