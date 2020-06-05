@@ -15,7 +15,7 @@
     <section class="section-container">
 
         <!---------- CREATE ACCOUNT HEADER ---------->
-        <h1 class="section-header">Create an account</h1>
+        <h1 class="section-header">Edit Profile</h1>
 
         <!---------- CREATE ACCOUNT FORM ---------->
         <form th:action="@{'/profile/edit/' + ${user.getUsername()}}" method="POST" th:object="${user}" class="form-register" id="editProfileForm">
@@ -65,7 +65,7 @@
                 <!---------- SUBMIT FORM ---------->
                 <button class="btn btn-sm btn-dark" type="submit">Save</button>
 
-                <button class="btn btn-sm btn-danger type sumbit">Delete</button>
+                <a th:href="@{|/profile/delete/${user.username}|}" class="btn btn-sm btn-danger">Delete</a>
             </div>
 
         </form>
@@ -73,27 +73,6 @@
     </section>
 
 </article>
-
-<!-------- BOOTSTRAP MODAL FOR DELETING PROFILE -------------->
-<div class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">WARNING!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure you want to delete yoyr profile? You will lose all your connections, and stories.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No, Don't Delete</button>
-                <button type="button" class="btn btn-primary">Yes, Delete Profile</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 <!---------- FOOTER ---------->

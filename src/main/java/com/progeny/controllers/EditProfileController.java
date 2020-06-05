@@ -57,20 +57,22 @@ public class EditProfileController {
 
         return "redirect:/profile";
     }
-//
-//    @GetMapping("/profile/edit/{name}")
-//    public String getDeleteForm(@PathVariable String name, Model model){
-//        User deleteProfile = usersRepo.findByUsername(name);
-//        model.addAttribute("story", deleteProfile);
-//        return "stories/deleteStory";
-//    }
 
-    //******************** method for deleting deleting a story from database ****************
-    @RequestMapping("/profile/edit/{name}")
-    public String deleteProfile(@PathVariable String name, @ModelAttribute User user){
+
+    //******************** method for taking user to delete profile warning page **************
+    @GetMapping("/profile/delete/{name}")
+    public String getDeleteForm(@PathVariable String name, Model model){
         User deleteProfile = usersRepo.findByUsername(name);
+        model.addAttribute("user", deleteProfile);
+        return "users/deleteProfile";
+    }
+
+    //******************** method for deleting deleting a user profile from database ****************
+    @PostMapping("/profile/delete")
+    public String deleteProfile(@RequestParam long userId, @ModelAttribute User user){
+        User deleteProfile = usersRepo.getOne(userId);
         usersRepo.delete(deleteProfile);
-        return "redirect:/";
+        return "redirect:/login";
     }
 
 }
