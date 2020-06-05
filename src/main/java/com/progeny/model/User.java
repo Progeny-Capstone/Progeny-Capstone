@@ -73,8 +73,8 @@ public class User {
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name="tbl_friends",
-            joinColumns=@JoinColumn(name="user_Id", referencedColumnName = "id"),
-            inverseJoinColumns=@JoinColumn(name="friend_Id", referencedColumnName = "id")
+            joinColumns=@JoinColumn(name="user_Id"),
+            inverseJoinColumns=@JoinColumn(name="friend_Id")
     )
     private List<User> friends = new ArrayList<User>();
 

@@ -78,15 +78,15 @@ public class EditConnectionsController {
         System.out.println(currentUser.getFriends().get(0).getUsername());
 
         // --------- ADD FRIEND TO USER------------
-        friend.getFriends().add(currentUser);
+//        friend.getFriends().add(currentUser);
 
-        System.out.println(friend.getFriends().get(0).getUsername());
+//        System.out.println(friend.getFriends().get(0).getUsername());
 
         // --------- SAVE TO DB -----------
         usersRepo.save(currentUser); // 3. save the list of users to the current users information
-        usersRepo.save(friend); // 3. save the list of users to the current users information
+//        usersRepo.save(friend); // 3. save the list of users to the current users information
 
-        return "users/showConnections";
+        return "redirect:/profile/friends/edit";
     }
 
 
