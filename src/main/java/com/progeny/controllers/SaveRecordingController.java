@@ -36,12 +36,12 @@ public class SaveRecordingController {
         return "recordings/saveRecording";
     }
 
-    //    // --------- CREATE RECORDING (POST)------------
+    //     --------- CREATE RECORDING (POST)------------
     @PostMapping("/recording/save")
-    public String create(@ModelAttribute Recording recording) {
+    public Recording create(@ModelAttribute Recording recording) {
 
         recordings.save(recording);
 
-        return "redirect:/recording/show";
+        return recording;
     }
 }

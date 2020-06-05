@@ -72,7 +72,7 @@
                 <!---------- SHOW RECORDINGS ---------->
                 <div th:each="recording : ${recordings}" class="recording-card">
 
-                    <a th:href="@{|/recording/${recording.getId()}|}" class="recording-title-link">
+                    <a th:href="@{|/recording/show/${recording.getId()}|}" class="recording-title-link">
                         <h1 th:text="${recording.title}" class="recording-title"></h1>
                     </a>
 
