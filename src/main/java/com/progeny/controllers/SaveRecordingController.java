@@ -38,10 +38,10 @@ public class SaveRecordingController {
 
     //     --------- CREATE RECORDING (POST)------------
     @PostMapping("/recording/save")
-    public Recording create(@ModelAttribute Recording recording) {
+    public String create(@ModelAttribute Recording recording) {
 
         recordings.save(recording);
 
-        return recording;
+        return "redirect:/profile";
     }
 }
