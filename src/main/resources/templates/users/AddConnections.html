@@ -14,32 +14,14 @@
     <!---------- SECTION ---------->
     <section class="section-container">
 
-        <!---------- SECTION HEADER---------->
-        <h1 class="section-header"><span th:text="${currentUser.getFirstName()}"></span>, here are the people you are
-            connected with</h1>
-
-        <div class="d-flex flex-row justify-content-center">
-            <!---------- SHOW FRIENDS ---------->
-            <div th:each="friend : ${friends}" class="friend-card my-5 text-center">
-                    <badge class="badge badge-light">
-                        <span th:text="${friend.getFirstName()} + ' ' +${friend.getLastName()}"
-                              class="friend-name"></span>
-                    </badge>
-            </div>
-        </div>
-    </section>
-
-    <!---------- SECTION ---------->
-    <section class="section-container">
-
         <!---------- SECTION HEADER ---------->
         <h2 class="section-header">Looking For Someone?</h2>
 
         <!---------- SEARCH BAR ---------->
         <div id="custom-search-input" class=" my-5 ">
-<!--            <form action="/profile/friends/edit" method="post">-->
-                <input type="text" class="search-query form-control" name="search" placeholder="Search for someone on Progeny"/>
-<!--            </form>-->
+            <!--            <form action="/profile/friends/edit" method="post">-->
+            <input type="text" class="search-query form-control" name="search" placeholder="Search for someone on Progeny"/>
+            <!--            </form>-->
         </div>
 
         <!---------- SEARCH PROGENY USERS ---------->
@@ -49,7 +31,7 @@
             <div th:each="potentialFriend : ${users}" class="friend-card">
 
                 <!---------- ADD FRIEND FORM ---------->
-                <form th:action="@{/profile/friends}" method="POST" class="form-register">
+                <form th:action="@{/profile/friends/edit}" method="POST" class="form-register">
 
                     <!---------- ADD FRIEND BUTTON(S) ---------->
                     <button class="btn btn-dark">
