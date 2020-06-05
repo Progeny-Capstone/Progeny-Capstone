@@ -8,10 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class EditProfileController {
@@ -60,20 +57,22 @@ public class EditProfileController {
 
         return "redirect:/profile";
     }
-//
-//    @GetMapping("/profile/edit/{name}")
-//    public String getDeleteStoryForm(@PathVariable String name, Model model){
-//        User deleteProfile = usersRepo.getOne(name);
-//        model.addAttribute("story", deleteProfile);
-//        return "stories/deleteStory";
-//    }
-//
-//    //******************** method for deleting deleting a story from database ****************
-//    @PostMapping("/profile/edit/{name}")
-//    public String deleteProfile(@PathVariable String name, @ModelAttribute User user){
-//        User deleteProfile = usersRepo.getOne(user.getId());
-//        usersRepo.delete(deleteProfile);
-//        return "redirect:/";
-//    }
+
+
+    //******************** method for taking user to delete profile warning page **************
+    @GetMapping("/profile/delete/{name}")
+    public String getDeleteForm(@PathVariable String name, Model model){
+        User deleteProfile = usersRepo.findByUsername(name);
+        model.addAttribute("user", deleteProfile);
+        return "users/deleteProfile";
+    }
+
+    //******************** method for deleting deleting a user profile from database ****************
+    @PostMapping("/profile/delete")
+    public String deleteProfile(@RequestParam long userId, @ModelAttribute User user){
+        User deleteProfile = usersRepo.getOne(userId);
+        usersRepo.delete(deleteProfile);
+        return "redirect:/login";
+    }
 
 }

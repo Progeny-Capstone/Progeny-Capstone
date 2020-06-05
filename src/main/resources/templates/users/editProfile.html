@@ -15,7 +15,7 @@
     <section class="section-container">
 
         <!---------- CREATE ACCOUNT HEADER ---------->
-        <h1 class="section-header">Create an account</h1>
+        <h1 class="section-header">Edit Profile</h1>
 
         <!---------- CREATE ACCOUNT FORM ---------->
         <form th:action="@{'/profile/edit/' + ${user.getUsername()}}" method="POST" th:object="${user}" class="form-register" id="editProfileForm">
@@ -64,6 +64,8 @@
             <div class="form-btn-group">
                 <!---------- SUBMIT FORM ---------->
                 <button class="btn btn-sm btn-dark" type="submit">Save</button>
+
+                <a th:href="@{|/profile/delete/${user.username}|}" class="btn btn-sm btn-danger">Delete</a>
             </div>
 
         </form>

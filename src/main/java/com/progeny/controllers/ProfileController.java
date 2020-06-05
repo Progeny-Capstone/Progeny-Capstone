@@ -38,7 +38,9 @@ public class ProfileController {
         model.addAttribute("friends", currentUser.getFriends()); // Show a list of users attached to current user
 
 
-        model.addAttribute("recordings", recordingRepo.findAll()); // Place all the recordings on the page
+        User user = new User(currentUser); // 2. set new user to user ^
+        model.addAttribute("recordings", user.getRecordings());// 3. Show current recordings for user on profile page
+
 
         model.addAttribute("groups", groupsRepo.findAll()); // Place all the groups on the page
 
