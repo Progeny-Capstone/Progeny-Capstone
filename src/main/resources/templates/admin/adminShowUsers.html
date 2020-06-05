@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head('Admin Users')">
+
+<body>
+<nav th:replace="partials/topnav :: navbar"></nav>
+<h1>Here are all  the users for Progeny</h1>
+
+
+<div th:each="user : ${users}" class="card-group d-flex flex-row justify-content-between">
+    <div class="card col-3">
+        <div class="profile-image-container d-flex flex-column my-2">
+            <img th:src="@{${user.getProfileImageUrl()}}" class="card-img-top rounded-circle mx-auto" alt="users profile picture">
+        </div>
+        <div class="card-body">
+            <h5 th:text="${user.firstName + ' ' + user.lastName}" class="card-title"></h5>
+            <h5 th:text="${user.username}"></h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        </div>
+    </div>
+</div>
+
+
+<!--<ul th:each="post : ${posts}">-->
+<!--    <li style="font-weight: bold"><a th:href="@{'/posts/' + ${post.id}}" th:text="${post.title}"></a></li>-->
+<!--</ul>-->
+
+    <nav th:replace="partials/footer :: footer"></nav>
+    <script th:replace="partials/scripts :: scripts"></script>
+
+</body>
+</html>
