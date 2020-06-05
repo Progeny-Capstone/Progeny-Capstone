@@ -53,35 +53,36 @@ public class User {
     private String bio;
 
     // 10. Determine if the user has admin privileges (true or false, 0 or 1)
-    @Column(nullable =false, columnDefinition = "boolean default false")
+    @Column(nullable = false, columnDefinition = "boolean default false")
     private boolean isAdmin;
 
     // 11. A list of recordings mapped by the user
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Recording> recordings;
 
-
+    // --------------- FRIENDS ----------------
     // 12. a. A user -->
-//    @ManyToOne(cascade={CascadeType.ALL})
-//    @JoinColumn(name="user_id")
-//    private User user;
+    @ManyToOne(cascade={CascadeType.ALL})
+    @JoinColumn(name="friend_id")
+    private User friend;
 
     // 12. b. can have many friends
-//    @OneToMany(mappedBy="user", fetch = FetchType.EAGER)
-//    private List<User> friends = new ArrayList<>();
+    @OneToMany(fetch = FetchType.EAGER, mappedBy="friend")
+    private List<User> friends = new ArrayList<>();
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(
-            name="tbl_friends",
-            joinColumns=@JoinColumn(name="user_Id"),
-            inverseJoinColumns=@JoinColumn(name="friend_Id")
-    )
-    private List<User> friends = new ArrayList<User>();
+//     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//     @JoinTable(
+//             name="tbl_friends",
+//             joinColumns=@JoinColumn(name="user_Id"),
+//             inverseJoinColumns=@JoinColumn(name="friend_Id")
+//     )
+//     private List<User> friends = new ArrayList<User>();
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "friends")
-    private List<User> friendOf = new ArrayList<User>();
+//     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "friends")
+//     private List<User> friendOf = new ArrayList<User>();
 
 
+    // --------------- GROUPS ----------------
     // 13. A user can have many groups and a group can have many users
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -92,15 +93,14 @@ public class User {
     private List<Group> groupList;
 
 
-
-
     // ---------- CONSTRUCTOR METHOD(S) -----------
 
     // ----- MEMORY SPACE CONSTRUCTOR ----
-    public User(){}
+    public User() {
+    }
 
     // ----- COPY CONSTRUCTOR ----
-    public User(User copy){ //  It is used as an alternative to cloning an object
+    public User(User copy) { //  It is used as an alternative to cloning an object
         id = copy.id; // This line is SUPER important! Many things won't work if it's absent
         username = copy.username;
         firstName = copy.firstName;
@@ -112,7 +112,7 @@ public class User {
         bio = copy.bio;
         isAdmin = copy.isAdmin;
         friends = copy.friends;
-        friendOf = copy.friendOf;
+        friend = copy.friend;
     }
     //----------------------------
 
@@ -144,7 +144,7 @@ public class User {
     }
 
     // ----- THE WHOLE SHEBANG ----
-    public User(long id, String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, boolean isAdmin, List<Recording> recordings, List<User> friends, List<User> friendOf, List<Group> groupList) {
+    public User(long id, String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, boolean isAdmin, List<Recording> recordings, User friend, List<User> friends, List<Group> groupList) {
         this.id = id;
         this.username = username;
         this.firstName = firstName;
@@ -156,56 +156,43 @@ public class User {
         this.bio = bio;
         this.isAdmin = isAdmin;
         this.recordings = recordings;
+        this.friend = friend;
         this.friends = friends;
-        this.friendOf = friendOf;
         this.groupList = groupList;
     }
+    // ----- THE WHOLE SHEBANG  WITHOUT !D----
+    public User( String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, boolean isAdmin, List<Recording> recordings, User friend, List<User> friends, List<Group> groupList) {
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.profileImageUrl = profileImageUrl;
+        this.location = location;
+        this.bio = bio;
+        this.isAdmin = isAdmin;
+        this.recordings = recordings;
+        this.friend = friend;
+        this.friends = friends;
+        this.groupList = groupList;
+    }
+
 
     // ---------- GET AND SET METHODS -----------
-
-    public boolean isAdmin() {
-        return isAdmin;
-    }
-
-    public List<Recording> getRecordings() {
-        return recordings;
-    }
-
-    public void setRecordings(List<Recording> recordings) {
-        this.recordings = recordings;
-    }
-
-    public List<User> getFriends() {
-        return friends;
-    }
-
-    public void setFriends(List<User> friends) {
-        this.friends = friends;
-    }
-
-    public List<User> getFriendOf() {
-        return friendOf;
-    }
-
-    public void setFriendOf(List<User> friendOf) {
-        this.friendOf = friendOf;
-    }
-
-
-    public List<Group> getGroupList() {
-        return groupList;
-    }
-
-    public void setGroupList(List<Group> groupList) {
-        this.groupList = groupList;
-    }
-
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getFirstName() {
@@ -264,19 +251,43 @@ public class User {
         this.bio = bio;
     }
 
-    public boolean getAdmin() {
+    public boolean isAdmin() {
         return isAdmin;
     }
 
     public void setAdmin(boolean admin) {
-        this.isAdmin = admin;
+        isAdmin = admin;
     }
 
-    public String getUsername() {
-        return username;
+    public List<Recording> getRecordings() {
+        return recordings;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setRecordings(List<Recording> recordings) {
+        this.recordings = recordings;
+    }
+
+    public User getUser() {
+        return friend;
+    }
+
+    public void setUser(User friend) {
+        this.friend = friend;
+    }
+
+    public List<User> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(List<User> friends) {
+        this.friends = friends;
+    }
+
+    public List<Group> getGroupList() {
+        return groupList;
+    }
+
+    public void setGroupList(List<Group> groupList) {
+        this.groupList = groupList;
     }
 }

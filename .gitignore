@@ -37,5 +37,5 @@ src/main/resources/application.properties
 ### .DS_STORE ###
 .DS_STORE
 
-### Keys ###
+#### Keys ###
 keys.js
