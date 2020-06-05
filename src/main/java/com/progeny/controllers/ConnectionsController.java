@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class EditConnectionsController {
+public class ConnectionsController {
 
     // --------- INITIALIZE ------------
     private UserRepository usersRepo;
@@ -23,14 +23,14 @@ public class EditConnectionsController {
 
     // ------------ CONSTRUCTOR METHOD ---------------
     // --------- AKA DEPENDENCY INJECTION ------------
-    public EditConnectionsController(UserRepository usersRepo, PasswordEncoder passwordEncoder) {
+    public ConnectionsController(UserRepository usersRepo, PasswordEncoder passwordEncoder) {
         this.usersRepo = usersRepo;
         this.passwordEncoder = passwordEncoder;
     }
 
 
     // --------- SHOW (GET) ------------
-    @GetMapping("/profile/friends/edit")
+    @GetMapping("/profile/friends")
     public String showFriends(Model model) {
 
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
@@ -40,25 +40,26 @@ public class EditConnectionsController {
 
         model.addAttribute("users", usersRepo.findAll()); // 1. Show a list of users on Progeny
 
-        return "users/showConnections";
+        return "users/connections";
     }
 
     // --------- ADD FRIEND (POST)------------
-    @PostMapping("/profile/friends/edit")
-    public String addFriend(@RequestParam long friendId, Model model, @RequestParam String search) {
+    @PostMapping("/profile/friends")
+    public String addFriend(@RequestParam long friendId, Model model) {
 
-        model.addAttribute("search", usersRepo.findAllByFirstNameLikeOrLastNameLike(search, search));// 1. Search Database
-
+        // ------------- GET CURRENT USER FROM SESSION -------------
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
         User currentUser = new User(user); // 2. set new user to user ^
         model.addAttribute("currentUser", currentUser);// 3. Show current user on page
 
+        // ------------- GET FRIEND FROM FORM SENT -------------
         User friend = usersRepo.getUserById(friendId);
         model.addAttribute("friend", friend);// 3. Show current user on page
 
         System.out.println(currentUser.getFirstName());
         System.out.println(friend.getFirstName());
 
+        // ------------- CHECK FOR FRIEND LIST(s) -------------
         if(friend.getFriends() == null){ // if there is no friends list -->
 
             List<User> newFriends = new ArrayList<>(); // 1. Make a new friends list
@@ -72,21 +73,28 @@ public class EditConnectionsController {
 
         }
 
-        // --------- ADD USER TO FRIEND-----------
-        currentUser.getFriends().add(friend);
-
-        System.out.println(currentUser.getFriends().get(0).getUsername());
-
         // --------- ADD FRIEND TO USER------------
         friend.getFriends().add(currentUser);
-
         System.out.println(friend.getFriends().get(0).getUsername());
+
+        // --------- ADD USER TO FRIEND-----------
+        currentUser.getFriends().add(friend);
+        System.out.println(currentUser.getFriends().get(0).getUsername());
+
+        System.out.println(currentUser.getFriends());
 
         // --------- SAVE TO DB -----------
         usersRepo.save(currentUser); // 3. save the list of users to the current users information
         usersRepo.save(friend); // 3. save the list of users to the current users information
 
-        return "users/showConnections";
+
+        // --------- REDISPLAY THE GET FRIEND INFORMATION AFTER POST -----------
+        model.addAttribute("currentUser", currentUser);// 2. Show current user on form
+        model.addAttribute("friends", currentUser.getFriends()); // 2. Show a list of users attached to current user
+        model.addAttribute("users", usersRepo.findAll()); // 1. Show a list of users on Progeny
+
+
+        return "users/connections";
     }
 
 

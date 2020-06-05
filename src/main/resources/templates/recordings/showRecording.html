@@ -9,11 +9,22 @@
 <nav th:replace="partials/topnav :: navbar"></nav>
 
 
-<div class="container">
+<!---------- MAIN CONTAINER ---------->
+<article class="main-container">
 
-    <h2>This is your recording</h2>
-</div>
+    <!---------- SECTION CONTAINER ---------->
+    <section class="section-container">
 
+        <!---------- SECTION HEADER ---------->
+        <h3 th:text="${currentRecording.title}" class="section-header"></h3>
+
+        <!---------- SECTION SUBTITLE ---------->
+        <h5 class="card-subtitle" th:text="${currentRecording.recordingUrl}"></h5>
+
+    </section>
+
+
+</article>
 
 
 
@@ -21,7 +32,7 @@
 <!---------- FOOTER ---------->
 <nav th:replace="partials/footer :: footer"></nav>
 
--------- SCRIPTS --------
+<!---------- SCRIPTS ---------->
 
 <script th:replace="partials/scripts :: scripts"></script>
 
