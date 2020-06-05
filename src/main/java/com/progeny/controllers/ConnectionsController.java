@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class EditConnectionsController {
+public class ConnectionsController {
 
     // --------- INITIALIZE ------------
     private UserRepository usersRepo;
@@ -23,7 +23,7 @@ public class EditConnectionsController {
 
     // ------------ CONSTRUCTOR METHOD ---------------
     // --------- AKA DEPENDENCY INJECTION ------------
-    public EditConnectionsController(UserRepository usersRepo, PasswordEncoder passwordEncoder) {
+    public ConnectionsController(UserRepository usersRepo, PasswordEncoder passwordEncoder) {
         this.usersRepo = usersRepo;
         this.passwordEncoder = passwordEncoder;
     }
@@ -40,7 +40,7 @@ public class EditConnectionsController {
 
         model.addAttribute("users", usersRepo.findAll()); // 1. Show a list of users on Progeny
 
-        return "users/showConnections";
+        return "users/connections";
     }
 
     // --------- ADD FRIEND (POST)------------
@@ -78,15 +78,15 @@ public class EditConnectionsController {
         System.out.println(currentUser.getFriends().get(0).getUsername());
 
         // --------- ADD FRIEND TO USER------------
-//        friend.getFriends().add(currentUser);
+        friend.getFriends().add(currentUser);
 
-//        System.out.println(friend.getFriends().get(0).getUsername());
+        System.out.println(friend.getFriends().get(0).getUsername());
 
         // --------- SAVE TO DB -----------
         usersRepo.save(currentUser); // 3. save the list of users to the current users information
-//        usersRepo.save(friend); // 3. save the list of users to the current users information
+        usersRepo.save(friend); // 3. save the list of users to the current users information
 
-        return "redirect:/profile/friends/edit";
+        return "users/connections";
     }
 
 
