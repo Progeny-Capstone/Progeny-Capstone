@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head('Admin Users')">
+
+<body>
+<nav th:replace="partials/topnav :: navbar"></nav>
+<article class="main-container">
+
+    <h1 class="section-header">Here are all the users for Progeny</h1>
+
+    <section class="section-container flex-wrap d-flex flex-row justify-content-between">
+
+        <div th:each="user : ${users}" class="card-group d-flex flex-row justify-content-between">
+            <div class="card">
+                <div class="profile-image-container d-flex flex-column my-2">
+                    <img th:src="@{${user.getProfileImageUrl()}}" class="card-img-top rounded-circle mx-auto"
+                         alt="users profile picture">
+                </div>
+                <div class="card-body">
+                    <h5 th:text="${user.firstName + ' ' + user.lastName}" class="card-title"></h5>
+                    <h5 th:text="${user.username}"></h5>
+                    <a th:href="@{|/profile/delete/${user.username}|}" class="text-danger"><strong>Delete
+                    Account</strong></a>
+                </div>
+            </div>
+        </div>
+    </section>
+</article>
+
+
+<!--&lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; SET PROFILE IMAGE &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--<div class="profile-image-container d-flex flex-column my-5">-->
+
+<!--    <div class="mx-auto">-->
+
+<!--        &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; USER PROFILE IMAGE &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--        <img th:src=" @{ ${user.getProfileImageUrl()}}" alt="The current user's profile image"-->
+<!--             class="rounded-circle mx-auto">-->
+
+<!--        &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; UPLOAD PROFILE PHOTO MODAL BUTTON&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--        <button type="button" class="btn btn-sm" data-toggle="modal" id="open"-->
+<!--                data-target=".bd-example-modal-lg">-->
+<!--            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"-->
+<!--                 clip-rule="evenodd" class="icon-graphic-feature">-->
+<!--                <path d="M8.071 21.586l-7.071 1.414 1.414-7.071 14.929-14.929 5.657 5.657-14.929 14.929zm-.493-.921l-4.243-4.243-1.06 5.303 5.303-1.06zm9.765-18.251l-13.3 13.301 4.242 4.242 13.301-13.3-4.243-4.243z"/>-->
+<!--            </svg>-->
+<!--        </button>-->
+
+<!--    </div>-->
+
+<!--    &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; UPLOAD PROFILE PHOTO MODAL&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"-->
+<!--         aria-labelledby="myLargeModalLabel"-->
+<!--         aria-hidden="true">-->
+<!--        <div class="modal-dialog modal-lg mx-auto">-->
+<!--            <div class="modal-content d-flex flex-column">-->
+<!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                    <span aria-hidden="true">&times;</span>-->
+<!--                </button>-->
+<!--                &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; POPUP (FILESTACK)&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--                <div id="inline" style="width:600px;height:500px;padding:20px;"></div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--</div>-->
+
+    <nav th:replace="partials/footer :: footer"></nav>
+    <script th:replace="partials/scripts :: scripts"></script>
+
+</body>
+</html>
