@@ -100,7 +100,7 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
     background: transparent;
 }
 
-.form-signin, .form-register {
+.form-signin, .form-register,#create-story-form  {
     margin: 5% 30% 5% 30%;
 }
 

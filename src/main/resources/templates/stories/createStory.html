@@ -8,24 +8,57 @@
 <!---------- TOP NAVIGATION BAR ---------->
 <nav th:replace="partials/topnav :: navbar"></nav>
 
-<!---------- Main Container ---------->
+<!---------- MAIN CONTAINER ---------->
 <article class="main-container">
 
     <!---------- CREATE STORY SECTION ---------->
     <section class="section-container">
 
-        <!---------- CREATE ACCOUNT HEADER ---------->
+        <!---------- CREATE STORY HEADER ---------->
         <h1 class="section-header">Create a Story</h1>
 
+        <p class="lead mx-auto my-0 text-center">You can add a story to the database here.</p>
+
         <!---------- CREATE STORY FORM ---------->
-        <form th:action="@{/story/create}" method="POST" th:method="post" th:object="${story}" class="form-label-group" id="create-story-form">
+        <form th:action="@{/story/create}" method="POST" th:method="post" th:object="${story}" class="form-label-group"
+              id="create-story-form">
+
+            <!---------- SET BOOK COVER IMAGE ---------->
+            <div class="profile-image-container d-flex flex-column justify-content-center">
+
+                <!---------- UPLOAD PROFILE PHOTO MODAL BUTTON---------->
+                <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" id="open"
+                        data-target=".bd-example-modal-lg">Attach Cover Image
+                </button>
+
+                <!---------- UPLOAD PROFILE PHOTO MODAL---------->
+                <div class="modal fade bd-example-modal-lg mx-auto" tabindex="-1" role="dialog"
+                     aria-labelledby="myLargeModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content d-flex flex-column">
+
+                            <!---------- CLOSE MODAL BUTTON---------->
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+
+                            <!---------- POPUP (FILESTACK)---------->
+                            <div id="inline" style="width:600px;height:500px;padding:20px;"></div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!---------- SET STORY FILE ---------->
+            <label for="storyFile">Story Reader URL</label>
+            <input class="form-control" id="storyFile" th:field="*{storyFile}" type="text" required/>
 
             <!---------- SET BOOK TITLE ---------->
             <label for="bookTitle">Book Title</label>
             <input class="form-control" id="bookTitle" th:field="*{title}" type="text" required/>
-
-            <label for="summary">Summary</label>
-            <input class="form-control" id="summary" th:field="*{summary}" type="text" required/>
 
             <!---------- SET AUTHOR FIRST NAME ---------->
             <label for="firstName">Author's First Name</label>
@@ -35,6 +68,10 @@
             <label for="lastName">Author's Last Name</label>
             <input class="form-control" id="lastName" th:field="*{authorLastName}" type="text" required/>
 
+            <!---------- SET SUMMARY ---------->
+            <label for="summary">Summary</label>
+            <input class="form-control" id="summary" th:field="*{summary}" type="text" required/>
+
             <!---------- SET PUBLISHER ---------->
             <label for="publisher">Publisher</label>
             <input class="form-control" id="publisher" th:field="*{publisher}" type="text" required/>
@@ -43,28 +80,12 @@
             <label for="publishedYear">Published Year</label>
             <input class="form-control" id="publishedYear" th:field="*{publishedYear}" type="text" required/>
 
-            <!---------- SET STORY FILE ---------->
-            <label for="storyFile">Story File</label>
-            <input class="form-control" id="storyFile" th:field="*{storyFile}" type="text" required/>
-
-            <!---------- SET BOOK COVER IMAGE ---------->
-<!--            <label for="bookImage">Book Image</label>-->
-<!--            <input class="form-control" id="bookImage" th:field="*{coverImageUrl}" type="text" required/>-->
-
-            <div class="form-row">
-                <div class="col">
-                    <button class="btn btn-dark form-control" type="button" id="open">Upload Book Image</button>
-                    <br>
-                    <button class="btn btn-dark form-control" type="button" id="close">close</button>
-
-                    <div id="inline" style="width:600px;height:500px;padding:20px;"></div>
-
-                </div>
-            </div>
-
 
             <!---------- SUBMIT FORM ---------->
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
+            <div class="text-right">
+                <button class="btn btn-sm btn-dark" type="submit">Save</button>
+            </div>
+
         </form>
 
 
