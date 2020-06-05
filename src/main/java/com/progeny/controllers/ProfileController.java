@@ -60,9 +60,6 @@ public class ProfileController {
         System.out.println(currentUserId);
 
 
-
-
-
         model.addAttribute("recordings", user.getRecordings());// 3. Show current recordings for user on profile page
 
         System.out.println(user.getRecordings());
