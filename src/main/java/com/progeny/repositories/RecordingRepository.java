@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RecordingRepository extends JpaRepository<Recording, Long>{ // < What we are dealing with, How it will be identified >
+    Recording getAllByUserId (long id);
 
 }

@@ -19,7 +19,17 @@
         <h3 th:text="${currentRecording.title}" class="section-header"></h3>
 
         <!---------- SECTION SUBTITLE ---------->
-        <h5 class="card-subtitle" th:text="${currentRecording.recordingUrl}"></h5>
+        <h5 class="card-subtitle">Listen to this recording</h5>
+
+        <audio controls>
+            <source th:src="${currentRecording.recordingUrl}"
+                    type='audio/mp4'>
+            <!-- The next two lines are only executed if the browser doesn't support MP4 files -->
+            <source th:src="${currentRecording.recordingUrl}"
+                    type='audio/ogg; codecs=vorbis'>
+            <!-- The next line will only be executed if the browser doesn't support the <audio> tag-->
+            <p>Your user agent does not support the HTML5 Audio element.</p>
+        </audio>
 
     </section>
 
