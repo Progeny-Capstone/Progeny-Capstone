@@ -1,8 +1,12 @@
 package com.progeny.model;
 
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -22,13 +26,18 @@ public class Recording {
     @Column(nullable = false, name = "recording")
     private String recordingUrl;
 
-//    @Column(nullable = false)
-//    private Timestamp timestamp;
+    @Column(name = "`timestamp`")
+    @CreationTimestamp
+    private Date timestamp;
+
+    @Column(name = "updated_on")
+    @UpdateTimestamp
+    private Date updatedOn;
 
     @Column(nullable = false, length = 45)
     private String title;
 
-    @Column(nullable = false, name = "group_id")
+    @Column(name = "group_id")
     private long groupId;
 
     @ManyToOne
@@ -57,26 +66,36 @@ public class Recording {
         recordingUrl = copy.recordingUrl;
         title = copy.title;
         groupId = copy.groupId;
+        timestamp = copy.timestamp;
+        updatedOn = copy.updatedOn;
+        user = copy.user;
+        recordingList = copy.recordingList;
     }
     //----------------------------
 
 
     // ----- WITH ID CONSTRUCTOR ----
-    public Recording(long id, String recordingUrl, String title, User user, long groupId) {
-        this.id = id;
+    public Recording(String recordingUrl, Date timestamp, Date updatedOn, String title, long groupId, User user, List<Recording> recordingList) {
         this.recordingUrl = recordingUrl;
+        this.timestamp = timestamp;
+        this.updatedOn = updatedOn;
         this.title = title;
-        this.user =user;
         this.groupId = groupId;
+        this.user = user;
+        this.recordingList = recordingList;
     }
 
 
     // ----- WITHOUT ID CONSTRUCTOR ----
-    public Recording(String recordingUrl, String title, User user, long groupId) {
+    public Recording(long id, String recordingUrl, Date timestamp, Date updatedOn, String title, long groupId, User user, List<Recording> recordingList) {
+        this.id = id;
         this.recordingUrl = recordingUrl;
+        this.timestamp = timestamp;
+        this.updatedOn = updatedOn;
         this.title = title;
-        this.user = user;
         this.groupId = groupId;
+        this.user = user;
+        this.recordingList = recordingList;
     }
 
     // ----- WITHOUT ID & USER CONSTRUCTOR ----
@@ -86,8 +105,26 @@ public class Recording {
         this.groupId = groupId;
     }
 
-    // ---------- GET AND SET METHODS -----------
+    public Recording( String recordingUrl, Timestamp timestamp, String title, long groupId, User user, List<Recording> recordingList) {
+        this.recordingUrl = recordingUrl;
+        this.timestamp = timestamp;
+        this.title = title;
+        this.groupId = groupId;
+        this.user = user;
+        this.recordingList = recordingList;
+    }
 
+    public Recording(long id, String recordingUrl, Timestamp timestamp, String title, long groupId, User user, List<Recording> recordingList) {
+        this.id = id;
+        this.recordingUrl = recordingUrl;
+        this.timestamp = timestamp;
+        this.title = title;
+        this.groupId = groupId;
+        this.user = user;
+        this.recordingList = recordingList;
+    }
+
+    // ---------- GET AND SET METHODS -----------
 
     public long getId() {
         return id;
@@ -103,6 +140,22 @@ public class Recording {
 
     public void setRecordingUrl(String recordingUrl) {
         this.recordingUrl = recordingUrl;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public Date getUpdatedOn() {
+        return updatedOn;
+    }
+
+    public void setUpdatedOn(Date updatedOn) {
+        this.updatedOn = updatedOn;
     }
 
     public String getTitle() {
@@ -121,12 +174,19 @@ public class Recording {
         this.groupId = groupId;
     }
 
-
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Recording> getRecordingList() {
+        return recordingList;
+    }
+
+    public void setRecordingList(List<Recording> recordingList) {
+        this.recordingList = recordingList;
     }
 }

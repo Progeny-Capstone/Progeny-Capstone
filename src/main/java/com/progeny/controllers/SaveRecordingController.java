@@ -28,11 +28,14 @@ public class SaveRecordingController {
 
     // --------- CREATE RECORDING (GET) ------------
     @GetMapping("/recording/save")
-    public String showRegisterForm(Model model){
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//
-//        model.addAttribute("currentUserId" , user.getId());
+    public String showRegisterForm(Model model) {
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User currentUser = new User(user);
+        model.addAttribute("currentUserId" , user.getId());
+
         model.addAttribute("recording", new Recording());
+
         return "recordings/saveRecording";
     }
 
@@ -40,6 +43,7 @@ public class SaveRecordingController {
     @PostMapping("/recording/save")
     public String create(@ModelAttribute Recording recording) {
 
+        recording.setTimestamp(recording.getTimestamp());
         recordings.save(recording);
 
         return "redirect:/profile";
