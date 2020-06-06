@@ -61,25 +61,25 @@ public class User {
     private List<Recording> recordings;
 
     // --------------- FRIENDS ----------------
-    // 12. a. A user -->
-    @ManyToOne(cascade={CascadeType.ALL})
-    @JoinColumn(name="friend_id")
-    private User friend;
+//    // 12. a. A user -->
+//    @ManyToOne(cascade={CascadeType.ALL})
+//    @JoinColumn(name="friend_id")
+//    private User friend;
+//
+//    // 12. b. can have many friends
+//    @OneToMany(fetch = FetchType.EAGER, mappedBy="friend")
+//    private List<User> friends = new ArrayList<>();
 
-    // 12. b. can have many friends
-    @OneToMany(fetch = FetchType.EAGER, mappedBy="friend")
-    private List<User> friends = new ArrayList<>();
+     @ManyToMany(fetch = FetchType.EAGER)
+     @JoinTable(
+             name="friends",
+             joinColumns=@JoinColumn(name="user_Id"),
+             inverseJoinColumns=@JoinColumn(name="friend_Id")
+     )
+     private List<User> friends;
 
-//     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//     @JoinTable(
-//             name="tbl_friends",
-//             joinColumns=@JoinColumn(name="user_Id"),
-//             inverseJoinColumns=@JoinColumn(name="friend_Id")
-//     )
-//     private List<User> friends = new ArrayList<User>();
-
-//     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "friends")
-//     private List<User> friendOf = new ArrayList<User>();
+     @ManyToMany(mappedBy = "friends")
+     private List<User> friend;
 
 
     // --------------- GROUPS ----------------
@@ -93,8 +93,8 @@ public class User {
     private List<Group> groupList;
 
 
-    // ---------- CONSTRUCTOR METHOD(S) -----------
 
+    // ---------- CONSTRUCTOR METHOD(S) -----------
     // ----- MEMORY SPACE CONSTRUCTOR ----
     public User() {
     }
@@ -144,7 +144,7 @@ public class User {
     }
 
     // ----- THE WHOLE SHEBANG ----
-    public User(long id, String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, boolean isAdmin, List<Recording> recordings, User friend, List<User> friends, List<Group> groupList) {
+    public User(long id, String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, boolean isAdmin, List<Recording> recordings, List<User> friend, List<User> friends, List<Group> groupList) {
         this.id = id;
         this.username = username;
         this.firstName = firstName;
@@ -161,7 +161,7 @@ public class User {
         this.groupList = groupList;
     }
     // ----- THE WHOLE SHEBANG  WITHOUT !D----
-    public User( String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, boolean isAdmin, List<Recording> recordings, User friend, List<User> friends, List<Group> groupList) {
+    public User( String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, boolean isAdmin, List<Recording> recordings, List<User> friend, List<User> friends, List<Group> groupList) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -267,11 +267,11 @@ public class User {
         this.recordings = recordings;
     }
 
-    public User getUser() {
+    public List<User> getUser() {
         return friend;
     }
 
-    public void setUser(User friend) {
+    public void setUser(List<User> friend) {
         this.friend = friend;
     }
 

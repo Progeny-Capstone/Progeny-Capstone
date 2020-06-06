@@ -56,9 +56,6 @@ public class ConnectionsController {
         User friend = usersRepo.getUserById(friendId);
         model.addAttribute("friend", friend);// 3. Show current user on page
 
-        System.out.println(currentUser.getFirstName());
-        System.out.println(friend.getFirstName());
-
         // ------------- CHECK FOR FRIEND LIST(s) -------------
         if(friend.getFriends() == null){ // if there is no friends list -->
 
@@ -73,15 +70,12 @@ public class ConnectionsController {
 
         }
 
-        // --------- ADD FRIEND TO USER------------
+        // --------- ADD USERS TO EACH OTHERS FRIENDS LIST------------
         friend.getFriends().add(currentUser);
-        System.out.println(friend.getFriends().get(0).getUsername());
+        friend.setFriends(friend.getFriends());
 
-        // --------- ADD USER TO FRIEND-----------
         currentUser.getFriends().add(friend);
-        System.out.println(currentUser.getFriends().get(0).getUsername());
-
-        System.out.println(currentUser.getFriends());
+        currentUser.setFriends(currentUser.getFriends());
 
         // --------- SAVE TO DB -----------
         usersRepo.save(currentUser); // 3. save the list of users to the current users information
