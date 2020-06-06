@@ -27,6 +27,10 @@
                 frameborder='0' allowtransparency='true' allowfullscreen='true'></iframe>
 
 
+        <!---------- CREATE RECORDING FOR THIS BOOK ---------->
+        <h3><a th:href="@{|/recording/create/${currentStory.getId()}|}">Create Recording for this Book</a></h3>
+
+
         <!---------- EDIT BOOK ---------->
         <a th:href="@{|/story/${currentStory.getId()}/edit|}">Edit Story</a>
 
