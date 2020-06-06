@@ -58,6 +58,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         // only authenticated users can see these pages (must log in)
                         "/profile",
                         "/profile/friends",
+                        "/profile/edit/{id}",
+                        "/profile/edit",
                         "/story/create",
                         "/recordings/create",
                         "/recording/save",

@@ -35,37 +35,25 @@ public class ProfileController {
     @GetMapping("/profile")
     public String index(Model model) {
 
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); // Get the current user
-
+        // ------------ CURRENT USER ---------------
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); // Get the current user
+        User currentUser = new User(user);
         model.addAttribute("currentUser", currentUser); // Show current user details on page
 
+
+        // ------------ GET THE CURRENT USERS FRIENDS ---------------
         model.addAttribute("friends", currentUser.getFriends()); // Show a list of users attached to current user
 
-
-
-        User user = new User(currentUser); // 2. set new user to user ^
-
-
-        System.out.println(user.getFirstName());
-
-
+        // ------------ IF NO RECORDINGS LIST ---------------
         if(user.getRecordings() == null){ // if there is no friends list -->
 
-            List<Recording> userRecordings = new ArrayList<>(); // 1. Make a new friends list
-            user.setRecordings(userRecordings); // 2. give the new friends list to User
+            List<Recording> userRecordings = new ArrayList<>(); // 1. Make a new recordings list
+            user.setRecordings(userRecordings); // 2. give the new recordings list to User
 
         }
 
-        long currentUserId = user.getId();
-        System.out.println(currentUserId);
-
-
-        model.addAttribute("recordings", user.getRecordings());// 3. Show current recordings for user on profile page
-
-        System.out.println(user.getRecordings());
-
-
-        model.addAttribute("groups", groupsRepo.findAll()); // Place all the groups on the page
+        // ------------ RECORDING LIST ---------------
+        model.addAttribute("recordings", recordingRepo.getAllByUserId(currentUser.getId()));// 3. Show current recordings for user on profile page
 
         return "users/profile";
     }
