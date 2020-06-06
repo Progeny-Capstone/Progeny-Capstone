@@ -14,45 +14,57 @@
     <!---------- CREATE STORY SECTION ---------->
     <section class="section-container">
 
-        <!---------- CREATE ACCOUNT HEADER ---------->
-        <h1 class="section-header">Save your recording</h1>
+        <!---------- CREATE RECORDING HEADER ---------->
+        <h1 class="section-header">Save Your Recording</h1>
 
-        <!---------- CREATE STORY FORM ---------->
-        <form th:action="@{/recording/save}" method="post" th:object="${recording}" id="recording-form" class="form-label-group">
+        <!---------- CREATE RECORDING FORM ---------->
+        <form th:action="@{/recording/save}" method="post" th:object="${recording}" id="recording-form"
+              class="form-label-group">
 
-            <!---------- SET BOOK TITLE ---------->
-            <label for="recordingTitle">Title</label>
+            <!---------- SET RECORDING TITLE ---------->
+            <label for="recordingTitle">Recording Title</label>
             <input class="form-control" id="recordingTitle" th:field="*{title}" type="text" required/>
 
-            <label for="groupId">Group Id</label>
-            <input class="form-control" id="groupId" th:field="*{groupId}" type="text" required/>
+            <!---------- SET USER ID---------->
+            <input th:value="${currentUser.id}" type="hidden" th:name="userId"/>
 
-            <!---------- SET AUTHOR FIRST NAME ---------->
-<!--            <input class="form-control" id="userId" th:value="${currentUserId}" type="hidden" th:name="currentUserId" required/>-->
+            <!---------- SET RECORDING ---------->
+            <div class="recording-modal-container d-flex flex-column my-5">
 
-            <label for="currentUserId">User ID</label>
-            <input class="form-control" id="currentUserId" th:field="*{user}" type="text" required/>
+                <div class="mx-auto">
 
+                    <!---------- UPLOAD PROFILE PHOTO MODAL BUTTON---------->
+                    <button type="button" class="btn btn-sm" data-toggle="modal" id="open"
+                            data-target=".bd-example-modal-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="icon-graphic">
+                            <path d="M1 13h-1v-1h1v1zm22-1h-1v1h1v-1zm-20-1h-1v3h1v-3zm18 0h-1v3h1v-3zm-14 0h-1v3h1v-3zm10-1h-1v5h1v-5zm-12 0h-1v5h1v-5zm14-1h-1v7h1v-7zm-10 0h-1v7h1v-7zm2-2h-1v10h1v-10zm4 0h-1v10h1v-10zm-2-2h-1v14h1v-14z"/>
+                        </svg>
+                    </button>
 
+                </div>
+
+                <!---------- UPLOAD PROFILE PHOTO MODAL---------->
+                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+                     aria-labelledby="myLargeModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog modal-lg mx-auto">
+                        <div class="modal-content d-flex flex-column">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <!---------- POPUP (FILESTACK)---------->
+                            <div id="inline" style="width:600px;height:500px;padding:20px;" class="mx-auto"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
 
 
             <!---------- SUBMIT FORM ---------->
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
-
-
-
-            <!---------- UPLOAD RECORDING FROM FILE STACK---------->
-            <div class="form-row">
-                <div class="col">
-                    <button class="btn btn-dark form-control" type="button" id="open">Upload Recording</button>
-                    <br>
-                    <button class="btn btn-dark form-control" type="button" id="close">close</button>
-
-                    <div id="inline" style="width:600px;height:500px;padding:20px;"></div>
-
-                </div>
+            <div class="text-right">
+                <button class="btn btn-sm btn-dark" type="submit">Save</button>
             </div>
-            <br>
 
         </form>
 
