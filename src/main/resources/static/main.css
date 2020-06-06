@@ -9,7 +9,7 @@
     --coral-color: #ffaa9b;
     --navy-color: #475E71;
     --kakhi-color: #D4D3B3;
-    --kakhi-opacity-color: rgba(212, 211, 179, 0.1);
+    --kakhi-opacity-color: rgba(212, 211, 179, 0.3);
 
     /*font-family: 'DM Serif Display', serif;*/
     /*font-family: 'Roboto', sans-serif;*/
@@ -33,7 +33,7 @@ a:active {
     color: var(--kakhi-color);
 }
 
-.main-container{
+.main-container {
     min-height: 100vh;
 }
 
@@ -86,10 +86,11 @@ a:active {
 }
 
 /*------------- STORIES -------------*/
-.story-image-container{
+.story-image-container {
     height: 500px;
     width: auto;
 }
+
 .story-image-container img {
     vertical-align: middle;
     object-fit: cover;
@@ -97,23 +98,30 @@ a:active {
     max-width: 400px;
     height: 100%;
 }
-.story-title{
+
+.story-title {
     font-size: calc(15px + (20 - 15) * ((100vw - 300px) / (1600 - 300)));
     /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
     font-family: 'Roboto', sans-serif;
     color: var(--navy-color);
 }
-.story-author{
+
+.story-author {
     font-size: calc(10px + (12 - 10) * ((100vw - 300px) / (1600 - 300)));
     /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
     font-family: 'Roboto', sans-serif;
     color: var(--navy-color);
 }
 
+#story-jumbotron {
+    background: var(--kakhi-opacity-color);
+    border-radius: 10px;
+}
+
 /*------------- PROFILE -------------*/
 #profile-section {
     background: var(--kakhi-opacity-color);
-    border-radius: 15px;
+    border-radius: 10px;
     padding: 5%;
 }
 
