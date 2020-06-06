@@ -33,6 +33,10 @@ a:active {
     color: var(--kakhi-color);
 }
 
+.main-container{
+    min-height: 100vh;
+}
+
 .section-container {
     margin: 10% 10% 10% 10%;
     background: transparent;
