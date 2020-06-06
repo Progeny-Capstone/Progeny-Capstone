@@ -85,6 +85,31 @@ a:active {
     z-index: -1;
 }
 
+/*------------- STORIES -------------*/
+.story-image-container{
+    height: 500px;
+    width: auto;
+}
+.story-image-container img {
+    vertical-align: middle;
+    object-fit: cover;
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
+}
+.story-title{
+    font-size: calc(15px + (20 - 15) * ((100vw - 300px) / (1600 - 300)));
+    /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
+    font-family: 'Roboto', sans-serif;
+    color: var(--navy-color);
+}
+.story-author{
+    font-size: calc(10px + (12 - 10) * ((100vw - 300px) / (1600 - 300)));
+    /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
+    font-family: 'Roboto', sans-serif;
+    color: var(--navy-color);
+}
+
 /*------------- PROFILE -------------*/
 #profile-section {
     background: var(--kakhi-opacity-color);

@@ -14,40 +14,34 @@
     <!---------- SECTION ---------->
     <section class="section-container">
 
-        <!---------- STORIES SECTION ---------->
-        <div class="stories-sub-section">
+        <h1 class="section-header">Available Stories</h1>
 
-            <h1 class="section-header">Available Stories</h1>
+        <!---------- STORIES SECTION ---------->
+        <div class="stories-sub-section row">
+
 
             <!---------- SHOW STORIES ---------->
-            <div th:each="story : ${stories}" class="story-card">
+            <div th:each="story : ${stories}" class="story-card col-lg-3 col-sm-12">
 
-
-
-                <!---------- USER PROFILE IMAGE ---------->
+                <!---------- BOOK COVER CONTAINER---------->
                 <a th:href="@{|/story/${story.getId()}|}" class="story-title-link">
-                     <div class="profile-image-container mb-5">
+                    <!---------- BOOK COVER IMG---------->
+                     <div class="story-image-container">
                          <img th:src="@{ ${story.coverImageUrl}}" alt="This is the cover image for the story"
-                              class="rounded-circle mx-auto">
+                              class="mx-auto">
                      </div>
+
+                    <!---------- BOOK TITLE ---------->
                     <h1 th:text="${story.title}" class="story-title"></h1>
+
+                    <!---------- BOOK AUTHOR ---------->
+                    <p class="story-author">By <em th:text="${story.authorFirstName} + ' ' + ${story.authorLastName}" class="story-author"></em></p>
                 </a>
-
-
-<!--                &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; STORIES CARDS &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-<!--                <a th:href="@{|/story/${story.getId()}|}" class="story-title-link">-->
-<!--                    <div class="img-thumbnail">-->
-<!--                        <img th:src="@{ ${story.coverImageUrl}}" alt="This is the cover image for the story" class="story-img-thumbnail">-->
-<!--                    </div>-->
-<!--                    <h1 th:text="${story.title}" class="story-title"></h1>-->
-<!--                </a>-->
 
             </div>
 
         </div>
 
-        <!---------- EMAIL SUGGESTIONS LINK ---------->
-        <a href="#">Don't see a story you like? Email us your suggestion.</a>
     </section>
 
 </article>
