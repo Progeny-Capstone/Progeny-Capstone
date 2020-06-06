@@ -26,7 +26,7 @@
             <input class="form-control" id="recordingTitle" th:field="*{title}" type="text" required/>
 
             <!---------- SET USER ID---------->
-            <input class="form-control" id="userId" th:value="${currentUserId}" type="hidden" th:name="recording"/>
+            <input th:value="${currentUser.id}" type="hidden" th:name="userId"/>
 
             <!---------- SET RECORDING ---------->
             <div class="recording-modal-container d-flex flex-column my-5">
