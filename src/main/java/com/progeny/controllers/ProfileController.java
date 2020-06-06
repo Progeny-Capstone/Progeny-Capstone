@@ -54,7 +54,6 @@ public class ProfileController {
 
         // ------------ RECORDING LIST ---------------
         model.addAttribute("recordings", recordingRepo.getAllByUserId(currentUser.getId()));// 3. Show current recordings for user on profile page
-        System.out.println(recordingRepo.getAllByUserId(currentUser.getId()));
 
         return "users/profile";
     }
