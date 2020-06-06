@@ -90,7 +90,7 @@
                     </svg>
 
                     <!---------- LINK TO RECORDING ---------->
-                    <a th:href="@{|/recording/show/${recording.id}|}" class="recording-title-link">
+                    <a th:href="@{|/recording/show/${recording.getId()}|}" class="recording-title-link">
 
                         <!---------- RECORDING TITLE---------->
                         <h1 th:text="${recording.title}" class="recording-title"></h1>
@@ -104,23 +104,6 @@
 
             </div>
 
-            <!--            &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; GROUPS SECTION &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-            <!--            <div class="groups-sub-section">-->
-
-            <!--                &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; EDIT RECORDINGS &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-            <!--                <a class="text-right" href="#">Edit Groups</a>-->
-            <!--                <a class="text-right" href="/group/create">Add Group</a>-->
-
-            <!--                &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; SHOW RECORDINGS &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-            <!--                <div th:each="group : ${groups}" class="group-card">-->
-
-            <!--                    <a th:href="@{|/group/${group.getId()}|}" class="group-title-link">-->
-            <!--                        <h1 th:text="${group.name}" class="group-title"></h1>-->
-            <!--                    </a>-->
-            <!--                    <p th:text="${group.description} " class="group"></p>-->
-
-            <!--                </div>-->
-            <!--            </div>-->
 
         </section>
     </section>
