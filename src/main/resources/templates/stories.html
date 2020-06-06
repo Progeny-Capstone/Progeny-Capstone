@@ -22,13 +22,25 @@
             <!---------- SHOW STORIES ---------->
             <div th:each="story : ${stories}" class="story-card">
 
-                <!---------- STORIES CARDS ---------->
+
+
+                <!---------- USER PROFILE IMAGE ---------->
                 <a th:href="@{|/story/${story.getId()}|}" class="story-title-link">
-                    <div class="img-thumbnail">
-                        <img th:src="@{ ${story.coverImageUrl}}" alt="This is the cover image for the story" class="story-img-thumbnail">
-                    </div>
+                     <div class="profile-image-container mb-5">
+                         <img th:src="@{ ${story.coverImageUrl}}" alt="This is the cover image for the story"
+                              class="rounded-circle mx-auto">
+                     </div>
                     <h1 th:text="${story.title}" class="story-title"></h1>
                 </a>
+
+
+<!--                &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; STORIES CARDS &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--                <a th:href="@{|/story/${story.getId()}|}" class="story-title-link">-->
+<!--                    <div class="img-thumbnail">-->
+<!--                        <img th:src="@{ ${story.coverImageUrl}}" alt="This is the cover image for the story" class="story-img-thumbnail">-->
+<!--                    </div>-->
+<!--                    <h1 th:text="${story.title}" class="story-title"></h1>-->
+<!--                </a>-->
 
             </div>
 
