@@ -6,9 +6,10 @@
     --Light-color: #FBF7F0;
     --light-coral-color: #FDD1C7;
     --mint-color: #75C9A8;
-    --coral-color: #FFAA9B;
+    --coral-color: #ffaa9b;
     --navy-color: #475E71;
     --kakhi-color: #D4D3B3;
+    --kakhi-opacity-color: rgba(212, 211, 179, 0.1);
 
     /*font-family: 'DM Serif Display', serif;*/
     /*font-family: 'Roboto', sans-serif;*/
@@ -22,6 +23,14 @@ body {
 /*------------- SECTION BASICS -------------*/
 a {
     color: var(--coral-color);
+}
+
+a:hover {
+    color: var(--mint-color)
+}
+
+a:active {
+    color: var(--kakhi-color);
 }
 
 .section-container {
@@ -38,8 +47,8 @@ a {
 
 }
 
-.section-subheader{
-    font-size: calc(20px + (30 - 20) * ((100vw - 300px) / (1600 - 300)));
+.section-subheader {
+    font-size: calc(20px + (25 - 20) * ((100vw - 300px) / (1600 - 300)));
     /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
     font-family: 'Roboto', sans-serif;
 }
@@ -73,6 +82,16 @@ a {
 }
 
 /*------------- PROFILE -------------*/
+#profile-section {
+    background: var(--kakhi-opacity-color);
+    border-radius: 15px;
+    padding: 5%;
+}
+
+.profile-details-container {
+    border-right: 1px var(--kakhi-color) solid;
+}
+
 .profile-image-container {
     height: 200px;
     width: auto;
@@ -86,11 +105,24 @@ a {
     height: 100%;
 }
 
-.recording-card{
-    height: 50px;
-    width: 150px;
+.recording-card {
+    height: auto;
+    width: 500px;
+    padding: 5%;
+    background: var(--navy-color);
+}
+
+.recording-card-add {
+    height: auto;
+    width: 500px;
+    padding: 5%;
     background: var(--light-coral-color);
-    border: 1px solid var(--coral-color);
+}
+
+.recording-title {
+    font-size: calc(16px + (20 - 16) * ((100vw - 300px) / (1600 - 300)));
+    /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
+    font-family: 'Roboto', sans-serif;
 }
 
 /*------------- FORM -------------*/
@@ -109,7 +141,7 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
     background: transparent;
 }
 
-.form-signin, .form-register,#create-story-form  {
+.form-signin, .form-register, #create-story-form {
     margin: 5% 30% 5% 30%;
 }
 
@@ -145,7 +177,7 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
     justify-content: space-between;
 }
 
-#open{
+#open {
     position: absolute;
 }
 
