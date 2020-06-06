@@ -14,40 +14,54 @@
     <!---------- SECTION ---------->
     <section class="section-container">
 
-        <!---------- STORIES SECTION ---------->
-        <div class="stories-sub-section">
 
-            <h1 class="section-header">Available Stories</h1>
+        <!---------- SECTION ---------->
+        <section class="jumbotron jumbotron-fluid" id="story-jumbotron">
+
+            <!---------- JUMBOTRON CONTAINER ---------->
+            <div class="container pull-left">
+
+                <!---------- JUMBOTRON HEADER ---------->
+                <h1 class="display-4 section-header text-left">Have A Look At Our Collection</h1>
+
+                <!---------- JUMBOTRON LEAD ---------->
+                <p class="lead text-left">
+                    Here are some stories to get you started.
+                </p>
+
+                <!---------- JUMBOTRON CTA ---------->
+                <a class="learn-link pull-left" href="/recording/save" id="view-more"><em>Have a Recording Already?</em></a>
+            </div>
+
+        </section>
+
+
+        <!---------- STORIES SECTION ---------->
+        <section class="stories-sub-section row">
+
 
             <!---------- SHOW STORIES ---------->
-            <div th:each="story : ${stories}" class="story-card">
+            <div th:each="story : ${stories}" class="story-card col-lg-3 col-sm-12">
 
-
-
-                <!---------- USER PROFILE IMAGE ---------->
+                <!---------- BOOK COVER CONTAINER---------->
                 <a th:href="@{|/story/${story.getId()}|}" class="story-title-link">
-                     <div class="profile-image-container mb-5">
+                    <!---------- BOOK COVER IMG---------->
+                     <div class="story-image-container">
                          <img th:src="@{ ${story.coverImageUrl}}" alt="This is the cover image for the story"
-                              class="rounded-circle mx-auto">
+                              class="mx-auto">
                      </div>
+
+                    <!---------- BOOK TITLE ---------->
                     <h1 th:text="${story.title}" class="story-title"></h1>
+
+                    <!---------- BOOK AUTHOR ---------->
+                    <p class="story-author">By <em th:text="${story.authorFirstName} + ' ' + ${story.authorLastName}" class="story-author"></em></p>
                 </a>
-
-
-<!--                &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; STORIES CARDS &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-<!--                <a th:href="@{|/story/${story.getId()}|}" class="story-title-link">-->
-<!--                    <div class="img-thumbnail">-->
-<!--                        <img th:src="@{ ${story.coverImageUrl}}" alt="This is the cover image for the story" class="story-img-thumbnail">-->
-<!--                    </div>-->
-<!--                    <h1 th:text="${story.title}" class="story-title"></h1>-->
-<!--                </a>-->
 
             </div>
 
-        </div>
+        </section>
 
-        <!---------- EMAIL SUGGESTIONS LINK ---------->
-        <a href="#">Don't see a story you like? Email us your suggestion.</a>
     </section>
 
 </article>
