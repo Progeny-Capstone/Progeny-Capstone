@@ -16,7 +16,7 @@
 
 
         <!---------- JUMBOTRON CONTAINER ---------->
-        <div class="container story-container mt-5 py-5">
+        <div class="container story-container">
 
             <!---------- JUMBOTRON HEADER ---------->
             <h1 class="display-4 section-header text-center">Our Library</h1>
@@ -32,11 +32,7 @@
 
 
     <!---------- STORIES SECTION ---------->
-    <section class="section-container mb-5">
-
-        <!---------- JUMBOTRON CTA ---------->
-        <a class="record-link text-center" href="/recording/save" id="view-more"><em>Have a Recording Already?</em></a>
-
+    <section class="section-container mb-5 mt-1">
 
         <!---------- SHOW STORIES ---------->
         <div th:each="story : ${stories}" class="story-card col-lg-3 col-sm-12 pb-5">
