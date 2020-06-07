@@ -160,6 +160,13 @@ a:active {
     color: var(--coral-color);
 }
 
+
+/*------------- STORY RECORD -------------*/
+#record-story-container{
+    background: var(--navy-color);
+    color: var(--Light-color);
+}
+
 /*------------- PROFILE -------------*/
 #profile-jumbotron {
     background: var(--navy-color);

@@ -9,49 +9,103 @@
 <nav th:replace="partials/topnav :: navbar"></nav>
 
 
+<!---------- MAIN CONTAINER ---------->
 <article class="main-container">
 
+    <!---------- SECTION CONTAINER ---------->
     <section class="section-container">
-        <h3 th:text="${currentStory.title}" class="section-header"></h3>
-        <h4 class="card-subtitle">By <span th:text="${currentStory.getAuthorFirstName()} + ' ' + ${currentStory.getAuthorLastName()}"></span></h4>
 
-        <iframe style='width:900px;height:500px' th:src="${currentStory.storyFile}"  seamless='seamless' scrolling='no' frameborder='0' allowtransparency='true' allowfullscreen='true' ></iframe>
+        <!--###########################################-->
+        <!--############## TOP SECTIONS ###############-->
+        <!--###########################################-->
 
-    </section>
+        <div class="">
 
-    <div class="container">
+            <!---------- BOOK TITLE---------->
+            <h3 th:text="${currentStory.title}" class="section-header"></h3>
 
-        <h1>Hello! Create a new recording</h1>
+            <!---------- BOOK AUTHOR ---------->
+            <p class="card-subtitle text-center my-2">By
+                <em th:text="${currentStory.getAuthorFirstName()} + ' ' + ${currentStory.getAuthorLastName()}"
+                    id="author"></em>
+            </p>
 
-        <h4>How to create recording:</h4>
-        <p>1. Record the audio</p>
-        <p>2. Download the audio to your computer</p>
-        <p>3. Press "Save recording"</p>
 
+            <!---------- BOOK CONTAINER---------->
+            <div class="d-flex justify-content-center mt-2 mb-5">
 
-        <div style="max-width: 28em;">
-            <div id="controls">
-                <button id="recordButton">Record</button>
-                <button id="pauseButton" disabled>Pause</button>
-                <button id="stopButton" disabled>Stop</button>
-            </div>
-
-            <div>
-                <h5><a href="/recording/save">Save recording</a></h5>
+                <!---------- BOOK IFRAME ---------->
+                <iframe style='width:1200px;height:800px' th:src="${currentStory.storyFile}" seamless='seamless'
+                        scrolling='no' frameborder='0' allowtransparency='true' allowfullscreen='true' class="mt-5 mb-5">
+                </iframe>
 
             </div>
 
-
-            <div id="formats"></div>
-            <p><strong>Recordings:</strong></p>
-            <ol id="recordingsList"></ol>
         </div>
 
 
-    </div>
+        <!--############################################-->
+        <!--############## BOTTOM SECTIONS #############-->
+        <!--############################################-->
+
+        <div class="jumbotron jumbotron-fluid m-0 fixed-bottom d-flex flex-row justify-content-around"
+             id="record-story-container">
+
+            <!---------- RECORD ---------->
+            <div class="mx-5 py-3 d-flex flex-row justify-content-between flex-fill" style="max-width: 28em;">
+
+                <!---------- RECORD CONTROLS ---------->
+                <div class="flex-fill" id="controls">
+
+                    <h3>Record</h3>
+
+                    <!---------- START ---------->
+                    <button class="btn btn-sm btn-circle" id="recordButton">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                             class="icon-graphic-feature">
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 18v-12l10 6-10 6z"/>
+                        </svg>
+                    </button>
+
+                    <!---------- PAUSE ---------->
+                    <button class="btn btn-sm btn-circle" id="pauseButton" disabled>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                             class="icon-graphic-feature">
+                            <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1 17h-3v-10h3v10zm5-10h-3v10h3v-10z"/>
+                        </svg>
+                    </button>
+
+                    <!---------- STOP ---------->
+                    <button class="btn btn-sm btn-circle" id="stopButton" disabled>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                             class="icon-graphic-feature">
+                            <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5 7h-10v10h10v-10z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!---------- USER RECORDINGS ---------->
+                <div class="flex-fill">
+                    <h4>Download</h4>
+                    <div id="formats"></div>
+                    <div id="recordingsList"></div>
+                </div>
+
+            </div>
+
+
+            <!---------- SAVE RECORDING ---------->
+            <div class="mx-5 flex-fill">
+                <a href="/recording/save" class="btn btn-dark btn-lg">
+                    <p class="m-0">Save</p>
+                </a>
+            </div>
+
+        </div>
+
+    </section>
 
 </article>
-
 
 
 <!---------- FOOTER ---------->
