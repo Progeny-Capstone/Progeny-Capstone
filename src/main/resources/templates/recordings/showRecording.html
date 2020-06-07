@@ -31,6 +31,12 @@
             <p>Your user agent does not support the HTML5 Audio element.</p>
         </audio>
 
+        <!---------- EDIT RECORDING ---------->
+        <a th:href="@{|/recording/edit/${currentRecording.getId()}|}">Edit Recording</a>
+
+        <!---------- DELETE RECORDING ---------->
+        <a th:href="@{|/recording/delete/${currentRecording.getId()}|}">Delete Recording</a>
+
     </section>
 
 
