@@ -12,55 +12,52 @@
 <article class="main-container">
 
     <!---------- SECTION ---------->
-    <section class="section-container">
+    <section class="jumbotron jumbotron-fluid d-flex flex-row justify-content-around my-5 py-5" id="story-jumbotron">
 
 
-        <!---------- SECTION ---------->
-        <section class="jumbotron jumbotron-fluid" id="story-jumbotron">
+        <!---------- JUMBOTRON CONTAINER ---------->
+        <div class="container story-container mt-5 py-5">
 
-            <!---------- JUMBOTRON CONTAINER ---------->
-            <div class="container pull-left">
+            <!---------- JUMBOTRON HEADER ---------->
+            <h1 class="display-4 section-header text-center">Our Library</h1>
 
-                <!---------- JUMBOTRON HEADER ---------->
-                <h1 class="display-4 section-header text-left">Have A Look At Our Collection</h1>
+            <!---------- JUMBOTRON LEAD ---------->
+            <p class="lead text-center mx-auto">
+                Don't have a book ready to read? Find a book to read here.
+            </p>
 
-                <!---------- JUMBOTRON LEAD ---------->
-                <p class="lead text-left">
-                    Here are some stories to get you started.
-                </p>
+        </div>
 
-                <!---------- JUMBOTRON CTA ---------->
-                <a class="learn-link pull-left" href="/recording/save" id="view-more"><em>Have a Recording Already?</em></a>
-            </div>
-
-        </section>
+    </section>
 
 
-        <!---------- STORIES SECTION ---------->
-        <section class="stories-sub-section row">
+    <!---------- STORIES SECTION ---------->
+    <section class="section-container mb-5">
+
+        <!---------- JUMBOTRON CTA ---------->
+        <a class="record-link text-center" href="/recording/save" id="view-more"><em>Have a Recording Already?</em></a>
 
 
-            <!---------- SHOW STORIES ---------->
-            <div th:each="story : ${stories}" class="story-card col-lg-3 col-sm-12">
+        <!---------- SHOW STORIES ---------->
+        <div th:each="story : ${stories}" class="story-card col-lg-3 col-sm-12 pb-5">
 
-                <!---------- BOOK COVER CONTAINER---------->
-                <a th:href="@{|/story/${story.getId()}|}" class="story-title-link">
-                    <!---------- BOOK COVER IMG---------->
-                     <div class="story-image-container">
-                         <img th:src="@{ ${story.coverImageUrl}}" alt="This is the cover image for the story"
-                              class="mx-auto">
-                     </div>
+            <!---------- BOOK COVER CONTAINER---------->
+            <a th:href="@{|/story/${story.getId()}|}" class="story-title-link">
+                <!---------- BOOK COVER IMG---------->
+                <div class="story-image-container">
+                    <img th:src="@{ ${story.coverImageUrl}}" alt="This is the cover image for the story"
+                         class="mx-auto">
+                </div>
 
-                    <!---------- BOOK TITLE ---------->
-                    <h1 th:text="${story.title}" class="story-title"></h1>
+                <!---------- BOOK TITLE ---------->
+                <h1 th:text="${story.title}" class="story-title"></h1>
 
-                    <!---------- BOOK AUTHOR ---------->
-                    <p class="story-author">By <em th:text="${story.authorFirstName} + ' ' + ${story.authorLastName}" class="story-author"></em></p>
-                </a>
+                <!---------- BOOK AUTHOR ---------->
+                <p class="story-author">By <em th:text="${story.authorFirstName} + ' ' + ${story.authorLastName}"
+                                               class="story-author"></em></p>
+            </a>
 
-            </div>
-
-        </section>
+        </div>
 
     </section>
 

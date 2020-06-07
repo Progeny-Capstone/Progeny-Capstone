@@ -102,6 +102,7 @@ a:active {
 .story-title {
     font-size: calc(15px + (20 - 15) * ((100vw - 300px) / (1600 - 300)));
     /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
+
     font-family: 'Roboto', sans-serif;
     color: var(--navy-color);
 }
@@ -116,6 +117,25 @@ a:active {
 #story-jumbotron {
     background: var(--kakhi-opacity-color);
     border-radius: 10px;
+}
+
+#book-jumbotron {
+    position: absolute;
+    height: 600px;
+    width: auto;
+}
+
+.filler {
+    width: 100%;
+}
+
+.recording-cta {
+    background: var(--kakhi-color);
+    color: var(--navy-color);
+
+    font-size: calc(13px + (15 - 13) * ((100vw - 300px) / (1600 - 300)));
+    /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
+
 }
 
 /*------------- PROFILE -------------*/
