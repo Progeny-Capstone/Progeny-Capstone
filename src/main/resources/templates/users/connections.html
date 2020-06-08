@@ -44,13 +44,33 @@
         <!---------- SECTION HEADER ---------->
         <h4 class="section-subheader">Looking For Someone New?</h4>
 
-        <!---------- SEARCH BAR ---------->
+        <!---------- SEARCH CONTAINER ---------->
         <div id="custom-search-input" class=" my-5 ">
-            <!--            <form action="/profile/friends/edit" method="post">-->
-            <input type="text" class="search-query form-control" name="search"
-                   placeholder="Search for someone on Progeny"/>
-            <!--            </form>-->
+
+            <!---------- SEARCH BAR ---------->
+            <form th:action="@{/profile/friends/search}" method="post">
+                <input type="text" class="search-query form-control" name="search"
+                       placeholder="Search for someone on Progeny"/>
+            </form>
+
+            <!---------- SEARCH RESULTS ---------->
+            <div th:each="UserResults : ${foundUsers}">
+
+                <!---------- USER IMAGE ---------->
+                <div class="friend-image-container mx-auto">
+                    <img th:src="@{${UserResults.getProfileImageUrl()}}"
+                         class="friend-img rounded-circle mx-auto"
+                         alt="users profile picture">
+                </div>
+
+                <!---------- USER NAME ---------->
+                <p th:text="${UserResults.getFirstName()} + ' ' +${UserResults.getLastName()}"
+                   class="text-center mx-auto"></p>
+
+
+            </div>
         </div>
+
 
         <!---------- SEARCH PROGENY USERS ---------->
         <div class="search-results my-5 d-flex flex-row justify-content-center flex-wrap">
