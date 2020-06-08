@@ -5,6 +5,10 @@
 <nav th:replace="partials/topnav :: navbar"></nav>
 
 <div class="container">
+
+    <!---------- BACK BUTTON ---------->
+    <a th:href="@{|/recording/show/${recording.getId()}|}" class="blue-link" style="text-decoration: underline">Back</a>
+
     <h2>Delete Story</h2>
     <form th:action="@{'/recording/delete/' + ${recording.getId()}}" method="post">
         <h1>Are you sure you want to delete the recording: </h1>

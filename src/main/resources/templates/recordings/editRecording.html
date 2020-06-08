@@ -15,8 +15,11 @@
     <section class="section-container">
 
 
+        <!---------- BACK BUTTON ---------->
+        <a th:href="@{|/recording/show/${recording.getId()}|}" class="blue-link" style="text-decoration: underline">Back</a>
+
         <!---------- CREATE ACCOUNT HEADER ---------->
-        <h1 class="section-header">Create a Story</h1>
+        <h1 class="section-header">Edit Recording</h1>
 
         <!---------- CREATE STORY FORM ---------->
         <form th:action="@{'/recording/edit/' + ${recording.getId()}}" method="POST" th:method="post" th:object="${recording}" class="form-label-group">
