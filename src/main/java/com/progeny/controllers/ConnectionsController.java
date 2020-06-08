@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -81,7 +82,6 @@ public class ConnectionsController {
         usersRepo.save(currentUser); // 3. save the list of users to the current users information
         usersRepo.save(friend); // 3. save the list of users to the current users information
 
-
         // --------- REDISPLAY THE GET FRIEND INFORMATION AFTER POST -----------
         model.addAttribute("currentUser", currentUser);// 2. Show current user on form
         model.addAttribute("friends", currentUser.getFriends()); // 2. Show a list of users attached to current user
@@ -95,6 +95,22 @@ public class ConnectionsController {
     // --------- DELETE FRIEND (POST)------------
 
     // --------- SEARCH FOR FRIEND (POST)------------
+    @PostMapping("/profile/friends/search")
+    public String searchUsers(@RequestParam String search, Model model){
 
+        // ------------- GET CURRENT USER FROM SESSION -------------
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
+        User currentUser = new User(user); // 2. set new user to user ^
+        model.addAttribute("currentUser", currentUser);// 3. Show current user on page
+
+        // --------- SEARCH DB FOR USER -----------
+        System.out.println(search);
+        List<User> foundUsers = usersRepo.findAllByFirstNameLikeOrLastNameLike(search, search);
+        System.out.println(foundUsers);
+        model.addAttribute("foundUsers", foundUsers);
+
+
+        return "users/connections";
+    }
 
 }
