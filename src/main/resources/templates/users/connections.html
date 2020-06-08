@@ -24,19 +24,21 @@
             <!---------- FRIENDS CARD ---------->
             <div th:each="friend : ${friends}" class="friend-card text-center m-5">
 
-                <form th:action="@{/profile/friends/delete}" method="POST" class="form-register"
-                      id="register-form">
+                <!---------- FRIENDS IMAGE ---------->
+                <div class="friend-image-container d-flex flex-column m-1">
+                    <img th:src="@{${friend.getProfileImageUrl()}}" class="friend-img rounded-circle mx-auto"
+                         alt="users profile picture">
+                </div>
 
-                    <!---------- FRIENDS IMAGE ---------->
-                    <div class="friend-image-container d-flex flex-column m-1">
-                        <img th:src="@{${friend.getProfileImageUrl()}}" class="friend-img rounded-circle mx-auto"
-                             alt="users profile picture">
-                    </div>
+                <!---------- FRIEND NAME ---------->
+                <p th:text="${friend.getFirstName()} + ' ' +${friend.getLastName()}"
+                   class=""></p>
 
-                    <!---------- FRIEND NAME ---------->
-                    <p th:text="${friend.getFirstName()} + ' ' +${friend.getLastName()}"
-                       class=""></p>
 
+                <!---------- DELETE FORM ---------->
+                <form th:action="@{/profile/friends/delete}" method="POST" class="form-register" id="register-form">
+
+                    <!---------- ID HIDDEN INPUT ---------->
                     <input type="hidden" th:value="${friend.getId()}" th:name="deleteId">
 
                     <!---------- DELETE BUTTON ---------->
@@ -45,8 +47,16 @@
                 </form>
 
             </div>
+
         </div>
+
+        <!---------- SEARCH USERS LINK ---------->
+        <a href="/profile/friends/search" class="btn btn-sm btn-dark">
+            <p class="m-0">Search for Someone</p>
+        </a>
+
     </section>
+
 </article>
 
 

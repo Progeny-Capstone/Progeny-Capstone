@@ -1,6 +1,5 @@
 package com.progeny.controllers;
 
-import com.progeny.model.Recording;
 import com.progeny.model.User;
 import com.progeny.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -101,30 +100,34 @@ public class ConnectionsController {
 
         // 1. Find the user in the user Repo by the id being passed in
         User deleteUser = usersRepo.getOne(deleteId);
-        System.out.println(deleteUser.getId());
-        System.out.println(currentUser.getId());
 
         // 2. Delete the connection to the user in the friends joining table
-        System.out.println("currentUser.getFriends() before= " + currentUser.getFriends());
-        currentUser.removeFriend(deleteUser);
-        System.out.println("currentUser.getFriends() after= " + currentUser.getFriends());
+        List<User> friendsList = deleteUser.getFriends(); // 1. get list of friends
+        for (int i = 0; i < friendsList.size(); i++) { // 2. iterate through friends list
 
-        System.out.println("deleteUser.getFriends() before = " + deleteUser.getFriends());
-        deleteUser.removeFriend(currentUser);
-        System.out.println("deleteUser.getFriends() after= " + deleteUser.getFriends());
+            if (friendsList.get(i).getId() == currentUser.getId()) {
+
+                deleteUser.getFriends().remove(i);
+
+            }
+        }
+        deleteUser.setFriends(deleteUser.getFriends());
 
 
-//        currentUser.setFriends(currentUser.getFriends());
-//        deleteUser.setFriends(deleteUser.getFriends());
+        List<User> userFriendList = currentUser.getFriends(); // 1. get list of friends
+        for (int i = 0; i < userFriendList.size(); i++) { // 2. iterate through friends list
+
+            if (userFriendList.get(i).getId() == deleteUser.getId()) {
+
+                currentUser.getFriends().remove(i);
+
+            }
+        }
+        currentUser.setFriends(currentUser.getFriends());
 
         // 3. Save the changes
-//        usersRepo.save(currentUser); // 3. save the removal of friend to the current users information
-//        usersRepo.save(deleteUser); // 3. save the removal of friend to the current users information
-
-
-//        // --------- REDISPLAY THE GET FRIEND INFORMATION AFTER POST -----------
-//        model.addAttribute("currentUser", currentUser);// 2. Show current user on form
-//        model.addAttribute("friends", currentUser.getFriends()); // 2. Show a list of users attached to current user
+        usersRepo.save(currentUser); // 3. save the removal of friend to the current users information
+        usersRepo.save(deleteUser); // 3. save the removal of friend to the current users information
 
         return "redirect:/profile/friends";
     }
