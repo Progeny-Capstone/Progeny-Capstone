@@ -61,15 +61,6 @@ public class User {
     private List<Recording> recordings;
 
     // --------------- FRIENDS ----------------
-//    // 12. a. A user -->
-//    @ManyToOne(cascade={CascadeType.ALL})
-//    @JoinColumn(name="friend_id")
-//    private User friend;
-//
-//    // 12. b. can have many friends
-//    @OneToMany(fetch = FetchType.EAGER, mappedBy="friend")
-//    private List<User> friends = new ArrayList<>();
-
      @ManyToMany(fetch = FetchType.EAGER)
      @JoinTable(
              name="friends",
@@ -80,6 +71,18 @@ public class User {
 
      @ManyToMany(mappedBy = "friends")
      private List<User> friend;
+
+
+
+    public void addFriend(User newFriend) {
+        friends.add(newFriend);
+        newFriend.getFriends().add(this);
+    }
+
+    public void removeFriend(User oldFriend) {
+        friends.remove(oldFriend);
+        oldFriend.getFriends().remove(this);
+    }
 
 
     // --------------- GROUPS ----------------

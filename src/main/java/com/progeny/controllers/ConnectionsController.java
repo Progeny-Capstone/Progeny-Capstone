@@ -56,13 +56,13 @@ public class ConnectionsController {
         model.addAttribute("friend", friend);// 3. Show current user on page
 
         // ------------- CHECK FOR FRIEND LIST(s) -------------
-        if(friend.getFriends() == null){ // if there is no friends list -->
+        if (friend.getFriends() == null) { // if there is no friends list -->
 
             List<User> newFriends = new ArrayList<>(); // 1. Make a new friends list
             friend.setFriends(newFriends); // 2. give the new friends list to User
 
         }
-        if(currentUser.getFriends() == null){ // if there is no friends list -->
+        if (currentUser.getFriends() == null) { // if there is no friends list -->
 
             List<User> newFriends = new ArrayList<>(); // 1. Make a new friends list
             currentUser.setFriends(newFriends); // 2. give the new friends list to User
@@ -90,9 +90,9 @@ public class ConnectionsController {
     }
 
 
-    // --------- DELETE FRIEND (POST)------------
-    @PostMapping("profile/friends/delete")
-    public String deleteConnection(@RequestParam long deleteId, Model model){
+    // --------- DELETE CONNECTION (POST) ------------
+    @PostMapping("/profile/friends/delete")
+    public String postDelete(@RequestParam long deleteId, Model model) {
 
         // ------------- GET CURRENT USER FROM SESSION -------------
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
@@ -101,21 +101,32 @@ public class ConnectionsController {
 
         // 1. Find the user in the user Repo by the id being passed in
         User deleteUser = usersRepo.getOne(deleteId);
+        System.out.println(deleteUser.getId());
+        System.out.println(currentUser.getId());
 
         // 2. Delete the connection to the user in the friends joining table
-        currentUser.getFriends().remove(deleteUser);
-        deleteUser.getFriends().remove(currentUser);
+        System.out.println("currentUser.getFriends() before= " + currentUser.getFriends());
+        currentUser.removeFriend(deleteUser);
+        System.out.println("currentUser.getFriends() after= " + currentUser.getFriends());
+
+        System.out.println("deleteUser.getFriends() before = " + deleteUser.getFriends());
+        deleteUser.removeFriend(currentUser);
+        System.out.println("deleteUser.getFriends() after= " + deleteUser.getFriends());
+
+
+//        currentUser.setFriends(currentUser.getFriends());
+//        deleteUser.setFriends(deleteUser.getFriends());
 
         // 3. Save the changes
-        usersRepo.save(currentUser); // 3. save the list of users to the current users information
-        usersRepo.save(deleteUser); // 3. save the list of users to the current users information
-
-        // --------- REDISPLAY THE GET FRIEND INFORMATION AFTER POST -----------
-        model.addAttribute("currentUser", currentUser);// 2. Show current user on form
-        model.addAttribute("friends", currentUser.getFriends()); // 2. Show a list of users attached to current user
+//        usersRepo.save(currentUser); // 3. save the removal of friend to the current users information
+//        usersRepo.save(deleteUser); // 3. save the removal of friend to the current users information
 
 
-        return "users/connections";
+//        // --------- REDISPLAY THE GET FRIEND INFORMATION AFTER POST -----------
+//        model.addAttribute("currentUser", currentUser);// 2. Show current user on form
+//        model.addAttribute("friends", currentUser.getFriends()); // 2. Show a list of users attached to current user
+
+        return "redirect:/profile/friends";
     }
 
 
@@ -130,7 +141,7 @@ public class ConnectionsController {
 
     // --------- SEARCH FOR FRIEND (POST)------------
     @PostMapping("/profile/friends/search")
-    public String searchUsers(@RequestParam String search, Model model){
+    public String searchUsers(@RequestParam String search, Model model) {
 
         // ------------- GET CURRENT USER FROM SESSION -------------
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user

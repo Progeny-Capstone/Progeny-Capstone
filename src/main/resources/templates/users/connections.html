@@ -24,7 +24,7 @@
             <!---------- FRIENDS CARD ---------->
             <div th:each="friend : ${friends}" class="friend-card text-center m-5">
 
-                <form th:action="@{/profile/friends}" method="POST" class="form-register"
+                <form th:action="@{/profile/friends/delete}" method="POST" class="form-register"
                       id="register-form">
 
                     <!---------- FRIENDS IMAGE ---------->
