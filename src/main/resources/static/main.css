@@ -20,6 +20,10 @@ body {
     background: var(--Light-color);
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
 /*------------- SECTION BASICS -------------*/
 a {
     color: var(--coral-color);
