@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head('Confirm Delete')">
+<body>
+<nav th:replace="partials/topnav :: navbar"></nav>
+
+<div class="container">
+    <h2>Delete Story</h2>
+    <form th:action="@{'/recording/delete/' + ${recording.getId()}}" method="post">
+        <h1>Are you sure you want to delete the recording: </h1>
+        <h2 th:text="${recording.title}"></h2>
+        <button class="btn btn-danger"> yes, delete</button>
+        <a th:href="@{|/recording/show/${recording.getId()}|}" class="btn btn-primary">No, don't delete</a>
+    </form>
+</div>
+
+<!---------- FOOTER ---------->
+<nav th:replace="partials/footer :: footer"></nav>
+
+<!---------- SCRIPTS ---------->
+<script th:replace="partials/scripts:: scripts"></script>
+
+</body>
+</html>
