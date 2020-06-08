@@ -140,16 +140,29 @@
 
 
                 <!---------- FRIEND'S RECORDING(s )---------->
-                <div th:each="friend : ${friends}" class="recording-card my-5">
+                <div th:each="friend : ${friends}" class="\my-5">
+
+                    <h4 th:text="${friend.firstName} + ' ' + ${friend.LastName}" class="recording-author"></h4>
 
                     <!---------- RECORDING CARD ---------->
                     <div th:each="recording : ${friend.getRecordings()}" class="recording-card my-5">
 
                         <!---------- RECORDING TITLE---------->
-                        <h4 th:text="${recording.title}" class="recording-title"></h4>
+                        <h3 th:text="${recording.title}" class="recording-title"></h3>
 
                         <!---------- RECORDING CREATOR---------->
-                        <p>Created by <span th:text="${recording.getUser().username}"></span></p>
+                        <p>Created by <em th:text="${recording.getUser().username}"></em></p>
+
+                        <!---------- RECORDING CONTROLER ---------->
+                        <audio controls>
+                            <source th:src="${recording.recordingUrl}"
+                                    type='audio/mp4'>
+                            <!-- The next two lines are only executed if the browser doesn't support MP4 files -->
+                            <source th:src="${recording.recordingUrl}"
+                                    type='audio/ogg; codecs=vorbis'>
+                            <!-- The next line will only be executed if the browser doesn't support the <audio> tag-->
+                            <p>Your user agent does not support the HTML5 Audio element.</p>
+                        </audio>
 
                     </div>
 
