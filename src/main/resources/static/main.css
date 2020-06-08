@@ -97,7 +97,7 @@ a:active {
 /*------------- STORIES -------------*/
 .story-image-container {
     height: 500px;
-    width: auto;
+    width: 300px;
 }
 
 .story-image-container img {
