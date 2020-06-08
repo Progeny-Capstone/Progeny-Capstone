@@ -57,7 +57,7 @@ public class User {
     private boolean isAdmin;
 
     // 11. A list of recordings mapped by the user
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
     private List<Recording> recordings;
 
     // --------------- FRIENDS ----------------

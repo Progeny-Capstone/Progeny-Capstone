@@ -19,7 +19,8 @@
         <div class="container profile-container py-5">
 
             <!---------- JUMBOTRON HEADER ---------->
-            <h1 class=" display-4 section-header text-center"> Welcome back, <span th:text="${currentUser.getFirstName()}"></span></h1>
+            <h1 class=" display-4 section-header text-center"> Welcome back, <span
+                    th:text="${currentUser.getFirstName()}"></span></h1>
 
         </div>
 
@@ -119,7 +120,9 @@
 
                         <!---------- RECORDING TITLE---------->
                         <h4 th:text="${recording.title}" class="recording-title"></h4>
-                        <p>Created on <span th:text="${recording.getTimestamp().getMonth()} + ' ' + ${recording.getTimestamp().getDay()} + ', ' + ${recording.getTimestamp().getYear()}"></span></p>
+                        <p>Created on <span
+                                th:text="${recording.getTimestamp().getMonth()} + ' ' + ${recording.getTimestamp().getDay()} + ', ' + ${recording.getTimestamp().getYear()}"></span>
+                        </p>
                     </a>
 
                     <!---------- RECORDING CONTROLER ---------->
@@ -135,7 +138,25 @@
 
                 </div>
 
+
+                <!---------- FRIEND'S RECORDING(s )---------->
+                <div th:each="friend : ${friends}" class="recording-card my-5">
+
+                    <!---------- RECORDING CARD ---------->
+                    <div th:each="recording : ${friend.getRecordings()}" class="recording-card my-5">
+
+                        <!---------- RECORDING TITLE---------->
+                        <h4 th:text="${recording.title}" class="recording-title"></h4>
+
+                        <!---------- RECORDING CREATOR---------->
+                        <p>Created by <span th:text="${recording.getUser().username}"></span></p>
+
+                    </div>
+
+                </div>
+
             </div>
+
         </section>
 
 
