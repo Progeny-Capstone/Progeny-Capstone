@@ -6,11 +6,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private UserDetailsLoader usersLoader;
@@ -25,6 +27,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
         auth
                 .userDetailsService(usersLoader) // How to find users by their username
                 .passwordEncoder(passwordEncoder()) // How to encode and verify passwords
@@ -34,6 +37,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+
+//                .antMatcher("/admin")
+
                 /* Login configuration */
                 .formLogin()
                 .loginPage("/login")
@@ -65,8 +71,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/recording/save",
                         "/recordings/{id}/edit"
 
+
                 )
                 .authenticated()
+
+//                .antMatchers("/").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+//                .antMatchers("/profile").access("hasRole('ROLE_USER')")
+//                .antMatchers("/admin").access("hasRole('ROLE_ADMIN')")
+//                .and()
+//                .formLogin().loginPage("/login")
+//                .defaultSuccessUrl("/")
+//                .failureUrl("/login?error")
+//                .usernameParameter("username").passwordParameter("password")
+//                .and()
+//                .logout().logoutSuccessUrl("/login?logout");
+
         ;
     }
 }

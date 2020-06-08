@@ -30,7 +30,7 @@ public class UserController {
     @GetMapping("/register")
     public String showRegisterForm(Model model){
 
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
 
 
         model.addAttribute("user", new User());
