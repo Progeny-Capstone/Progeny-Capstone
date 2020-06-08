@@ -1,15 +1,13 @@
 package com.progeny.controllers;
 
+import com.progeny.model.Recording;
 import com.progeny.model.User;
 import com.progeny.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,6 +91,42 @@ public class ConnectionsController {
 
 
     // --------- DELETE FRIEND (POST)------------
+    @PostMapping("profile/friends/delete")
+    public String deleteConnection(@RequestParam long deleteId, Model model){
+
+        // ------------- GET CURRENT USER FROM SESSION -------------
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
+        User currentUser = new User(user); // 2. set new user to user ^
+        model.addAttribute("currentUser", currentUser);// 3. Show current user on page
+
+        // 1. Find the user in the user Repo by the id being passed in
+        User deleteUser = usersRepo.getOne(deleteId);
+
+        // 2. Delete the connection to the user in the friends joining table
+        currentUser.getFriends().remove(deleteUser);
+        deleteUser.getFriends().remove(currentUser);
+
+        // 3. Save the changes
+        usersRepo.save(currentUser); // 3. save the list of users to the current users information
+        usersRepo.save(deleteUser); // 3. save the list of users to the current users information
+
+        // --------- REDISPLAY THE GET FRIEND INFORMATION AFTER POST -----------
+        model.addAttribute("currentUser", currentUser);// 2. Show current user on form
+        model.addAttribute("friends", currentUser.getFriends()); // 2. Show a list of users attached to current user
+
+
+        return "users/connections";
+    }
+
+
+    // --------- SEARCH FOR FRIEND (GET)------------
+    @GetMapping("/profile/friends/search")
+    public String showUsers(Model model) {
+
+        model.addAttribute("users", usersRepo.findAll()); // 1. Show a list of users on Progeny
+
+        return "users/searchUsers";
+    }
 
     // --------- SEARCH FOR FRIEND (POST)------------
     @PostMapping("/profile/friends/search")
@@ -104,13 +138,11 @@ public class ConnectionsController {
         model.addAttribute("currentUser", currentUser);// 3. Show current user on page
 
         // --------- SEARCH DB FOR USER -----------
-        System.out.println(search);
         List<User> foundUsers = usersRepo.findAllByFirstNameLikeOrLastNameLike(search, search);
-        System.out.println(foundUsers);
         model.addAttribute("foundUsers", foundUsers);
 
 
-        return "users/connections";
+        return "users/searchUsers";
     }
 
 }
