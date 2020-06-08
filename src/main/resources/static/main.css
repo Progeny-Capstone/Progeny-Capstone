@@ -393,6 +393,9 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
     animation-duration: 2s;
 }
 
+.blue-link {
+    color: var(--navy-color);
+}
 
 @-webkit-keyframes bounce {
     0%, 20%, 50%, 80%, 100% {

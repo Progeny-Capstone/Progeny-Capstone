@@ -111,10 +111,12 @@
                 <div th:each="recording : ${recordings}" class="recording-card my-5">
 
                     <!---------- RECORDING TITLE---------->
+                    <a class="blue-link" th:href="@{|/recording/show/${recording.getId()}|}">
                     <h3 th:text="${recording.title}" class="recording-title"></h3>
+                    </a>
 
                     <!---------- RECORDING CREATOR---------->
-                    <p>Created by <em th:text="${recording.getUser().username}"></em></p>
+                    <p>Created by <a class="blue-link" href="/profile/friends"><em th:text="${recording.getUser().username}"></em></a></p>
 
                     <!---------- RECORDING CONTROLER ---------->
                     <audio controls>
