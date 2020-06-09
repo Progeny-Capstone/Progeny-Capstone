@@ -6,6 +6,8 @@
 <nav th:replace="partials/topnav :: navbar"></nav>
 <article class="main-container">
 
+
+
     <h1 class="section-header">Here are all the users for Progeny</h1>
 
     <section class="section-container flex-wrap d-flex flex-row justify-content-between">
@@ -19,7 +21,7 @@
                 <div class="card-body">
                     <h5 th:text="${user.firstName + ' ' + user.lastName}" class="card-title"></h5>
                     <h5 th:text="${user.username}"></h5>
-                    <a th:href="@{|/profile/delete/${user.username}|}" class="text-danger"><strong>Delete
+                    <a th:href="@{|/admin/delete/${user.username}|}" class="text-danger"><strong>Delete
                     Account</strong></a>
                 </div>
             </div>

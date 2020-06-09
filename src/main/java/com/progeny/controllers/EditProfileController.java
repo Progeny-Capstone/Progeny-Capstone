@@ -72,7 +72,7 @@ public class EditProfileController {
     public String deleteProfile(@RequestParam long userId, @ModelAttribute User user){
         User deleteProfile = usersRepo.getOne(userId);
         usersRepo.delete(deleteProfile);
-        return "redirect:/login";
+        return "redirect:/";
     }
 
 }
