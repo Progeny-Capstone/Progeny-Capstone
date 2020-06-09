@@ -37,8 +37,12 @@
             <span sec:authorize="isAuthenticated()">
             <li th:if="${#authentication.getPrincipal().isAdmin()}" class="nav-item"><a class="nav-link" th:href="@{'/admin'}">Admin</a></li>
             </span>
-            <!---------CREATE STORY PAGE FOR ADMIN-------------->
-<!--            <li th:if="${user.isAdmin}" th:href="@{'/story/create'}">Add Story</li>-->
+
+            <!---------LINK FOR TAKING ADMIN TO CREATE STORY PAGE-------------->
+            <span sec:authorize="isAuthenticated()">
+               <li th:if="${#authentication.getPrincipal().isAdmin()}" class="nav-item"><a class="nav-link" th:href="@{'/story/create'}">Create Story</a></li>
+            </span>
+
 
             <!--------SHOW FOR REGISTERED/LOGGED IN USER-------->
             <li sec:authorize="isAuthenticated()">
