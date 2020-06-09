@@ -36,7 +36,8 @@
 
                 <!---------- BOOK IFRAME ---------->
                 <iframe style='width:1200px;height:800px' th:src="${currentStory.storyFile}" seamless='seamless'
-                        scrolling='no' frameborder='0' allowtransparency='true' allowfullscreen='true' class="mt-5 mb-5">
+                        scrolling='no' frameborder='0' allowtransparency='true' allowfullscreen='true'
+                        class="mt-5 mb-5">
                 </iframe>
 
             </div>
@@ -48,58 +49,66 @@
         <!--############## BOTTOM SECTIONS #############-->
         <!--############################################-->
 
-        <div class="jumbotron jumbotron-fluid m-0 fixed-bottom d-flex flex-row justify-content-around"
+        <div class="jumbotron-fluid m-0 fixed-bottom d-flex flex-row justify-content-around"
              id="record-story-container">
 
             <!---------- RECORD ---------->
-            <div class="mx-5 py-3 d-flex flex-row justify-content-between flex-fill" style="max-width: 28em;">
+            <div class="mx-5 py-2 d-flex flex-row justify-content-center flex-fill">
 
                 <!---------- RECORD CONTROLS ---------->
-                <div class="flex-fill" id="controls">
+                <div class="flex-fill mx-1" id="controls">
 
-                    <h3>Record</h3>
+<!--                    <h3 class="mx-auto">Record</h3>-->
 
-                    <!---------- START ---------->
-                    <button class="btn btn-sm btn-circle" id="recordButton">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                             class="icon-graphic-feature">
-                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 18v-12l10 6-10 6z"/>
-                        </svg>
-                    </button>
+                    <div class="d-flex flex-row justify-content-center">
 
-                    <!---------- PAUSE ---------->
-                    <button class="btn btn-sm btn-circle" id="pauseButton" disabled>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                             class="icon-graphic-feature">
-                            <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1 17h-3v-10h3v10zm5-10h-3v10h3v-10z"/>
-                        </svg>
-                    </button>
+                        <!---------- START ---------->
+                        <button class="btn btn-sm btn-circle mx-5" id="recordButton">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 class="icon-graphic-feature">
+                                <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 18v-12l10 6-10 6z"/>
+                            </svg>
+                        </button>
 
-                    <!---------- STOP ---------->
-                    <button class="btn btn-sm btn-circle" id="stopButton" disabled>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                             class="icon-graphic-feature">
-                            <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5 7h-10v10h10v-10z"/>
-                        </svg>
-                    </button>
+                        <!---------- PAUSE ---------->
+                        <button class="btn btn-sm btn-circle mx-5" id="pauseButton"
+                                disabled>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 class="icon-graphic-feature">
+                                <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1 17h-3v-10h3v10zm5-10h-3v10h3v-10z"/>
+                            </svg>
+                        </button>
+
+                        <!---------- STOP ---------->
+                        <button class="btn btn-sm btn-circle mx-5" id="stopButton" disabled>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 class="icon-graphic-feature">
+                                <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5 7h-10v10h10v-10z"/>
+                            </svg>
+                        </button>
+
+                    </div>
+
                 </div>
 
                 <!---------- USER RECORDINGS ---------->
-                <div class="flex-fill">
-                    <h4>Download</h4>
-                    <div id="formats"></div>
-                    <div id="recordingsList"></div>
-                </div>
+                <div class="flex-fill mx-5 d-flex flex-column justify-content-center">
+<!--                    <h4>Download</h4>-->
+                    <div class="mx-auto flex-wrap" id="formats"></div>
+                    <div class="list-unstyled mx-auto flex-wrap" id="recordingsList"></div>
 
-            </div>
+                </div>
 
 
             <!---------- SAVE RECORDING ---------->
-            <div class="mx-5 flex-fill">
-                <a href="/recording/save" class="btn btn-dark btn-lg">
+            <div class="mx-5 flex-fill text-center">
+                <a href="/recording/save" class="btn bn-sm" id="save-btn">
                     <p class="m-0">Save</p>
                 </a>
             </div>
+            </div>
+
+
 
         </div>
 
@@ -115,7 +124,6 @@
 <script th:replace="partials/scripts :: scripts"></script>
 
 <script src="/js/record.js"></script>
-<script src="video.js"></script>
 
 
 </body>

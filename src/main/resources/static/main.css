@@ -182,6 +182,19 @@ a:active {
     color: var(--Light-color);
 }
 
+#save-btn{
+    background: var(--Light-color);
+    color: var(--navy-color);
+}
+#save-btn:hover{
+    background: var(--mint-color);
+    color: var(--navy-color);
+}
+#save-btn:active{
+    background: var(--coral-color);
+    color: var(--Light-color);
+}
+
 /*------------- PROFILE -------------*/
 #profile-jumbotron {
     background: var(--navy-color);

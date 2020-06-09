@@ -115,7 +115,7 @@ function startRecording() {
         }
 
         //update the format
-        document.getElementById("formats").innerHTML='Sample rate: 48kHz, MIME: audio/'+extension+';codecs=opus';
+        // document.getElementById("formats").innerHTML='Sample rate: 48kHz, MIME: audio/' + extension + '; codecs=opus';
 
         /*
             Create the MediaRecorder object
@@ -179,7 +179,7 @@ function stopRecording() {
     pauseButton.disabled = true;
 
     //reset button just in case the recording is stopped while paused
-    pauseButton.innerHTML="Pause";
+    // pauseButton.innerHTML="Pause";
 
     //tell the recorder to stop the recording
     recorder.stop();
