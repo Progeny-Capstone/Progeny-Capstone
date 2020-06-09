@@ -85,6 +85,17 @@ a:active {
 #view-more {
     float: left;
 }
+/*.illustration-home{*/
+/*    height: 400px;*/
+/*    width: 400px;*/
+/*}*/
+
+.illustration-home img{
+    object-fit: cover;
+
+    height: 250px;
+    width: auto;
+}
 
 /*------------- GRAPHICS -------------*/
 .moon-stars-icons {
