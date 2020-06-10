@@ -15,7 +15,8 @@
     <section class="section-container">
 
         <!---------- SECTION HEADER---------->
-        <h1 class="section-header"><span th:text="${currentUser.getFirstName()}"></span>, here are the people you are
+        <h1 class="section-header px-5"><span th:text="${currentUser.getFirstName()}"></span>, here are the people you
+            are
             connected with</h1>
 
         <!---------- SHOW FRIENDS ---------->
@@ -49,28 +50,27 @@
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">Close</span>
-                                </button>
+                                <h2 class="modal-title text-center mx-auto" id="exampleModalLongTitle">Unfriend Confirmation</h2>
                             </div>
                             <div class="modal-body">
 
-                                <p>Are You sure you want to delete this <span th:text="${friend.getFirstName()} + ' ' + ${friend.getLastName()}"></span></p>
+                                <p class="m-0 text-center">Are you sure you want to delete<br>
+                                    <strong th:text="${friend.getFirstName()} + ' ' + ${friend.getLastName()}"></strong>
+                                </p>
 
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <div class="modal-footer d-flex flex-row justify-content-around">
+
+                                <button type="button" class="btn btn-sm cancel-btn" data-dismiss="modal">Close</button>
 
                                 <!---------- DELETE FORM ---------->
-                                <form th:action="@{/profile/friends/delete}" method="POST" class="form-register"
-                                      id="register-form">
+                                <form th:action="@{/profile/friends/delete}" method="POST" class="">
 
                                     <!---------- ID HIDDEN INPUT ---------->
                                     <input type="hidden" th:value="${friend.getId()}" th:name="deleteId">
 
                                     <!---------- DELETE BUTTON ---------->
-                                    <button class="btn-dark btn btn-sm" type="submit">Yes, I am sure</button>
+                                    <button class="btn btn-sm submit-btn" type="submit">Yes, I am sure</button>
 
                                 </form>
 
