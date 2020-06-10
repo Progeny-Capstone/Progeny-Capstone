@@ -120,9 +120,9 @@ a:active {
 }
 
 /*------------- STORIES -------------*/
-.story-image-container {
+.story-image-container, .story-card {
     height: 500px;
-    width: 300px;
+    width: 350px;
 }
 
 .story-image-container img {
@@ -150,7 +150,6 @@ a:active {
 
 #story-jumbotron {
     background: var(--kakhi-opacity-color);
-    border-radius: 10px;
 }
 
 #book-jumbotron {

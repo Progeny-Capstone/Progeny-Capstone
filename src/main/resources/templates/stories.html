@@ -12,19 +12,14 @@
 <article class="main-container">
 
     <!---------- SECTION ---------->
-    <section class="jumbotron jumbotron-fluid d-flex flex-row justify-content-around my-5 py-5" id="story-jumbotron">
+    <section class="jumbotron-fluid d-flex flex-row justify-content-around mt-5 py-5" id="story-jumbotron">
 
 
         <!---------- JUMBOTRON CONTAINER ---------->
         <div class="container story-container">
 
             <!---------- JUMBOTRON HEADER ---------->
-            <h1 class="display-4 section-header text-center">Our Library</h1>
-
-            <!---------- JUMBOTRON LEAD ---------->
-            <p class="lead text-center mx-auto">
-                Don't have a book ready to read? Find a book to read here.
-            </p>
+            <h1 class="display-4 section-header text-center">Progeny Library</h1>
 
         </div>
 
@@ -35,22 +30,27 @@
     <section class="section-container mb-5 mt-1 row">
 
         <!---------- SHOW STORIES ---------->
-        <div th:each="story : ${stories}" class="story-card col-lg-3 col-md-4 col-sm-12 col-12 pb-5">
+        <div th:each="story : ${stories}" class="story-card mx-5 col-lg-3 col-md-4 col-sm-12 col-12 pb-5">
 
             <!---------- BOOK COVER CONTAINER---------->
             <a th:href="@{|/story/${story.getId()}|}" class="story-title-link">
-                <!---------- BOOK COVER IMG---------->
+
+                <!---------- BOOK CONTIANER ---------->
                 <div class="story-image-container">
+
+                    <!---------- BOOK IMAGE ---------->
                     <img th:src="@{ ${story.coverImageUrl}}" alt="This is the cover image for the story"
                          class="mx-auto">
+
+                    <!---------- BOOK TITLE ---------->
+                    <h1 th:text="${story.title}" class="story-title pl-5"></h1>
+
+                    <!---------- BOOK AUTHOR ---------->
+                    <p class="story-author pl-5">By <em
+                            th:text="${story.authorFirstName} + ' ' + ${story.authorLastName}"
+                            class="story-author "></em></p>
                 </div>
 
-                <!---------- BOOK TITLE ---------->
-                <h1 th:text="${story.title}" class="story-title"></h1>
-
-                <!---------- BOOK AUTHOR ---------->
-                <p class="story-author">By <em th:text="${story.authorFirstName} + ' ' + ${story.authorLastName}"
-                                               class="story-author"></em></p>
             </a>
 
         </div>
