@@ -20,37 +20,39 @@
         <p class="lead mx-auto my-0 text-center">You can add a story to the database here.</p>
 
         <!---------- CREATE STORY FORM ---------->
-        <form th:action="@{/story/create}" method="POST" th:method="post" th:object="${story}" class="form-label-group"
+        <form th:action="@{/story/create}" method="POST" th:method="post" th:object="${story}" class="form-label-group d-flex flex-column justify-content-center"
               id="create-story-form">
 
             <!---------- SET BOOK COVER IMAGE ---------->
-            <div class="profile-image-container d-flex flex-column justify-content-center">
+            <div class="mx-auto mb-5">
 
                 <!---------- UPLOAD PROFILE PHOTO MODAL BUTTON---------->
-                <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" id="open"
-                        data-target=".bd-example-modal-lg">Attach Cover Image
+                <button type="button" class="btn btn-sm index-btn m-0 mx-auto position-static" data-toggle="modal" id="open"
+                        data-target=".bd-example-modal-lg">
+                    Upload Cover Image
                 </button>
 
-                <!---------- UPLOAD PROFILE PHOTO MODAL---------->
-                <div class="modal fade bd-example-modal-lg mx-auto" tabindex="-1" role="dialog"
-                     aria-labelledby="myLargeModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content d-flex flex-column">
+            </div>
 
-                            <!---------- CLOSE MODAL BUTTON---------->
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+            <!---------- UPLOAD PROFILE PHOTO MODAL---------->
+            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+                 aria-labelledby="myLargeModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content p-5 d-flex flex-column justify-content-center align-items-center">
 
-                            <!---------- POPUP (FILESTACK)---------->
-                            <div id="inline" style="width:600px;height:500px;padding:20px;"></div>
+                        <!---------- POPUP (FILESTACK)---------->
+                        <div id="inline" style="width:600px;height:500px;padding:20px;"></div>
 
-                        </div>
+                        <!---------- CLOSE BUTTON---------->
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">Close</span>
+                        </button>
+
                     </div>
                 </div>
-
             </div>
+
 
             <!---------- SET STORY FILE ---------->
             <label for="storyFile">Story Reader URL</label>
@@ -78,7 +80,7 @@
 
             <!---------- SET PUBLISHED YEAR ---------->
             <label for="publishedYear">Published Year</label>
-            <input class="form-control" id="publishedYear" th:field="*{publishedYear}" type="text" required/>
+            <input class="form-control" id="publishedYear" th:field="*{publishedYear}" type="text" value=" " required/>
 
 
             <!---------- SUBMIT FORM ---------->
