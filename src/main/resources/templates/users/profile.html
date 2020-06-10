@@ -30,54 +30,73 @@
     <!--############## LEFT SECTIONS ##############-->
     <!--###########################################-->
 
-    <section class="section-container row py-5" id="profile-section">
+    <section class="section-container row py-5 d-flex flex-row justify-content-center" id="profile-section">
 
         <!---------- USER ACCOUNT DETAILS ---------->
-        <section class="sub-section-container profile-details-container col-lg-4 col-md-12 d-flex flex-column p-5">
+        <section
+                class="sub-section-container profile-details-container col-lg-4 col-md-12 col-12 d-flex flex-column p-5 mx-auto">
 
-            <!---------- USER PROFILE IMAGE ---------->
-            <div class="profile-image-container mb-5">
-                <img th:src=" @{ ${currentUser.getProfileImageUrl()}}" alt="The current user's profile image"
-                     class="rounded-circle mx-auto">
+            <div class="d-flex flex-row justify-content-between">
+                <!---------- USER PROFILE IMAGE ---------->
+                <div class="profile-image-container mb-5">
+                    <img th:src=" @{ ${currentUser.getProfileImageUrl()}}" alt="The current user's profile image"
+                         class="rounded-circle mx-auto">
+                </div>
+
+                <!---------- EDIT PROFILE LINK ---------->
+                <a href="/profile/edit/{id}">Edit Profile</a>
             </div>
 
-            <!---------- EDIT PROFILE LINK ---------->
-            <a href="/profile/edit/{id}">Edit Profile</a>
+            <!---------- USER FULL NAME ---------->
+            <p class="text-left section-subheader m-0 text-wrap"><span
+                    th:text="${currentUser.getFirstName()} + ' ' + ${currentUser.getLastName()}"></span></p>
 
-            <!---------- USER NAME ---------->
-            <h3 class="text-left"><span
-                    th:text="${currentUser.getFirstName()} + ' ' + ${currentUser.getLastName()}"></span></h3>
+            <!---------- USERNAME ---------->
+            <p class="text-left user-bio m-0"><span th:text="${currentUser.getUsername()}"></span></p>
 
             <!---------- USER LOCATION ---------->
-            <h5 class="text-left"><span th:text="${currentUser.getLocation()}"></span></h5>
+            <p class="text-left user-location">
+                <span th:text="${currentUser.getLocation()}"></span></p>
 
             <!---------- USER BIO ---------->
-            <p class="text-left"><span th:text="${currentUser.bio}"></span></p>
+            <p class="text-left user-bio pt-2"><span th:text="${currentUser.bio}"></span></p>
 
 
             <!---------- FRIENDS CONTAINER ---------->
             <div class="friends-container my-5">
 
-                <!---------- FRIENDS HEADER ---------->
-                <h4 class="section-subheader">Friends</h4>
+                <div class="d-flex flex-row justify-content-between align-items-center">
+                    <!---------- FRIENDS HEADER ---------->
+                    <h4 class="section-subheader">Friends</h4>
 
-                <!---------- EDIT FRIENDS---------->
-                <a href="/profile/friends">Edit your friends</a>
+                    <!---------- EDIT FRIENDS---------->
+                    <a href="/profile/friends">Edit Friends</a>
+                </div>
 
                 <!---------- SHOW FRIENDS ---------->
-                <div class="d-flex flex-row justify-content-around flex-wrap">
+                <div class="d-flex flex-row justify-content-around flex-wrap mt-3">
 
                     <!---------- FRIEND CARDS ---------->
-                    <div th:each="friend : ${friends}" class="friend-card m-2">
+                    <div th:each="friend : ${friends}"
+                         class="friend-card p-3 d-flex flex-row flex-grow-1  align-items-center">
 
-                        <div class="friend-image-container d-flex flex-column m-1">
+                        <!---------- FRIEND PROFILE IMAGE ---------->
+                        <div class="friend-image-container mr-3">
                             <img th:src="@{${friend.getProfileImageUrl()}}" class="friend-img rounded-circle mx-auto"
                                  alt="users profile picture">
                         </div>
 
-                        <!---------- FRIEND NAME ---------->
-                        <p th:text="${friend.getFirstName()} + ' ' +${friend.getLastName()}"
-                           class=""></p>
+                        <!---------- FRIEND TEXTUAL DETAILS ---------->
+                        <div class="friend-details">
+
+                            <!---------- FRIEND NAME ---------->
+                            <p th:text="${friend.getFirstName()} + ' ' +${friend.getLastName()}"
+                               class="user-friend-name m-0"></p>
+
+                            <!---------- FRIEND LOCATION ---------->
+                            <p th:text="${friend.getLocation()}" class="user-location m-0"></p>
+
+                        </div>
 
                     </div>
                 </div>
@@ -90,43 +109,51 @@
         <!--############## RIGHT SECTIONS ##############-->
         <!--############################################-->
 
-        <section class="sub-section-container col-lg-8 col-md-12 d-flex flex-column align-items-center">
+        <section class="sub-section-container col-lg-8 col-md-12 col-12 d-flex flex-column flex-grow-1 mt-5 mt-md-0">
 
             <!---------- RECORDINGS SECTION---------->
             <div class="recording-sub-section">
 
                 <!---------- CREATE RECORDINGS CARD---------->
                 <a class="mx-auto" href="/stories">
-                    <div class="recording-card-add mb-5 d-flex flex-column justify-content-center mx-autp">
-                        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
-                             clip-rule="evenodd" class="icon-graphic">
-                            <path d="M11.5 0c6.347 0 11.5 5.153 11.5 11.5s-5.153 11.5-11.5 11.5-11.5-5.153-11.5-11.5 5.153-11.5 11.5-11.5zm0 1c5.795 0 10.5 4.705 10.5 10.5s-4.705 10.5-10.5 10.5-10.5-4.705-10.5-10.5 4.705-10.5 10.5-10.5zm.5 10h6v1h-6v6h-1v-6h-6v-1h6v-6h1v6z"/>
+                    <div class="recording-card-add mb-5 d-flex flex-column justify-content-center mx-auto p-5">
+                        <svg width="35" height="35" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
+                             clip-rule="evenodd" class="icon-graphic mx-auto">
+                            <path class="mx-auto"
+                                  d="M11.5 0c6.347 0 11.5 5.153 11.5 11.5s-5.153 11.5-11.5 11.5-11.5-5.153-11.5-11.5 5.153-11.5 11.5-11.5zm0 1c5.795 0 10.5 4.705 10.5 10.5s-4.705 10.5-10.5 10.5-10.5-4.705-10.5-10.5 4.705-10.5 10.5-10.5zm.5 10h6v1h-6v6h-1v-6h-6v-1h6v-6h1v6z"/>
                         </svg>
-                        <p class="section-subheader">Add Recording</p>
+                        <p class="recording-title blue-link text-center">Add Recording</p>
                     </div>
                 </a>
 
 
                 <!---------- RECORDING CARD ---------->
-                <div th:each="recording : ${recordings}" class="recording-card my-5">
+                <div th:each="recording : ${recordings}"
+                     class="recording-card my-5 p-5 d-flex flex-column justify-content-center">
 
                     <!---------- RECORDING TITLE---------->
                     <a class="blue-link" th:href="@{|/recording/show/${recording.getId()}|}">
-                    <h3 th:text="${recording.title}" class="recording-title"></h3>
+                        <h3 th:text="${recording.title}" class="recording-title text-center"></h3>
                     </a>
 
                     <!---------- RECORDING CREATOR---------->
-                    <p>Created by <a class="blue-link" href="/profile/friends"><em th:text="${recording.getUser().username}"></em></a></p>
+                    <p class="story-author text-center">Created by
+                        <a class="story-author" href="/profile/friends"><em
+                                th:text="${recording.getUser().username}"></em></a>
+                    </p>
 
                     <!---------- RECORDING CONTROLER ---------->
-                    <audio controls>
+                    <audio controls class="mx-auto">
                         <source th:src="${recording.recordingUrl}"
                                 type='audio/mp4'>
+
                         <!-- The next two lines are only executed if the browser doesn't support MP4 files -->
                         <source th:src="${recording.recordingUrl}"
                                 type='audio/ogg; codecs=vorbis'>
+
                         <!-- The next line will only be executed if the browser doesn't support the <audio> tag-->
-                        <p>Your user agent does not support the HTML5 Audio element.</p>
+                        <p>Your browser does not support the HTML5 Audio element.</p>
+
                     </audio>
 
                 </div>
@@ -135,26 +162,29 @@
 
 
             <!---------- FRIEND'S RECORDING(s )---------->
-            <div th:each="friend : ${friends}" class="my-5">
+            <div th:each="friend : ${friends}" class="">
 
                 <!---------- RECORDING CARD ---------->
-                <div th:each="recording : ${friend.getRecordings()}" class="recording-card my-5">
+                <div th:each="recording : ${friend.getRecordings()}"
+                     class="recording-card my-5 p-5 d-flex flex-column justify-content-center">
 
                     <!---------- RECORDING TITLE---------->
-                    <h3 th:text="${recording.title}" class="recording-title"></h3>
+                    <h3 th:text="${recording.title}" class="recording-title text-center"></h3>
 
                     <!---------- RECORDING CREATOR---------->
-                    <p>Created by <em th:text="${recording.getUser().username}"></em></p>
+                    <p class="story-author text-center">Created by <em th:text="${recording.getUser().username}"></em></p>
 
                     <!---------- RECORDING CONTROLER ---------->
-                    <audio controls>
+                    <audio controls class="mx-auto">
                         <source th:src="${recording.recordingUrl}"
                                 type='audio/mp4'>
+
                         <!-- The next two lines are only executed if the browser doesn't support MP4 files -->
-                        <source th:src="${recording.recordingUrl}"
-                                type='audio/ogg; codecs=vorbis'>
+                        <source th:src="${recording.recordingUrl}" type='audio/ogg; codecs=vorbis'>
+
                         <!-- The next line will only be executed if the browser doesn't support the <audio> tag-->
-                        <p>Your user agent does not support the HTML5 Audio element.</p>
+                        <p>Your browser does not support the HTML5 Audio element.</p>
+
                     </audio>
 
                 </div>

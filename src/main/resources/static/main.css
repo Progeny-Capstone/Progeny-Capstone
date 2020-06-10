@@ -9,7 +9,10 @@
     --coral-color: #ffaa9b;
     --navy-color: #475E71;
     --kakhi-color: #D4D3B3;
+
+    --white-opacity-color: rgba(255, 255, 255, 0.7);
     --kakhi-opacity-color: rgba(212, 211, 179, 0.2);
+    --navy-opacity-color: rgba(71, 94, 113, 0.7);
 
     /*font-family: 'DM Serif Display', serif;*/
     /*font-family: 'Roboto', sans-serif;*/
@@ -56,7 +59,7 @@ a:active {
 }
 
 .section-subheader {
-    font-size: calc(20px + (25 - 20) * ((100vw - 300px) / (1600 - 300)));
+    font-size: calc(20px + (30 - 20) * ((100vw - 300px) / (1600 - 300)));
     /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
     font-family: 'Roboto', sans-serif;
     color: var(--navy-color);
@@ -142,11 +145,17 @@ a:active {
     color: var(--navy-color);
 }
 
-.story-author {
-    font-size: calc(10px + (12 - 10) * ((100vw - 300px) / (1600 - 300)));
+.story-author, .user-location {
+    font-size: calc(13px + (15 - 13) * ((100vw - 300px) / (1600 - 300)));
     /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
     font-family: 'Roboto', sans-serif;
-    color: var(--navy-color);
+    color: var(--navy-opacity-color);
+}
+
+.user-bio {
+    font-size: calc(15px + (18 - 15) * ((100vw - 300px) / (1600 - 300)));
+    /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
+    font-family: 'Roboto', sans-serif;
 }
 
 #story-jumbotron {
@@ -218,13 +227,13 @@ a:active {
 }
 
 .profile-details-container, .recording-card {
-    background: var(--kakhi-opacity-color);
+    background: var(--white-opacity-color);
     border-radius: 10px;
 }
 
 .profile-image-container {
     height: 200px;
-    width: auto;
+    width: 200px;
 }
 
 .profile-image-container img {
@@ -235,36 +244,51 @@ a:active {
     height: 100%;
 }
 
+.friend-card {
+    background: #fff;
+}
+
 .friend-image-container {
     height: 65px;
-    width: auto;
+    width: 65px;
 }
 
 img.friend-img {
     vertical-align: middle;
     object-fit: cover;
     height: 65px;
-    width: auto;
+    width: 65px;
 }
 
 .recording-card {
     height: auto;
-    width: 500px;
-    padding: 5%;
+    width: 100%;
+    border-radius: 10px;
 }
 
 .recording-card-add {
     height: auto;
-    width: 500px;
-    padding: 5%;
+    width: 100%;
     background: var(--light-coral-color);
     border-radius: 10px;
 }
 
 .recording-title {
-    font-size: calc(16px + (20 - 16) * ((100vw - 300px) / (1600 - 300)));
+    font-size: calc(20px + (30 - 20) * ((100vw - 300px) / (1600 - 300)));
     /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
     font-family: 'Roboto', sans-serif;
+}
+
+.user-friend-name{
+    font-size: calc(15px + (18 - 15) * ((100vw - 300px) / (1600 - 300)));
+    /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
+    font-family: 'Roboto', sans-serif;
+}
+
+.icon-location{
+    height: auto;
+    width: 15px;
+    fill: var(--navy-opacity-color);
 }
 
 /*------------- FORM -------------*/
@@ -343,7 +367,7 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
     margin: 10%;
 }
 
-.team-card{
+.team-card {
     width: 150px;
 }
 
