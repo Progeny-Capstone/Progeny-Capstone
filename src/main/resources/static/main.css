@@ -250,6 +250,15 @@ a:active {
     height: 100%;
 }
 
+#delete-btn{
+    background: var(--coral-color);
+    position: absolute;
+    margin: -10px 0 0 0;
+}
+#delete-btn:hover{
+    background: var(--light-coral-color);
+}
+
 .friend-card {
     background: #fff;
 }
