@@ -20,7 +20,7 @@ body {
     background: var(--Light-color);
 }
 
-html{
+html {
     scroll-behavior: smooth;
 }
 
@@ -86,23 +86,24 @@ a:active {
     float: left;
 }
 
-.illustration-home img{
+.illustration-home img {
     object-fit: cover;
 
     height: 250px;
     width: auto;
 }
 
-.index-btn{
+.index-btn {
     background: var(--navy-color);
     color: var(--Light-color);
 }
 
-.index-btn:hover{
+.index-btn:hover {
     background: var(--coral-color);
     color: var(--Light-color);
 }
-.index-btn:active{
+
+.index-btn:active {
     background: var(--mint-color);
     color: var(--Light-color);
 }
@@ -186,20 +187,22 @@ a:active {
 
 
 /*------------- STORY RECORD -------------*/
-#record-story-container{
+#record-story-container {
     background: var(--navy-color);
     color: var(--Light-color);
 }
 
-#save-btn{
+#save-btn {
     background: var(--Light-color);
     color: var(--navy-color);
 }
-#save-btn:hover{
+
+#save-btn:hover {
     background: var(--mint-color);
     color: var(--navy-color);
 }
-#save-btn:active{
+
+#save-btn:active {
     background: var(--coral-color);
     color: var(--Light-color);
 }
