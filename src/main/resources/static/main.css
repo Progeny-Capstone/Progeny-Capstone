@@ -9,7 +9,10 @@
     --coral-color: #ffaa9b;
     --navy-color: #475E71;
     --kakhi-color: #D4D3B3;
+
+    --white-opacity-color: rgba(255, 255, 255, 0.7);
     --kakhi-opacity-color: rgba(212, 211, 179, 0.2);
+    --navy-opacity-color: rgba(71, 94, 113, 0.7);
 
     /*font-family: 'DM Serif Display', serif;*/
     /*font-family: 'Roboto', sans-serif;*/
@@ -20,7 +23,7 @@ body {
     background: var(--Light-color);
 }
 
-html{
+html {
     scroll-behavior: smooth;
 }
 
@@ -56,7 +59,7 @@ a:active {
 }
 
 .section-subheader {
-    font-size: calc(20px + (25 - 20) * ((100vw - 300px) / (1600 - 300)));
+    font-size: calc(20px + (30 - 20) * ((100vw - 300px) / (1600 - 300)));
     /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
     font-family: 'Roboto', sans-serif;
     color: var(--navy-color);
@@ -74,11 +77,21 @@ a:active {
 }
 
 .btn-circle {
-    width: 30px;
-    height: 30px;
-    padding: 6px 0px;
+    width: 35px;
+    height: 35px;
     border-radius: 15px;
     text-align: center;
+    padding: 0;
+}
+
+.circle-btn-icon {
+    width: 25px;
+    height: 25px;
+    fill: var(--Light-color);
+}
+
+#open{
+    color: var(--Light-color);
 }
 
 /*------------- INDEX -------------*/
@@ -86,23 +99,27 @@ a:active {
     float: left;
 }
 
-.illustration-home img{
+.illustration-home img {
     object-fit: cover;
 
     height: 250px;
     width: auto;
 }
 
-.index-btn{
+.white-text{
+    color: var(--Light-color);
+}
+.index-btn {
     background: var(--navy-color);
     color: var(--Light-color);
 }
 
-.index-btn:hover{
+.index-btn:hover {
     background: var(--coral-color);
     color: var(--Light-color);
 }
-.index-btn:active{
+
+.index-btn:active {
     background: var(--mint-color);
     color: var(--Light-color);
 }
@@ -120,9 +137,9 @@ a:active {
 }
 
 /*------------- STORIES -------------*/
-.story-image-container {
+.story-image-container, .story-card {
     height: 500px;
-    width: 300px;
+    width: 350px;
 }
 
 .story-image-container img {
@@ -141,16 +158,21 @@ a:active {
     color: var(--navy-color);
 }
 
-.story-author {
-    font-size: calc(10px + (12 - 10) * ((100vw - 300px) / (1600 - 300)));
+.story-author, .user-location {
+    font-size: calc(13px + (15 - 13) * ((100vw - 300px) / (1600 - 300)));
     /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
     font-family: 'Roboto', sans-serif;
-    color: var(--navy-color);
+    color: var(--navy-opacity-color);
+}
+
+.user-bio {
+    font-size: calc(15px + (18 - 15) * ((100vw - 300px) / (1600 - 300)));
+    /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
+    font-family: 'Roboto', sans-serif;
 }
 
 #story-jumbotron {
     background: var(--kakhi-opacity-color);
-    border-radius: 10px;
 }
 
 #book-jumbotron {
@@ -187,20 +209,29 @@ a:active {
 
 
 /*------------- STORY RECORD -------------*/
-#record-story-container{
+
+#record-title-container {
+    background: var(--white-opacity-color);
+    color: var(--navy-color);
+
+}
+
+#record-story-container {
     background: var(--navy-color);
     color: var(--Light-color);
 }
 
-#save-btn{
+#save-btn {
     background: var(--Light-color);
     color: var(--navy-color);
 }
-#save-btn:hover{
+
+#save-btn:hover {
     background: var(--mint-color);
     color: var(--navy-color);
 }
-#save-btn:active{
+
+#save-btn:active {
     background: var(--coral-color);
     color: var(--Light-color);
 }
@@ -216,13 +247,13 @@ a:active {
 }
 
 .profile-details-container, .recording-card {
-    background: var(--kakhi-opacity-color);
+    background: var(--white-opacity-color);
     border-radius: 10px;
 }
 
 .profile-image-container {
     height: 200px;
-    width: auto;
+    width: 200px;
 }
 
 .profile-image-container img {
@@ -233,40 +264,100 @@ a:active {
     height: 100%;
 }
 
+#delete-btn {
+    background: var(--coral-color);
+    position: absolute;
+    margin: -10px 0 0 0;
+}
+
+#delete-btn:hover {
+    background: var(--light-coral-color);
+}
+
+.friend-card {
+    background: #fff;
+}
+
 .friend-image-container {
     height: 65px;
-    width: auto;
+    width: 65px;
 }
 
 img.friend-img {
     vertical-align: middle;
     object-fit: cover;
     height: 65px;
-    width: auto;
+    width: 65px;
 }
 
 .recording-card {
     height: auto;
-    width: 500px;
-    padding: 5%;
+    width: 100%;
+    border-radius: 10px;
 }
 
 .recording-card-add {
     height: auto;
-    width: 500px;
-    padding: 5%;
+    width: 100%;
     background: var(--light-coral-color);
     border-radius: 10px;
 }
 
 .recording-title {
-    font-size: calc(16px + (20 - 16) * ((100vw - 300px) / (1600 - 300)));
+    font-size: calc(20px + (30 - 20) * ((100vw - 300px) / (1600 - 300)));
     /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
     font-family: 'Roboto', sans-serif;
 }
 
-/*------------- FORM -------------*/
-input[type="text"], input[type="password"], input[type="email"] {
+.user-friend-name {
+    font-size: calc(15px + (18 - 15) * ((100vw - 300px) / (1600 - 300)));
+    /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
+    font-family: 'Roboto', sans-serif;
+}
+
+.icon-location {
+    height: auto;
+    width: 15px;
+    fill: var(--navy-opacity-color);
+}
+
+/*------------- EDIT PROFILE -------------*/
+.modal-content {
+    background: var(--Light-color);
+}
+
+.cancel-btn {
+    background: var(--kakhi-color);
+    color: var(--Light-color);
+}
+
+.cancel-btn:hover {
+    background: var(--light-coral-color);
+    color: var(--navy-color);
+}
+
+.cancel-btn:active {
+    background: var(--coral-color);
+    color: var(--navy-color);
+}
+
+.submit-btn {
+    background: var(--navy-color);
+    color: var(--Light-color);
+}
+
+.submit-btn:hover {
+    background: var(--light-coral-color);
+    color: var(--navy-color);
+}
+
+.submit-btn:active {
+    background: var(--coral-color);
+    color: var(--navy-color);
+}
+
+/*------------- FORMS -------------*/
+input[type="text"], input[type="password"], input[type="email"], textarea[type="text"] {
     background: transparent;
     border: none;
     border-bottom: 1px solid var(--navy-color);
@@ -339,6 +430,10 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
     width: 100%;
     height: 50%;
     margin: 10%;
+}
+
+.team-card {
+    width: 150px;
 }
 
 .card-title {

@@ -22,10 +22,10 @@
 
         <!---------- CREATE ACCOUNT FORM ---------->
         <form th:action="@{'/profile/edit/' + ${user.getUsername()}}" method="POST" th:object="${user}"
-              class="form-register" id="editProfileForm">
+              class="form-register d-flex flex-column justify-content-center" id="editProfileForm">
 
             <!---------- SET PROFILE IMAGE ---------->
-            <div class="profile-image-container d-flex flex-column my-5">
+            <div class="profile-image-container d-flex flex-column justify-content-center mx-auto my-5">
 
                 <div class="mx-auto">
 
@@ -34,11 +34,11 @@
                          class="rounded-circle mx-auto">
 
                     <!---------- UPLOAD PROFILE PHOTO MODAL BUTTON---------->
-                    <button type="button" class="btn btn-sm" data-toggle="modal" id="open"
+                    <button type="button" class="btn btn-sm submit-btn btn-circle" data-toggle="modal" id="open"
                             data-target=".bd-example-modal-lg">
                         <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
-                             clip-rule="evenodd" class="icon-graphic-feature">
-                            <path d="M8.071 21.586l-7.071 1.414 1.414-7.071 14.929-14.929 5.657 5.657-14.929 14.929zm-.493-.921l-4.243-4.243-1.06 5.303 5.303-1.06zm9.765-18.251l-13.3 13.301 4.242 4.242 13.301-13.3-4.243-4.243z"/>
+                             clip-rule="evenodd" class="circle-btn-icon">
+                            <path d="M11.492 10.172l-2.5 3.064-.737-.677 3.737-4.559 3.753 4.585-.753.665-2.5-3.076v7.826h-1v-7.828zm7.008 9.828h-13c-2.481 0-4.5-2.018-4.5-4.5 0-2.178 1.555-4.038 3.698-4.424l.779-.14.043-.789c.185-3.448 3.031-6.147 6.48-6.147 3.449 0 6.295 2.699 6.478 6.147l.044.789.78.14c2.142.386 3.698 2.246 3.698 4.424 0 2.482-2.019 4.5-4.5 4.5m.978-9.908c-.212-3.951-3.472-7.092-7.478-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h13c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.522-5.408"/>
                         </svg>
                     </button>
 
@@ -48,13 +48,17 @@
                 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
                      aria-labelledby="myLargeModalLabel"
                      aria-hidden="true">
-                    <div class="modal-dialog modal-lg mx-auto">
-                        <div class="modal-content d-flex flex-column">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content p-5 d-flex flex-column justify-content-center align-items-center">
+
                             <!---------- POPUP (FILESTACK)---------->
                             <div id="inline" style="width:600px;height:500px;padding:20px;"></div>
+
+                            <!---------- CLOSE BUTTON---------->
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">Close</span>
+                            </button>
+
                         </div>
                     </div>
                 </div>
@@ -88,16 +92,18 @@
 
             <!---------- SET BIO ---------->
             <label for="profileBio">Profile Bio</label>
-            <input class="form-control" id="profileBio" th:field="*{bio}" type="text" th:value="${user.bio}"/>
+            <textarea class="form-control" id="profileBio" th:field="*{bio}" type="text"
+                      th:value="${user.bio}"></textarea>
 
 
-            <!---------- SUBMIT FORM ---------->
             <div class="d-flex flex-row justify-content-end">
+                <!---------- CANCEL FORM ---------->
                 <a href="/profile" class="text-right mx-2">
-                    <button class="btn btn-sm btn-dark" type="submit">Cancel</button>
+                    <button class="btn btn-sm cancel-btn" type="submit">Cancel</button>
                 </a>
+                <!---------- SUBMIT FORM ---------->
                 <div class="text-right">
-                    <button class="btn btn-sm btn-dark" type="submit">Save</button>
+                    <button class="btn btn-sm submit-btn" type="submit">Save</button>
                 </div>
             </div>
 

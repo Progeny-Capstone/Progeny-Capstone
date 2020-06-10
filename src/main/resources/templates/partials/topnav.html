@@ -33,15 +33,30 @@
             <li sec:authorize="isAnonymous()" class="nav-item"><a class="nav-link" href="/register">Register</a></li>
             <li sec:authorize="isAnonymous()" class="nav-item"><a class="nav-link" href="/login">Login</a></li>
 
-            <!---------LINK FOR TAKING ADMIN TO ADMIN PAGE------>
-            <span sec:authorize="isAuthenticated()">
-            <li th:if="${#authentication.getPrincipal().isAdmin()}" class="nav-item"><a class="nav-link" th:href="@{'/admin'}">Admin</a></li>
-            </span>
 
-            <!---------LINK FOR TAKING ADMIN TO CREATE STORY PAGE-------------->
-            <span sec:authorize="isAuthenticated()">
-               <li th:if="${#authentication.getPrincipal().isAdmin()}" class="nav-item"><a class="nav-link" th:href="@{'/story/create'}">Create Story</a></li>
-            </span>
+            <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
+                <a th:if="${#authentication.getPrincipal().isAdmin()}" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Admin
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+                    <!---------LINK FOR TAKING ADMIN TO ADMIN PAGE------>
+                    <span sec:authorize="isAuthenticated()">
+                        <a th:if="${#authentication.getPrincipal().isAdmin()}" class="nav-item">
+                            <a class="nav-link" th:href="@{'/admin'}">Edit Users</a>
+                        </a>
+                    </span>
+
+                    <!---------LINK FOR TAKING ADMIN TO CREATE STORY PAGE-------------->
+                    <span sec:authorize="isAuthenticated()">
+                        <a th:if="${#authentication.getPrincipal().isAdmin()}" class="nav-item">
+                            <a class="nav-link" th:href="@{'/story/create'}">Create Story</a>
+                        </a>
+                    </span>
+
+                </div>
+            </li>
 
 
             <!--------SHOW FOR REGISTERED/LOGGED IN USER-------->

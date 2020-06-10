@@ -15,45 +15,92 @@
     <section class="section-container">
 
         <!---------- SECTION HEADER---------->
-        <h1 class="section-header"><span th:text="${currentUser.getFirstName()}"></span>, here are the people you are
-            connected with</h1>
+        <h1 class="section-header px-5 mb-5"><span th:text="${currentUser.getFirstName()}"></span>, here are your
+            friends.</h1>
 
         <!---------- SHOW FRIENDS ---------->
         <div class="d-flex flex-row justify-content-center flex-wrap">
 
             <!---------- FRIENDS CARD ---------->
-            <div th:each="friend : ${friends}" class="friend-card text-center m-5">
+            <div th:each="friend : ${friends}" class="friend-card d-flex flex-row align-items-center m-5">
 
                 <!---------- FRIENDS IMAGE ---------->
-                <div class="friend-image-container d-flex flex-column m-1">
+                <div class="friend-image-container d-flex flex-column mx-3">
                     <img th:src="@{${friend.getProfileImageUrl()}}" class="friend-img rounded-circle mx-auto"
                          alt="users profile picture">
                 </div>
 
                 <!---------- FRIEND NAME ---------->
                 <p th:text="${friend.getFirstName()} + ' ' +${friend.getLastName()}"
-                   class=""></p>
+                   class="mb-0 mx-3"></p>
 
 
-                <!---------- DELETE FORM ---------->
-                <form th:action="@{/profile/friends/delete}" method="POST" class="form-register" id="register-form">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-circle" data-toggle="modal" data-target="#exampleModalCenter"
+                        id="delete-btn">
+                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
+                         clip-rule="evenodd" class="circle-btn-icon">
+                        <path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm0 10.293l5.293-5.293.707.707-5.293 5.293 5.293 5.293-.707.707-5.293-5.293-5.293 5.293-.707-.707 5.293-5.293-5.293-5.293.707-.707 5.293 5.293z"/>
+                    </svg>
+                </button>
 
-                    <!---------- ID HIDDEN INPUT ---------->
-                    <input type="hidden" th:value="${friend.getId()}" th:name="deleteId">
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="modal-title text-center mx-auto" id="exampleModalLongTitle">Unfriend
+                                    Confirmation</h2>
+                            </div>
+                            <div class="modal-body">
 
-                    <!---------- DELETE BUTTON ---------->
-                    <button class="btn-dark btn btn-sm" type="submit">Delete Friend</button>
+                                <p class="m-0 text-center">Are you sure you want to delete<br>
+                                    <strong th:text="${friend.getFirstName()} + ' ' + ${friend.getLastName()}"></strong>
+                                </p>
 
-                </form>
+                            </div>
+                            <div class="modal-footer d-flex flex-row justify-content-around">
+
+                                <button type="button" class="btn btn-sm cancel-btn" data-dismiss="modal">Close</button>
+
+                                <!---------- DELETE FORM ---------->
+                                <form th:action="@{/profile/friends/delete}" method="POST" class="">
+
+                                    <!---------- ID HIDDEN INPUT ---------->
+                                    <input type="hidden" th:value="${friend.getId()}" th:name="deleteId">
+
+                                    <!---------- DELETE BUTTON ---------->
+                                    <button class="btn btn-sm submit-btn" type="submit">Yes, I am sure</button>
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
 
         </div>
 
-        <!---------- SEARCH USERS LINK ---------->
-        <a href="/profile/friends/search" class="btn btn-sm btn-dark">
-            <p class="m-0">Search for Someone</p>
-        </a>
+        <!---------- SEARCH USERS  ---------->
+        <div class="d-flex flex-column justify-content-center mt-5">
+
+            <!---------- SEARCH USERS TITLE ---------->
+            <p class="card-title mt-5 text-center">Would you like to look someone new?</p>
+            <!---------- SEARCH USERS LINK ---------->
+            <a href="/profile/friends/search" class="btn btn-sm submit-btn my-0 mx-auto">
+                <p class="mb-0">
+                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
+                         clip-rule="evenodd" class="circle-btn-icon">
+                        <path d="M15.853 16.56c-1.683 1.517-3.911 2.44-6.353 2.44-5.243 0-9.5-4.257-9.5-9.5s4.257-9.5 9.5-9.5 9.5 4.257 9.5 9.5c0 2.442-.923 4.67-2.44 6.353l7.44 7.44-.707.707-7.44-7.44zm-6.353-15.56c4.691 0 8.5 3.809 8.5 8.5s-3.809 8.5-8.5 8.5-8.5-3.809-8.5-8.5 3.809-8.5 8.5-8.5z"/>
+                    </svg>
+                    Search
+                </p>
+            </a>
+
+        </div>
 
     </section>
 

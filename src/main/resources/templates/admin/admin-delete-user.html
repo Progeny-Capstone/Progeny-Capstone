@@ -2,17 +2,39 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/head :: head('Delete Profile')">
 <body>
+
+<!---------- TOP NAVIGATION BAR ---------->
 <nav th:replace="partials/topnav :: navbar"></nav>
 
-<div class="container">
-    <h2>Delete Profile</h2>
-    <form th:action="@{'/admin/delete'}" method="post">
-        <h1>Are you sure you want to delete profile for <span th:text="${user.firstName}"></span>?</h1>
-        <input type="hidden" th:value="${user.id}" name="userId">
-        <button class="btn btn-danger" type="submit"> yes, delete</button>
-        <a th:href="@{'/admin'}" class="btn btn-primary">No, don't delete</a>
-    </form>
-</div>
+<!---------- MAIN CONTAINER ---------->
+<article class="main-container">
+
+    <!---------- SECTION CONTAINER ---------->
+    <section class="section-container">
+
+        <!---------- SECTION HEADER ---------->
+        <h2 class="section-header">Delete Profile Confirmation</h2>
+
+        <div class="d-flex flex-column justify-content-center mx-auto">
+
+            <!---------- CONFIRM DELETE ---------->
+            <form th:action="@{'/admin/delete'}" method="post">
+
+                <!---------- CONFIRM DELETE PROMPT ---------->
+                <h4 class="text-center">Are you sure you want to delete profile for <span th:text="${user.firstName}"></span>?</h4>
+                <input type="hidden" th:value="${user.id}" name="userId">
+
+                <!---------- CONFIRM DELETE BUTTON ---------->
+                <button class="btn btn-danger mx-auto" type="submit"> yes, delete</button>
+
+                <!---------- CANCEL DELETE---------->
+                <a th:href="@{'/admin'}" class="btn btn-primary mx-auto">No, don't delete</a>
+            </form>
+
+        </div>
+    </section>
+</article>
+
 
 <!---------- FOOTER ---------->
 <nav th:replace="partials/footer :: footer"></nav>

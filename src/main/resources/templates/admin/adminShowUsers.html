@@ -3,29 +3,36 @@
 <head th:replace="partials/head :: head('Admin Users')">
 
 <body>
+<!---------- TOP NAVIGATION BAR ---------->
 <nav th:replace="partials/topnav :: navbar"></nav>
+
+<!---------- MAIN CONTAINER ---------->
 <article class="main-container">
 
+    <!---------- SECTION CONTAINER ---------->
+    <section class="section-container">
 
 
-    <h1 class="section-header">Here are all the users for Progeny</h1>
+        <!---------- SECTION HEADER ---------->
+        <h1 class="section-header mb-5">Progeny Users</h1>
 
-    <section class="section-container flex-wrap d-flex flex-row justify-content-between">
+        <section class="section-container flex-wrap d-flex flex-row justify-content-between">
 
-        <div th:each="user : ${users}" class="card-group d-flex flex-row justify-content-between">
-            <div class="card">
-                <div class="profile-image-container d-flex flex-column my-2">
-                    <img th:src="@{${user.getProfileImageUrl()}}" class="card-img-top rounded-circle mx-auto"
-                         alt="users profile picture">
-                </div>
-                <div class="card-body">
-                    <h5 th:text="${user.firstName + ' ' + user.lastName}" class="card-title"></h5>
-                    <h5 th:text="${user.username}"></h5>
-                    <a th:href="@{|/admin/delete/${user.username}|}" class="text-danger"><strong>Delete
-                    Account</strong></a>
+            <div th:each="user : ${users}" class="card-group d-flex flex-row justify-content-between">
+                <div class="card">
+                    <div class="profile-image-container d-flex flex-column my-2">
+                        <img th:src="@{${user.getProfileImageUrl()}}" class="card-img-top rounded-circle mx-auto"
+                             alt="users profile picture">
+                    </div>
+                    <div class="card-body">
+                        <h5 th:text="${user.firstName + ' ' + user.lastName}" class="card-title"></h5>
+                        <h5 th:text="${user.username}"></h5>
+                        <a th:href="@{|/admin/delete/${user.username}|}" class="text-danger"><strong>Delete
+                            Account</strong></a>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
     </section>
 </article>
 
@@ -67,8 +74,8 @@
 
 <!--</div>-->
 
-    <nav th:replace="partials/footer :: footer"></nav>
-    <script th:replace="partials/scripts :: scripts"></script>
+<nav th:replace="partials/footer :: footer"></nav>
+<script th:replace="partials/scripts :: scripts"></script>
 
 </body>
 </html>
