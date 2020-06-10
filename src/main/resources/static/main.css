@@ -90,6 +90,10 @@ a:active {
     fill: var(--Light-color);
 }
 
+#open{
+    color: var(--Light-color);
+}
+
 /*------------- INDEX -------------*/
 #view-more {
     float: left;
@@ -102,6 +106,9 @@ a:active {
     width: auto;
 }
 
+.white-text{
+    color: var(--Light-color);
+}
 .index-btn {
     background: var(--navy-color);
     color: var(--Light-color);
