@@ -84,7 +84,7 @@ a:active {
     padding: 0;
 }
 
-.circle-btn-icon{
+.circle-btn-icon {
     width: 25px;
     height: 25px;
     fill: var(--Light-color);
@@ -202,6 +202,13 @@ a:active {
 
 
 /*------------- STORY RECORD -------------*/
+
+#record-title-container {
+    background: var(--white-opacity-color);
+    color: var(--navy-color);
+
+}
+
 #record-story-container {
     background: var(--navy-color);
     color: var(--Light-color);
@@ -232,7 +239,7 @@ a:active {
     margin-top: 0;
 }
 
-.profile-details-container, .recording-card{
+.profile-details-container, .recording-card {
     background: var(--white-opacity-color);
     border-radius: 10px;
 }
@@ -250,12 +257,13 @@ a:active {
     height: 100%;
 }
 
-#delete-btn{
+#delete-btn {
     background: var(--coral-color);
     position: absolute;
     margin: -10px 0 0 0;
 }
-#delete-btn:hover{
+
+#delete-btn:hover {
     background: var(--light-coral-color);
 }
 
@@ -294,45 +302,49 @@ img.friend-img {
     font-family: 'Roboto', sans-serif;
 }
 
-.user-friend-name{
+.user-friend-name {
     font-size: calc(15px + (18 - 15) * ((100vw - 300px) / (1600 - 300)));
     /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
     font-family: 'Roboto', sans-serif;
 }
 
-.icon-location{
+.icon-location {
     height: auto;
     width: 15px;
     fill: var(--navy-opacity-color);
 }
 
 /*------------- EDIT PROFILE -------------*/
-.modal-content{
+.modal-content {
     background: var(--Light-color);
 }
 
-.cancel-btn{
+.cancel-btn {
     background: var(--kakhi-color);
     color: var(--Light-color);
 }
-.cancel-btn:hover{
+
+.cancel-btn:hover {
     background: var(--light-coral-color);
     color: var(--navy-color);
 }
-.cancel-btn:active{
+
+.cancel-btn:active {
     background: var(--coral-color);
     color: var(--navy-color);
 }
 
-.submit-btn{
+.submit-btn {
     background: var(--navy-color);
     color: var(--Light-color);
 }
-.submit-btn:hover{
+
+.submit-btn:hover {
     background: var(--light-coral-color);
     color: var(--navy-color);
 }
-.submit-btn:active{
+
+.submit-btn:active {
     background: var(--coral-color);
     color: var(--navy-color);
 }

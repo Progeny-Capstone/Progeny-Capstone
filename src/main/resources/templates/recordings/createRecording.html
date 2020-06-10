@@ -49,16 +49,22 @@
         <!--############## BOTTOM SECTIONS #############-->
         <!--############################################-->
 
+
         <div class="jumbotron-fluid m-0 fixed-bottom d-flex flex-row justify-content-around"
              id="record-story-container">
 
+            <div class="jumbotron-fluid m-0 fixed-bottom d-flex flex-row justify-content-center"
+                 id="record-title-container">
+                <h5 class="mb-0">Recording controls</h5>
+            </div>
+
             <!---------- RECORD ---------->
-            <div class="mx-5 py-2 d-flex flex-row justify-content-center flex-fill">
+            <div class="mx-5 py-3 d-flex flex-row justify-content-center flex-fill">
 
                 <!---------- RECORD CONTROLS ---------->
                 <div class="flex-fill mx-1" id="controls">
 
-<!--                    <h3 class="mx-auto">Record</h3>-->
+                    <!--                    <h3 class="mx-auto">Record</h3>-->
 
                     <div class="d-flex flex-row justify-content-center">
 
@@ -93,21 +99,20 @@
 
                 <!---------- USER RECORDINGS ---------->
                 <div class="flex-fill mx-5 d-flex flex-column justify-content-center">
-<!--                    <h4>Download</h4>-->
+                    <!--                    <h4>Download</h4>-->
                     <div class="mx-auto flex-wrap" id="formats"></div>
                     <div class="list-unstyled mx-auto flex-wrap" id="recordingsList"></div>
 
                 </div>
 
 
-            <!---------- SAVE RECORDING ---------->
-            <div class="mx-5 flex-fill text-center">
-                <a href="/recording/save" class="btn bn-sm" id="save-btn">
-                    <p class="m-0">Save</p>
-                </a>
+                <!---------- SAVE RECORDING ---------->
+                <div class="mx-5 flex-fill text-center">
+                    <a href="/recording/save" class="btn bn-sm" id="save-btn">
+                        <p class="m-0">Save</p>
+                    </a>
+                </div>
             </div>
-            </div>
-
 
 
         </div>

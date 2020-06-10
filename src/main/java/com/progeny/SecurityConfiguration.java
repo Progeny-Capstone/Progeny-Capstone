@@ -69,7 +69,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/story/create",
                         "/recordings/create",
                         "/recording/save",
-                        "/recordings/{id}/edit"
+                        "/recordings/{id}/edit",
+                        "/admin",
+                        "/admin/delete",
+                        "/admin/delete/{name}"
 
 
                 )
