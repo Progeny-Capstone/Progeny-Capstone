@@ -30,7 +30,7 @@
     <section class="section-container mb-5 mt-1 row">
 
         <!---------- SHOW STORIES ---------->
-        <div th:each="story : ${stories}" class="story-card mx-5 col-lg-3 col-md-4 col-sm-12 col-12 pb-5">
+        <div th:each="story : ${stories}" class="story-card col-lg-3 col-md-4 col-sm-12 col-12 pb-5">
 
             <!---------- BOOK COVER CONTAINER---------->
             <a th:href="@{|/story/${story.getId()}|}" class="story-title-link">

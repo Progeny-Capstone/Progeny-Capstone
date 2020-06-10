@@ -343,6 +343,10 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
     margin: 10%;
 }
 
+.team-card{
+    width: 150px;
+}
+
 .card-title {
     font-size: calc(18px + (25 - 18) * ((100vw - 300px) / (1600 - 300)));
     /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
