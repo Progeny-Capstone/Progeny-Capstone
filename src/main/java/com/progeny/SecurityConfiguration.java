@@ -66,6 +66,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/profile/friends",
                         "/profile/edit/{id}",
                         "/profile/edit",
+                        "/profile/friends/search",
                         "/story/create",
                         "/recordings/create",
                         "/recording/save",
