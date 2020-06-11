@@ -36,8 +36,6 @@ public class ConnectionsController {
 
         model.addAttribute("friends", currentUser.getFriends()); // 2. Show a list of users attached to current user
 
-        model.addAttribute("users", usersRepo.findAll()); // 1. Show a list of users on Progeny
-
         return "users/connections";
     }
 
@@ -137,9 +135,12 @@ public class ConnectionsController {
     @GetMapping("/profile/friends/search")
     public String showUsers(Model model) {
 
-        model.addAttribute("users", usersRepo.findAll()); // 1. Show a list of users on Progeny
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
+        model.addAttribute("currentUser", currentUser);// 2. Show current user on form
 
-        return "users/searchUsers";
+        model.addAttribute("friends", currentUser.getFriends()); // 2. Show a list of users attached to current user
+
+        return "users/connections";
     }
 
     // --------- SEARCH FOR FRIEND (POST)------------
@@ -150,13 +151,23 @@ public class ConnectionsController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
         User currentUser = new User(user); // 2. set new user to user ^
         model.addAttribute("currentUser", currentUser);// 3. Show current user on page
+        model.addAttribute("friends", currentUser.getFriends()); // 4. Show a list of users attached to current user
 
-        // --------- SEARCH DB FOR USER -----------
-        List<User> foundUsers = usersRepo.findAllByFirstNameLikeOrLastNameLike(search, search);
-        model.addAttribute("foundUsers", foundUsers);
+        if (search.equals("all")) {
+
+            // --------- SEARCH DB FOR ALL USERS -----------
+            model.addAttribute("foundUsers", usersRepo.findAll()); // 1. Show a list of users on Progeny
+
+        } else {
+
+            // --------- SEARCH DB FOR A USER -----------
+            List<User> foundUsers = usersRepo.findAllByFirstNameLikeOrLastNameLike(search, search);
+            model.addAttribute("foundUsers", foundUsers);
+
+        }
 
 
-        return "users/searchUsers";
+        return "users/connections";
     }
 
 }
