@@ -13,15 +13,12 @@
 <article class="main-container">
 
     <!---------- SECTION CONTAINER ---------->
-    <section class="section-container">
+    <section class="section-container d-flex flex-column justify-content-center">
 
         <!---------- SECTION HEADER ---------->
         <h3 th:text="${currentRecording.title}" class="section-header"></h3>
 
-        <!---------- SECTION SUBTITLE ---------->
-        <h5 class="card-subtitle">Listen to this recording</h5>
-
-        <audio controls>
+        <audio controls class="my-5 mx-auto">
             <source th:src="${currentRecording.recordingUrl}"
                     type='audio/mp4'>
             <!-- The next two lines are only executed if the browser doesn't support MP4 files -->
@@ -32,10 +29,10 @@
         </audio>
 
         <!---------- EDIT RECORDING ---------->
-        <a th:href="@{|/recording/edit/${currentRecording.getId()}|}">Edit Recording</a>
+        <a th:href="@{|/recording/edit/${currentRecording.getId()}|}" class="my-2 mx-auto">Edit Recording</a>
 
         <!---------- DELETE RECORDING ---------->
-        <a th:href="@{|/recording/delete/${currentRecording.getId()}|}">Delete Recording</a>
+        <a th:href="@{|/recording/delete/${currentRecording.getId()}|}" class=" my-2 mx-auto">Delete Recording</a>
 
     </section>
 
