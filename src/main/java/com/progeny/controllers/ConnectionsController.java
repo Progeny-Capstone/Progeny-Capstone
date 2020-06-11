@@ -153,9 +153,18 @@ public class ConnectionsController {
         model.addAttribute("currentUser", currentUser);// 3. Show current user on page
         model.addAttribute("friends", currentUser.getFriends()); // 4. Show a list of users attached to current user
 
-        // --------- SEARCH DB FOR USER -----------
-        List<User> foundUsers = usersRepo.findAllByFirstNameLikeOrLastNameLike(search, search);
-        model.addAttribute("foundUsers", foundUsers);
+        if (search.equals("all")) {
+
+            // --------- SEARCH DB FOR ALL USERS -----------
+            model.addAttribute("foundUsers", usersRepo.findAll()); // 1. Show a list of users on Progeny
+
+        } else {
+
+            // --------- SEARCH DB FOR A USER -----------
+            List<User> foundUsers = usersRepo.findAllByFirstNameLikeOrLastNameLike(search, search);
+            model.addAttribute("foundUsers", foundUsers);
+
+        }
 
 
         return "users/connections";

@@ -15,36 +15,40 @@
     <section class="section-container">
 
         <!---------- SECTION HEADER---------->
-        <h1 class="section-header px-5 mb-5"><span th:text="${currentUser.getFirstName()}"></span>, here are your
+        <h1 class="section-header text-center px-5 mb-5"><span th:text="${currentUser.getFirstName()}"></span>, here are your
             friends.</h1>
 
         <!---------- SHOW FRIENDS ---------->
-        <div class="d-flex flex-row justify-content-center flex-wrap">
+        <div class="d-flex flex-row justify-content-center flex-wrap mt-3  row">
 
             <!---------- FRIENDS CARD ---------->
-            <div th:each="friend : ${friends}" class="friend-card d-flex flex-row align-items-center m-5">
+            <div th:each="friend : ${friends}" class="friend-card m-2 p-2 d-flex flex-row align-items-center col-12 col-lg-4">
 
                 <!---------- FRIENDS IMAGE ---------->
-                <div class="friend-image-container d-flex flex-column mx-3">
-                    <img th:src="@{${friend.getProfileImageUrl()}}" class="friend-img rounded-circle mx-auto"
+                <div class="friend-image-container ml-5 mr-2">
+                    <img th:src="@{${friend.getProfileImageUrl()}}"
+                         class="friend-img rounded-circle mx-auto"
                          alt="users profile picture">
                 </div>
 
-                <!---------- FRIEND NAME ---------->
-                <p th:text="${friend.getFirstName()} + ' ' +${friend.getLastName()}"
-                   class="mb-0 mx-3"></p>
+                <!---------- POTENTIAL FRIEND TEXTUAL DETAILS ---------->
+                <div class="friend-details mr-5">
 
+                    <!---------- FRIEND NAME ---------->
+                    <h5 th:text="${friend.getFirstName()} + ' ' +${friend.getLastName()}"
+                        class="user-friend-name m-0"></h5>
 
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-circle" data-toggle="modal" data-target="#exampleModalCenter"
-                        id="delete-btn">
-                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
-                         clip-rule="evenodd" class="circle-btn-icon">
-                        <path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm0 10.293l5.293-5.293.707.707-5.293 5.293 5.293 5.293-.707.707-5.293-5.293-5.293 5.293-.707-.707 5.293-5.293-5.293-5.293.707-.707 5.293 5.293z"/>
-                    </svg>
+                    <!---------- FRIEND LOCATION ---------->
+                    <p th:text="${friend.getLocation()}" class="user-location m-0"></p>
+
+                </div>
+
+                <!---------- DELETE MODAL BUTTON TRIGGER ---------->
+                <button type="button" class="btn btn-sm feature-btn" data-toggle="modal" data-target="#exampleModalCenter">
+                    Delete
                 </button>
 
-                <!-- Modal -->
+                <!---------- MODAL ---------->
                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
                      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -87,10 +91,7 @@
     </section>
 
     <!---------- SEARCH SECTION ---------->
-    <section class="section-container">
-
-        <!---------- SEARCH CONTAINER ---------->
-        <div id="custom-search-input" class=" my-5 ">
+    <section class="section-container mb-5">
 
             <!---------- SEARCH BAR ---------->
             <form th:action="@{/profile/friends/search}" method="post">
@@ -98,47 +99,48 @@
                        placeholder="Search for someone on Progeny"/>
             </form>
 
-            <!---------- SEARCH RESULTS ---------->
-            <div th:each="UserResults : ${foundUsers}" class="friend-card p-3 d-flex flex-row flex-grow-1  align-items-center">
+            <!---------- RESULTS CONTAINER ---------->
+            <div class="d-flex flex-row justify-content-center flex-wrap mt-3  row">
 
-                <!---------- ADD FRIEND FORM ---------->
-                <form th:action="@{/profile/friends}" method="POST" class="">
+                <!---------- SEARCH RESULTS ITERATE EACH ---------->
+                <div th:each="UserResults : ${foundUsers}" class="friend-card m-2 p-2 col-12 col-lg-4">
 
-                    <!---------- FRIENDS IMAGE ---------->
-                    <div class="friend-image-container mr-3">
-                        <img th:src="@{${UserResults.getProfileImageUrl()}}"
-                             class="friend-img rounded-circle mx-auto"
-                             alt="users profile picture">
-                    </div>
+                    <!---------- ADD FRIEND FORM ---------->
+                    <form th:action="@{/profile/friends}" method="POST" class="d-flex flex-row align-items-center">
 
-                    <!---------- POTENTIAL FRIEND TEXTUAL DETAILS ---------->
-                    <div class="friend-details">
+                        <!---------- FRIENDS IMAGE ---------->
+                        <div class="friend-image-container ml-5 mr-2">
+                            <img th:src="@{${UserResults.getProfileImageUrl()}}"
+                                 class="friend-img rounded-circle mx-auto"
+                                 alt="users profile picture">
+                        </div>
 
-                        <!---------- FRIEND NAME ---------->
-                        <h5 th:text="${UserResults.getFirstName()} + ' ' +${UserResults.getLastName()}"
-                            class="user-friend-name m-0"></h5>
+                        <!---------- POTENTIAL FRIEND TEXTUAL DETAILS ---------->
+                        <div class="friend-details mr-5">
 
-                        <!---------- FRIEND LOCATION ---------->
-                        <p th:text="${UserResults.getLocation()}" class="user-location m-0"></p>
+                            <!---------- FRIEND NAME ---------->
+                            <h5 th:text="${UserResults.getFirstName()} + ' ' +${UserResults.getLastName()}"
+                                class="user-friend-name m-0"></h5>
 
-                    </div>
+                            <!---------- FRIEND LOCATION ---------->
+                            <p th:text="${UserResults.getLocation()}" class="user-location m-0"></p>
 
-                    <!---------- ADD FRIEND BUTTON(S) ---------->
-                    <button class="btn btn-sm btn-circle m-0 p-0 white-text">
-                        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
-                             clip-rule="evenodd" class="circle-btn-icon m-0" >
-                            <path d="M11.5 0c6.347 0 11.5 5.153 11.5 11.5s-5.153 11.5-11.5 11.5-11.5-5.153-11.5-11.5 5.153-11.5 11.5-11.5zm0 1c5.795 0 10.5 4.705 10.5 10.5s-4.705 10.5-10.5 10.5-10.5-4.705-10.5-10.5 4.705-10.5 10.5-10.5zm.5 10h6v1h-6v6h-1v-6h-6v-1h6v-6h1v6z"/>
-                        </svg>
-                    </button>
+                        </div>
 
-                    <!---------- ADD FRIEND ID HIDDEN INPUT---------->
-                    <input type="hidden" th:name="friendId" th:value="${UserResults.id}">
+                        <!---------- ADD FRIEND BUTTON(S) ---------->
+                        <button class="btn btn-sm index-btn">
+                            Add
+                        </button>
 
-                </form>
+                        <!---------- ADD FRIEND ID HIDDEN INPUT---------->
+                        <input type="hidden" th:name="friendId" th:value="${UserResults.id}">
+
+                    </form>
+
+                </div>
 
             </div>
 
-        </div>
 
     </section>
 
