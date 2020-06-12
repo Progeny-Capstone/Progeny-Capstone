@@ -513,20 +513,22 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
 
 /*------------- FEATURE -------------*/
 #feature-jumbotron {
-    background: var(--navy-color);
-    color: var(--light-coral-color);
+    background: url("images/stars.svg") no-repeat;
+    background-color: var(--kakhi-opacity-color);
+    background-size: 600px;
+    color: var(--navy-color);
     padding: 6% 0;
 }
 
 .icon-graphic-feature {
     height: 30px;
     width: auto;
-    fill: var(--Light-color);
+    fill: var(--navy-color);
     margin: 0 2%;
 }
 
 .feature-btn {
-    background: var(--Light-color);
+    background: var(--light-coral-color);
     color: var(--navy-color);
 }
 
