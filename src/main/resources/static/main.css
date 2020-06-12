@@ -11,7 +11,6 @@
     --kakhi-color: #D4D3B3;
 
     --dark-navy-color: #354755;
-    --dark-darker-navy-color: #354755;
 
     --white-opacity-color: rgba(255, 255, 255, 0.7);
     --kakhi-opacity-color: rgba(212, 211, 179, 0.2);
@@ -520,16 +519,16 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
 /*------------- FEATURE -------------*/
 #feature-jumbotron {
     background: url("images/stars.svg") no-repeat;
-    background-color: var(--kakhi-opacity-color);
+    background-color: var(--navy-color);
     background-size: 600px;
-    color: var(--navy-color);
+    color: var(--Light-color);
     padding: 6% 0;
 }
 
 .icon-graphic-feature {
     height: 30px;
     width: auto;
-    fill: var(--navy-color);
+    fill: var(--Light-color);
     margin: 0 2%;
 }
 
