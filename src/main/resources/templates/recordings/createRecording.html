@@ -50,34 +50,46 @@
         <!--############################################-->
 
 
-        <div class="jumbotron-fluid m-0 fixed-bottom d-flex flex-row justify-content-around"
+        <div class="jumbotron-fluid m-0 fixed-bottom "
              id="record-story-container">
 
-            <div class="jumbotron-fluid m-0 fixed-bottom d-flex flex-row justify-content-center"
-                 id="record-title-container">
-                <h5 class="mb-0">Recording controls</h5>
+            <div class="container pt-3">
+                <div class="row line">
+                    <!--                <div class="col-4 stepText1">Record</div>-->
+                    <!--                <div class="col-4 stepText2">Download</div>-->
+                    <!--                <div class="col-4 stepText3">Upload</div>-->
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="step step1 text-center">Record</div>
+                    </div>
+                    <div class="col-4">
+                        <div class="step step2 text-center ">Download</div>
+                    </div>
+                    <div class="col-4">
+                        <div class="step step3 text-center">Upload</div>
+                    </div>
+                </div>
             </div>
 
             <!---------- RECORD ---------->
-            <div class="mx-5 py-3 d-flex flex-row justify-content-center flex-fill">
+            <div class="mx-5 py-3 d-flex row  align-items-center">
 
                 <!---------- RECORD CONTROLS ---------->
-                <div class="flex-fill mx-1" id="controls">
-
-                    <!--                    <h3 class="mx-auto">Record</h3>-->
+                <div class="col-sm-4 col-12" id="controls">
 
                     <div class="d-flex flex-row justify-content-center">
 
                         <!---------- START ---------->
-                        <button class="btn btn-sm btn-circle mx-5" id="recordButton">
+                        <button class="btn btn-sm btn-circle mx-3" id="recordButton">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 class="icon-graphic-feature">
-                                <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 18v-12l10 6-10 6z"/>
+                                 class="record-btn">
+                                <path d="M16 11c0 2.209-1.791 4-4 4s-4-1.791-4-4v-7c0-2.209 1.791-4 4-4s4 1.791 4 4v7zm4-2v2c0 4.418-3.582 8-8 8s-8-3.582-8-8v-2h2v2c0 3.309 2.691 6 6 6s6-2.691 6-6v-2h2zm-7 13v-2h-2v2h-4v2h10v-2h-4z"/>
                             </svg>
                         </button>
 
                         <!---------- PAUSE ---------->
-                        <button class="btn btn-sm btn-circle mx-5" id="pauseButton"
+                        <button class="btn btn-sm btn-circle mx-3" id="pauseButton"
                                 disabled>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                  class="icon-graphic-feature">
@@ -86,7 +98,7 @@
                         </button>
 
                         <!---------- STOP ---------->
-                        <button class="btn btn-sm btn-circle mx-5" id="stopButton" disabled>
+                        <button class="btn btn-sm btn-circle mx-3" id="stopButton" disabled>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                  class="icon-graphic-feature">
                                 <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5 7h-10v10h10v-10z"/>
@@ -98,20 +110,19 @@
                 </div>
 
                 <!---------- USER RECORDINGS ---------->
-                <div class="flex-fill mx-5 d-flex flex-column justify-content-center">
-                    <!--                    <h4>Download</h4>-->
+                <div class="col-sm-4 col-12">
                     <div class="mx-auto flex-wrap" id="formats"></div>
-                    <div class="list-unstyled mx-auto flex-wrap" id="recordingsList"></div>
-
+                    <div class="list-unstyled d-flex justify-content-center my-2" id="recordingsList"></div>
                 </div>
 
 
                 <!---------- SAVE RECORDING ---------->
-                <div class="mx-5 flex-fill text-center">
+                <div class="col-sm-4 col-12 d-flex justify-content-center">
                     <a href="/recording/save" class="btn bn-sm" id="save-btn">
-                        <p class="m-0">Save</p>
+                        <p class="m-0">Upload</p>
                     </a>
                 </div>
+
             </div>
 
 

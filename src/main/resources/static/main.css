@@ -10,6 +10,9 @@
     --navy-color: #475E71;
     --kakhi-color: #D4D3B3;
 
+    --dark-navy-color: #354755;
+    --dark-darker-navy-color: #354755;
+
     --white-opacity-color: rgba(255, 255, 255, 0.7);
     --kakhi-opacity-color: rgba(212, 211, 179, 0.2);
     --navy-opacity-color: rgba(71, 94, 113, 0.7);
@@ -90,7 +93,7 @@ a:active {
     fill: var(--Light-color);
 }
 
-#open{
+#open {
     color: var(--Light-color);
 }
 
@@ -106,9 +109,10 @@ a:active {
     width: auto;
 }
 
-.white-text{
+.white-text {
     color: var(--Light-color);
 }
+
 .index-btn {
     background: var(--navy-color);
     color: var(--Light-color);
@@ -235,6 +239,48 @@ a:active {
     background: var(--coral-color);
     color: var(--Light-color);
 }
+
+.record-btn {
+    fill: var(--Light-color);
+}
+
+#recordButton {
+    background: var(--coral-color);
+}
+
+/*---- STEP BAR -----*/
+.line {
+    border-bottom: 1px solid var(--dark-navy-color);
+    padding-bottom: 20px;
+    width: 100%;
+    left: 15px;
+    position: relative;
+}
+
+.step {
+    width: 90px;
+    height: 25px;
+    border: 1px solid var(--dark-navy-color);
+    background: var(--dark-navy-color);
+    border-radius: 100px;
+    margin-top: 30px;
+    color: var(--navy-color);
+}
+
+.step1 {
+    margin-top: -10px;
+    float: left;
+}
+
+.step2 {
+    margin: -10px auto 0;
+}
+
+.step3 {
+    float: right;
+    margin-top: -10px;
+}
+
 
 /*------------- PROFILE -------------*/
 #profile-jumbotron {
