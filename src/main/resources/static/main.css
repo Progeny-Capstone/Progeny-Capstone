@@ -248,6 +248,12 @@ a:active {
     background: var(--coral-color);
 }
 
+.audio-icon{
+    height: 30px;
+    width: auto;
+    fill: var(--Light-color);
+}
+
 /*---- STEP BAR -----*/
 .line {
     border-bottom: 1px solid var(--dark-navy-color);
