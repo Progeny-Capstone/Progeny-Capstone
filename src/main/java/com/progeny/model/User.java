@@ -60,6 +60,17 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
     private List<Recording> recordings;
 
+
+    // --------------- PENDING FRIENDS ----------------
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="pendingFriends",
+            joinColumns=@JoinColumn(name="pendingUser_Id"),
+            inverseJoinColumns=@JoinColumn(name="pendingFriend_Id")
+    )
+    private List<User> pendingFriends;
+
+
     // --------------- FRIENDS ----------------
      @ManyToMany(fetch = FetchType.EAGER)
      @JoinTable(
@@ -71,18 +82,6 @@ public class User {
 
      @ManyToMany(mappedBy = "friends")
      private List<User> friend;
-
-
-
-    public void addFriend(User newFriend) {
-        friends.add(newFriend);
-        newFriend.getFriends().add(this);
-    }
-
-    public void removeFriend(User oldFriend) {
-        friends.remove(oldFriend);
-        oldFriend.getFriends().remove(this);
-    }
 
 
     // --------------- GROUPS ----------------
@@ -147,7 +146,7 @@ public class User {
     }
 
     // ----- THE WHOLE SHEBANG ----
-    public User(long id, String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, boolean isAdmin, List<Recording> recordings, List<User> friend, List<User> friends, List<Group> groupList) {
+    public User(long id, String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, boolean isAdmin, List<Recording> recordings, List<User> pendingFriends, List<User> friends, List<User> friend, List<Group> groupList) {
         this.id = id;
         this.username = username;
         this.firstName = firstName;
@@ -159,12 +158,14 @@ public class User {
         this.bio = bio;
         this.isAdmin = isAdmin;
         this.recordings = recordings;
-        this.friend = friend;
+        this.pendingFriends = pendingFriends;
         this.friends = friends;
+        this.friend = friend;
         this.groupList = groupList;
     }
+
     // ----- THE WHOLE SHEBANG  WITHOUT !D----
-    public User( String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, boolean isAdmin, List<Recording> recordings, List<User> friend, List<User> friends, List<Group> groupList) {
+    public User( String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, boolean isAdmin, List<Recording> recordings, List<User> pendingFriends, List<User> friends, List<User> friend, List<Group> groupList) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -175,13 +176,14 @@ public class User {
         this.bio = bio;
         this.isAdmin = isAdmin;
         this.recordings = recordings;
-        this.friend = friend;
+        this.pendingFriends = pendingFriends;
         this.friends = friends;
+        this.friend = friend;
         this.groupList = groupList;
     }
 
-
     // ---------- GET AND SET METHODS -----------
+
     public long getId() {
         return id;
     }
@@ -268,6 +270,22 @@ public class User {
 
     public void setRecordings(List<Recording> recordings) {
         this.recordings = recordings;
+    }
+
+    public List<User> getPendingFriends() {
+        return pendingFriends;
+    }
+
+    public void setPendingFriends(List<User> pendingFriends) {
+        this.pendingFriends = pendingFriends;
+    }
+
+    public List<User> getFriend() {
+        return friend;
+    }
+
+    public void setFriend(List<User> friend) {
+        this.friend = friend;
     }
 
     public List<User> getUser() {

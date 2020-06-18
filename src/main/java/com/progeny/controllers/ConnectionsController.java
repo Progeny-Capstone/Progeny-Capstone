@@ -43,6 +43,16 @@ public class ConnectionsController {
     @PostMapping("/profile/friends")
     public String addFriend(@RequestParam long friendId, Model model) {
 
+        // 1. User selects friend to add
+            // a. Grab the current user
+            // b. Grab the friend
+            // c. Set the pending friendship list
+        // 2. Friend handles request
+            // a. Confirm
+                // 1. Add users
+            // b. Deny
+                // 1. Delete request
+
         // ------------- GET CURRENT USER FROM SESSION -------------
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
         User currentUser = new User(user); // 2. set new user to user ^
@@ -53,25 +63,25 @@ public class ConnectionsController {
         model.addAttribute("friend", friend);// 3. Show current user on page
 
         // ------------- CHECK FOR FRIEND LIST(s) -------------
-        if (friend.getFriends() == null) { // if there is no friends list -->
+        if (friend.getPendingFriends() == null) { // if there is no friends list -->
 
             List<User> newFriends = new ArrayList<>(); // 1. Make a new friends list
-            friend.setFriends(newFriends); // 2. give the new friends list to User
+            friend.setPendingFriends(newFriends); // 2. give the new friends list to User
 
         }
-        if (currentUser.getFriends() == null) { // if there is no friends list -->
+        if (currentUser.getPendingFriends() == null) { // if there is no friends list -->
 
             List<User> newFriends = new ArrayList<>(); // 1. Make a new friends list
-            currentUser.setFriends(newFriends); // 2. give the new friends list to User
+            currentUser.setPendingFriends(newFriends); // 2. give the new friends list to User
 
         }
 
-        // --------- ADD USERS TO EACH OTHERS FRIENDS LIST------------
-        friend.getFriends().add(currentUser);
-        friend.setFriends(friend.getFriends());
+        // --------- ADD USERS TO EACH OTHERS PENDING FRIENDS LIST------------
+        friend.getPendingFriends().add(currentUser);
+        friend.setPendingFriends(friend.getPendingFriends());
 
-        currentUser.getFriends().add(friend);
-        currentUser.setFriends(currentUser.getFriends());
+        currentUser.getPendingFriends().add(friend);
+        currentUser.setPendingFriends(currentUser.getPendingFriends());
 
         // --------- SAVE TO DB -----------
         usersRepo.save(currentUser); // 3. save the list of users to the current users information
