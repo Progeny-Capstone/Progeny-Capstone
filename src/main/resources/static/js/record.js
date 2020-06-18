@@ -147,15 +147,16 @@ function createDownloadLink(blob) {
     //add controls to the <audio> element
     au.controls = true;
     au.src = url;
+    au.preload = "auto";
 
     //link the a element to the blob
-    link.href = url;
-    link.download = new Date().toISOString() + '.'+extension;
-    link.innerHTML = link.download;
+    // link.href = url;
+    // link.download = new Date().toISOString() + '.'+extension;
+    // link.innerHTML = link.download;
 
     //add the new audio and a elements to the li element
     li.appendChild(au);
-    li.appendChild(link);
+    // li.appendChild(link);
 
     //add the li element to the ordered list
     recordingsList.appendChild(li);
