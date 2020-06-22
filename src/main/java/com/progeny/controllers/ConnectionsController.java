@@ -77,21 +77,31 @@ public class ConnectionsController {
 
         }
 
+        FriendshipAccepted userToFriend = new FriendshipAccepted(currentUser, friend, false); // Not friends just yet (pending approval)
+        FriendshipAccepted friendToUser = new FriendshipAccepted(friend, currentUser, false); // Not friends just yet (pending approval)
+
+
+        System.out.println("newFriendship = " + userToFriend.getFriend().getUsername());
+        System.out.println("newFriendship = " + friendToUser.getFriend().getUsername());
+
         // --------- ADD USERS TO EACH OTHERS PENDING FRIENDS LIST------------
-//        friend.getFriendAcceptedList().add(currentUser);
-//        friend.setFriendAcceptedList(friend.getFriendAcceptedList();
-//
-//        currentUser.getFriendAcceptedList().add(friend);
-//        currentUser.setFriendAcceptedList(currentUser.getFriendAcceptedList());
+        friend.getFriendAcceptedList().add(friendToUser);
+        friend.setFriendAcceptedList(friend.getFriendAcceptedList());
+        System.out.println("friend = " + friend.getFriendAcceptedList().get(0).getUser().getUsername());
+
+        currentUser.getUserAcceptedList().add(userToFriend);
+        currentUser.setUserAcceptedList(currentUser.getUserAcceptedList());
+        System.out.println("CurrentUser = " + currentUser.getUserAcceptedList().get(0).getUser().getUsername());
 
         // --------- SAVE TO DB -----------
-//        usersRepo.save(currentUser); // 3. save the list of users to the current users information
-//        usersRepo.save(friend); // 3. save the list of users to the current users information
-//
+        usersRepo.save(currentUser); // 3. save the list of users to the current users information
+        usersRepo.save(friend); // 3. save the list of users to the current users information
+
+
         // --------- REDISPLAY THE GET FRIEND INFORMATION AFTER POST -----------
-//        model.addAttribute("currentUser", currentUser);// 2. Show current user on form
-//        model.addAttribute("friends", currentUser.getFriends()); // 2. Show a list of users attached to current user
-//        model.addAttribute("users", usersRepo.findAll()); // 1. Show a list of users on Progeny
+        model.addAttribute("currentUser", currentUser);// 2. Show current user on form
+        model.addAttribute("friends", currentUser.getFriendAcceptedList()); // 2. Show a list of users attached to current user
+        model.addAttribute("users", usersRepo.findAll()); // 1. Show a list of users on Progeny
 
 
         return "users/connections";

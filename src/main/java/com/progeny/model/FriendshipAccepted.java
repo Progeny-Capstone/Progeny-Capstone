@@ -23,6 +23,12 @@ public class FriendshipAccepted {
 
     public FriendshipAccepted() { }
 
+    public FriendshipAccepted(User user, User friend, boolean isAccepted) {
+        this.user = user;
+        this.friend = friend;
+        this.isAccepted = isAccepted;
+    }
+
     public FriendshipAccepted(FriendshipKey id, User user, User friend, boolean isAccepted) {
         this.id = id;
         this.user = user;
