@@ -1,7 +1,9 @@
 package com.progeny.controllers;
 
-import com.progeny.model.FriendshipAccepted;
+import com.progeny.model.Friendship;
+import com.progeny.model.FriendshipKey;
 import com.progeny.model.User;
+import com.progeny.repositories.FriendshipRepository;
 import com.progeny.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,13 +20,15 @@ public class ConnectionsController {
     // --------- INITIALIZE ------------
     private UserRepository usersRepo;
     private PasswordEncoder passwordEncoder;
+    private FriendshipRepository friendshipRepo;
 
 
     // ------------ CONSTRUCTOR METHOD ---------------
     // --------- AKA DEPENDENCY INJECTION ------------
-    public ConnectionsController(UserRepository usersRepo, PasswordEncoder passwordEncoder) {
+    public ConnectionsController(UserRepository usersRepo, PasswordEncoder passwordEncoder, FriendshipRepository friendshipRepo) {
         this.usersRepo = usersRepo;
         this.passwordEncoder = passwordEncoder;
+        this.friendshipRepo = friendshipRepo;
     }
 
 
@@ -66,36 +70,38 @@ public class ConnectionsController {
         // ------------- CHECK FOR FRIEND LIST(s) -------------
         if (friend.getFriendAcceptedList() == null) { // if there is no friends list -->
 
-            List<FriendshipAccepted> newFriends = new ArrayList<>(); // 1. Make a new friends list
+            List<Friendship> newFriends = new ArrayList<>(); // 1. Make a new friends list
             friend.setFriendAcceptedList(newFriends); // 2. give the new friends list to User
 
         }
         if (currentUser.getUserAcceptedList() == null) { // if there is no friends list -->
 
-            List<FriendshipAccepted> newFriends = new ArrayList<>(); // 1. Make a new friends list
+            List<Friendship> newFriends = new ArrayList<>(); // 1. Make a new friends list
             currentUser.setUserAcceptedList(newFriends); // 2. give the new friends list to User
 
         }
 
-        FriendshipAccepted userToFriend = new FriendshipAccepted(currentUser, friend, false); // Not friends just yet (pending approval)
-        FriendshipAccepted friendToUser = new FriendshipAccepted(friend, currentUser, false); // Not friends just yet (pending approval)
+        FriendshipKey friendshipId = new FriendshipKey(currentUser.getId(), friend.getId());
+
+        Friendship userToFriend = new Friendship(friendshipId, currentUser, friend, false); // Not friends just yet (pending approval)
+        Friendship friendToUser = new Friendship(friendshipId, friend, currentUser, false); // Not friends just yet (pending approval)
 
 
         System.out.println("newFriendship = " + userToFriend.getFriend().getUsername());
         System.out.println("newFriendship = " + friendToUser.getFriend().getUsername());
 
         // --------- ADD USERS TO EACH OTHERS PENDING FRIENDS LIST------------
-        friend.getFriendAcceptedList().add(friendToUser);
-        friend.setFriendAcceptedList(friend.getFriendAcceptedList());
-        System.out.println("friend = " + friend.getFriendAcceptedList().get(0).getUser().getUsername());
-
-        currentUser.getUserAcceptedList().add(userToFriend);
-        currentUser.setUserAcceptedList(currentUser.getUserAcceptedList());
-        System.out.println("CurrentUser = " + currentUser.getUserAcceptedList().get(0).getUser().getUsername());
+//        friend.getFriendAcceptedList().add(friendToUser);
+//        friend.setFriendAcceptedList(friend.getFriendAcceptedList());
+//        System.out.println("friend = " + friend.getFriendAcceptedList().get(0).getUser().getUsername());
+//
+//        currentUser.getUserAcceptedList().add(userToFriend);
+//        currentUser.setUserAcceptedList(currentUser.getUserAcceptedList());
+//        System.out.println("CurrentUser = " + currentUser.getUserAcceptedList().get(0).getUser().getUsername());
 
         // --------- SAVE TO DB -----------
-        usersRepo.save(currentUser); // 3. save the list of users to the current users information
-        usersRepo.save(friend); // 3. save the list of users to the current users information
+        friendshipRepo.save(friendToUser); // 3. save the list of users to the current users information
+        friendshipRepo.save(userToFriend); // 3. save the list of users to the current users information
 
 
         // --------- REDISPLAY THE GET FRIEND INFORMATION AFTER POST -----------

@@ -5,17 +5,25 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
 
+
+// NOTE:
+// The composite primary key class must be public,
+// contains a no-argument constructor,
+// defines both equals() and hashCode() methods,
+// and implements the Serializable interface.
+
 @Embeddable
 public class FriendshipKey implements Serializable {
 
     @Column(name = "user_id")
-    Long userId;
+    private Long userId;
 
     @Column(name = "friend_id")
-    Long friendId;
+    private Long friendId;
 
 
-    public FriendshipKey() {}
+    public FriendshipKey() {
+    }
 
     public FriendshipKey(Long userId, Long friendId) {
         this.userId = userId;
@@ -25,11 +33,10 @@ public class FriendshipKey implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null) return false;
-        if (!(o instanceof FriendshipKey)) return false;
-        FriendshipKey that = (FriendshipKey) o;
-        return userId.equals(that.userId) &&
-                friendId.equals(that.friendId);
+        if (o == null || getClass() != o.getClass()) return false;
+        FriendshipKey friendshipKey = (FriendshipKey) o;
+        return friendId.equals(friendshipKey.friendId) &&
+                userId.equals(friendshipKey.userId);
     }
 
     @Override

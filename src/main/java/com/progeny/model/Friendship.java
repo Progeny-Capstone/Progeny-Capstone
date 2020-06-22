@@ -1,9 +1,10 @@
 package com.progeny.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class FriendshipAccepted {
+public class Friendship implements Serializable {
 
     @EmbeddedId // mark the primary key, which is an instance of the FriendshipKey class
     FriendshipKey id;
@@ -21,15 +22,9 @@ public class FriendshipAccepted {
     private boolean isAccepted;
 
 
-    public FriendshipAccepted() { }
+    public Friendship() { }
 
-    public FriendshipAccepted(User user, User friend, boolean isAccepted) {
-        this.user = user;
-        this.friend = friend;
-        this.isAccepted = isAccepted;
-    }
-
-    public FriendshipAccepted(FriendshipKey id, User user, User friend, boolean isAccepted) {
+    public Friendship(FriendshipKey id, User user, User friend, boolean isAccepted) {
         this.id = id;
         this.user = user;
         this.friend = friend;

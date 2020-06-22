@@ -2,7 +2,6 @@ package com.progeny.model;
 
 import javax.persistence.Entity;
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -87,10 +86,10 @@ public class User {
     //    We configured the relationships to the Student and Course classes as @ManyToOne.
     //    We could do this because with the new entity we structurally decomposed the many-to-many relationship to two many-to-one relationships.
     @OneToMany(mappedBy = "friend")
-    List<FriendshipAccepted> friendAcceptedList;
+    List<Friendship> friendAcceptedList;
 
     @OneToMany(mappedBy = "user")
-    List<FriendshipAccepted> userAcceptedList;
+    List<Friendship> userAcceptedList;
 
 
     // --------------- GROUPS ----------------
@@ -154,7 +153,7 @@ public class User {
     }
 
     // ----- THE WHOLE SHEBANG ----
-    public User(long id, String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, boolean isAdmin, List<Recording> recordings, List<FriendshipAccepted> friendAcceptedList, List<FriendshipAccepted> userAcceptedList, List<Group> groupList) {
+    public User(long id, String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, boolean isAdmin, List<Recording> recordings, List<Friendship> friendAcceptedList, List<Friendship> userAcceptedList, List<Group> groupList) {
         this.id = id;
         this.username = username;
         this.firstName = firstName;
@@ -173,7 +172,7 @@ public class User {
 
 
     // ----- THE WHOLE SHEBANG  WITHOUT !D----
-    public User(String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, boolean isAdmin, List<Recording> recordings, List<FriendshipAccepted> friendAcceptedList, List<FriendshipAccepted> userAcceptedList, List<Group> groupList) {
+    public User(String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, boolean isAdmin, List<Recording> recordings, List<Friendship> friendAcceptedList, List<Friendship> userAcceptedList, List<Group> groupList) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -279,19 +278,19 @@ public class User {
         this.recordings = recordings;
     }
 
-    public List<FriendshipAccepted> getFriendAcceptedList() {
+    public List<Friendship> getFriendAcceptedList() {
         return friendAcceptedList;
     }
 
-    public void setFriendAcceptedList(List<FriendshipAccepted> friendAcceptedList) {
+    public void setFriendAcceptedList(List<Friendship> friendAcceptedList) {
         this.friendAcceptedList = friendAcceptedList;
     }
 
-    public List<FriendshipAccepted> getUserAcceptedList() {
+    public List<Friendship> getUserAcceptedList() {
         return userAcceptedList;
     }
 
-    public void setUserAcceptedList(List<FriendshipAccepted> userAcceptedList) {
+    public void setUserAcceptedList(List<Friendship> userAcceptedList) {
         this.userAcceptedList = userAcceptedList;
     }
 
