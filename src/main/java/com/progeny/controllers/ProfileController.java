@@ -42,7 +42,7 @@ public class ProfileController {
 
 
         // ------------ GET THE CURRENT USERS FRIENDS ---------------
-        model.addAttribute("friends", currentUser.getFriends()); // Show a list of users attached to current user
+//        model.addAttribute("friends", currentUser.getFriends()); // Show a list of users attached to current user
 
 
         // ------------ IF NO RECORDINGS LIST ---------------

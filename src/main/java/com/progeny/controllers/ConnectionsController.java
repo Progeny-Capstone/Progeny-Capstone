@@ -1,5 +1,6 @@
 package com.progeny.controllers;
 
+import com.progeny.model.FriendshipAccepted;
 import com.progeny.model.User;
 import com.progeny.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,7 +35,7 @@ public class ConnectionsController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
         model.addAttribute("currentUser", currentUser);// 2. Show current user on form
 
-        model.addAttribute("friends", currentUser.getFriends()); // 2. Show a list of users attached to current user
+//        model.addAttribute("friends", currentUser.getFriends()); // 2. Show a list of users attached to current user
 
         return "users/connections";
     }
@@ -63,34 +64,34 @@ public class ConnectionsController {
         model.addAttribute("friend", friend);// 3. Show current user on page
 
         // ------------- CHECK FOR FRIEND LIST(s) -------------
-        if (friend.getPendingFriends() == null) { // if there is no friends list -->
+        if (friend.getFriendAcceptedList() == null) { // if there is no friends list -->
 
-            List<User> newFriends = new ArrayList<>(); // 1. Make a new friends list
-            friend.setPendingFriends(newFriends); // 2. give the new friends list to User
+            List<FriendshipAccepted> newFriends = new ArrayList<>(); // 1. Make a new friends list
+            friend.setFriendAcceptedList(newFriends); // 2. give the new friends list to User
 
         }
-        if (currentUser.getPendingFriends() == null) { // if there is no friends list -->
+        if (currentUser.getUserAcceptedList() == null) { // if there is no friends list -->
 
-            List<User> newFriends = new ArrayList<>(); // 1. Make a new friends list
-            currentUser.setPendingFriends(newFriends); // 2. give the new friends list to User
+            List<FriendshipAccepted> newFriends = new ArrayList<>(); // 1. Make a new friends list
+            currentUser.setUserAcceptedList(newFriends); // 2. give the new friends list to User
 
         }
 
         // --------- ADD USERS TO EACH OTHERS PENDING FRIENDS LIST------------
-        friend.getPendingFriends().add(currentUser);
-        friend.setPendingFriends(friend.getPendingFriends());
-
-        currentUser.getPendingFriends().add(friend);
-        currentUser.setPendingFriends(currentUser.getPendingFriends());
+//        friend.getFriendAcceptedList().add(currentUser);
+//        friend.setFriendAcceptedList(friend.getFriendAcceptedList();
+//
+//        currentUser.getFriendAcceptedList().add(friend);
+//        currentUser.setFriendAcceptedList(currentUser.getFriendAcceptedList());
 
         // --------- SAVE TO DB -----------
-        usersRepo.save(currentUser); // 3. save the list of users to the current users information
-        usersRepo.save(friend); // 3. save the list of users to the current users information
-
+//        usersRepo.save(currentUser); // 3. save the list of users to the current users information
+//        usersRepo.save(friend); // 3. save the list of users to the current users information
+//
         // --------- REDISPLAY THE GET FRIEND INFORMATION AFTER POST -----------
-        model.addAttribute("currentUser", currentUser);// 2. Show current user on form
-        model.addAttribute("friends", currentUser.getFriends()); // 2. Show a list of users attached to current user
-        model.addAttribute("users", usersRepo.findAll()); // 1. Show a list of users on Progeny
+//        model.addAttribute("currentUser", currentUser);// 2. Show current user on form
+//        model.addAttribute("friends", currentUser.getFriends()); // 2. Show a list of users attached to current user
+//        model.addAttribute("users", usersRepo.findAll()); // 1. Show a list of users on Progeny
 
 
         return "users/connections";
@@ -110,28 +111,28 @@ public class ConnectionsController {
         User deleteUser = usersRepo.getOne(deleteId);
 
         // 2. Delete the connection to the user in the friends joining table
-        List<User> friendsList = deleteUser.getFriends(); // 1. get list of friends
-        for (int i = 0; i < friendsList.size(); i++) { // 2. iterate through friends list
-
-            if (friendsList.get(i).getId() == currentUser.getId()) {
-
-                deleteUser.getFriends().remove(i);
-
-            }
-        }
-        deleteUser.setFriends(deleteUser.getFriends());
-
-
-        List<User> userFriendList = currentUser.getFriends(); // 1. get list of friends
-        for (int i = 0; i < userFriendList.size(); i++) { // 2. iterate through friends list
-
-            if (userFriendList.get(i).getId() == deleteUser.getId()) {
-
-                currentUser.getFriends().remove(i);
-
-            }
-        }
-        currentUser.setFriends(currentUser.getFriends());
+//        List<User> friendsList = deleteUser.getFriends(); // 1. get list of friends
+//        for (int i = 0; i < friendsList.size(); i++) { // 2. iterate through friends list
+//
+//            if (friendsList.get(i).getId() == currentUser.getId()) {
+////
+//                deleteUser.getFriends().remove(i);
+//
+//            }
+//        }
+//        deleteUser.setFriends(deleteUser.getFriends());
+//
+//
+//        List<User> userFriendList = currentUser.getFriends(); // 1. get list of friends
+//        for (int i = 0; i < userFriendList.size(); i++) { // 2. iterate through friends list
+//
+//            if (userFriendList.get(i).getId() == deleteUser.getId()) {
+//
+//                currentUser.getFriends().remove(i);
+//
+//            }
+//        }
+//        currentUser.setFriends(currentUser.getFriends());
 
         // 3. Save the changes
         usersRepo.save(currentUser); // 3. save the removal of friend to the current users information
@@ -148,7 +149,7 @@ public class ConnectionsController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
         model.addAttribute("currentUser", currentUser);// 2. Show current user on form
 
-        model.addAttribute("friends", currentUser.getFriends()); // 2. Show a list of users attached to current user
+//        model.addAttribute("friends", currentUser.getFriends()); // 2. Show a list of users attached to current user
 
         return "users/connections";
     }
@@ -161,7 +162,7 @@ public class ConnectionsController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
         User currentUser = new User(user); // 2. set new user to user ^
         model.addAttribute("currentUser", currentUser);// 3. Show current user on page
-        model.addAttribute("friends", currentUser.getFriends()); // 4. Show a list of users attached to current user
+//        model.addAttribute("friends", currentUser.getFriends()); // 4. Show a list of users attached to current user
 
         if (search.equals("all")) {
 

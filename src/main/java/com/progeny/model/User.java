@@ -62,26 +62,35 @@ public class User {
 
 
     // --------------- PENDING FRIENDS ----------------
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name="pendingFriends",
-            joinColumns=@JoinColumn(name="pendingUser_Id"),
-            inverseJoinColumns=@JoinColumn(name="pendingFriend_Id")
-    )
-    private List<User> pendingFriends;
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(
+//            name="pendingFriends",
+//            joinColumns=@JoinColumn(name="pendingUser_Id"),
+//            inverseJoinColumns=@JoinColumn(name="pendingFriend_Id")
+//    )
+//    private List<User> pendingFriends;
 
 
     // --------------- FRIENDS ----------------
-     @ManyToMany(fetch = FetchType.EAGER)
-     @JoinTable(
-             name="friends",
-             joinColumns=@JoinColumn(name="user_Id"),
-             inverseJoinColumns=@JoinColumn(name="friend_Id")
-     )
-     private List<User> friends;
+//     @ManyToMany(fetch = FetchType.EAGER)
+//     @JoinTable(
+//             name="friends",
+//             joinColumns=@JoinColumn(name="user_Id"),
+//             inverseJoinColumns= @JoinColumn(name = "friend_Id")
+//     )
+//     private List<User> friends;
+//
+//     @ManyToMany(mappedBy = "friends")
+//     private List<User> friend;
 
-     @ManyToMany(mappedBy = "friends")
-     private List<User> friend;
+
+    //    We configured the relationships to the Student and Course classes as @ManyToOne.
+    //    We could do this because with the new entity we structurally decomposed the many-to-many relationship to two many-to-one relationships.
+    @OneToMany(mappedBy = "friend")
+    List<FriendshipAccepted> friendAcceptedList;
+
+    @OneToMany(mappedBy = "user")
+    List<FriendshipAccepted> userAcceptedList;
 
 
     // --------------- GROUPS ----------------
@@ -93,7 +102,6 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "group_id")}
     )
     private List<Group> groupList;
-
 
 
     // ---------- CONSTRUCTOR METHOD(S) -----------
@@ -113,8 +121,8 @@ public class User {
         location = copy.location;
         bio = copy.bio;
         isAdmin = copy.isAdmin;
-        friends = copy.friends;
-        friend = copy.friend;
+//        friends = copy.friends;
+//        friend = copy.friend;
     }
     //----------------------------
 
@@ -146,7 +154,7 @@ public class User {
     }
 
     // ----- THE WHOLE SHEBANG ----
-    public User(long id, String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, boolean isAdmin, List<Recording> recordings, List<User> pendingFriends, List<User> friends, List<User> friend, List<Group> groupList) {
+    public User(long id, String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, boolean isAdmin, List<Recording> recordings, List<FriendshipAccepted> friendAcceptedList, List<FriendshipAccepted> userAcceptedList, List<Group> groupList) {
         this.id = id;
         this.username = username;
         this.firstName = firstName;
@@ -158,14 +166,14 @@ public class User {
         this.bio = bio;
         this.isAdmin = isAdmin;
         this.recordings = recordings;
-        this.pendingFriends = pendingFriends;
-        this.friends = friends;
-        this.friend = friend;
+        this.friendAcceptedList = friendAcceptedList;
+        this.userAcceptedList = userAcceptedList;
         this.groupList = groupList;
     }
 
+
     // ----- THE WHOLE SHEBANG  WITHOUT !D----
-    public User( String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, boolean isAdmin, List<Recording> recordings, List<User> pendingFriends, List<User> friends, List<User> friend, List<Group> groupList) {
+    public User(String username, String firstName, String lastName, String email, String password, String profileImageUrl, String location, String bio, boolean isAdmin, List<Recording> recordings, List<FriendshipAccepted> friendAcceptedList, List<FriendshipAccepted> userAcceptedList, List<Group> groupList) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -176,14 +184,13 @@ public class User {
         this.bio = bio;
         this.isAdmin = isAdmin;
         this.recordings = recordings;
-        this.pendingFriends = pendingFriends;
-        this.friends = friends;
-        this.friend = friend;
+        this.friendAcceptedList = friendAcceptedList;
+        this.userAcceptedList = userAcceptedList;
         this.groupList = groupList;
     }
 
-    // ---------- GET AND SET METHODS -----------
 
+    // ---------- GET AND SET METHODS -----------
     public long getId() {
         return id;
     }
@@ -272,36 +279,20 @@ public class User {
         this.recordings = recordings;
     }
 
-    public List<User> getPendingFriends() {
-        return pendingFriends;
+    public List<FriendshipAccepted> getFriendAcceptedList() {
+        return friendAcceptedList;
     }
 
-    public void setPendingFriends(List<User> pendingFriends) {
-        this.pendingFriends = pendingFriends;
+    public void setFriendAcceptedList(List<FriendshipAccepted> friendAcceptedList) {
+        this.friendAcceptedList = friendAcceptedList;
     }
 
-    public List<User> getFriend() {
-        return friend;
+    public List<FriendshipAccepted> getUserAcceptedList() {
+        return userAcceptedList;
     }
 
-    public void setFriend(List<User> friend) {
-        this.friend = friend;
-    }
-
-    public List<User> getUser() {
-        return friend;
-    }
-
-    public void setUser(List<User> friend) {
-        this.friend = friend;
-    }
-
-    public List<User> getFriends() {
-        return friends;
-    }
-
-    public void setFriends(List<User> friends) {
-        this.friends = friends;
+    public void setUserAcceptedList(List<FriendshipAccepted> userAcceptedList) {
+        this.userAcceptedList = userAcceptedList;
     }
 
     public List<Group> getGroupList() {
