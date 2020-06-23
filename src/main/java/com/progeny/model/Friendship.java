@@ -6,6 +6,11 @@ import java.io.Serializable;
 @Entity
 public class Friendship implements Serializable {
 
+    // --------------------------------------------
+    // ----------------JOIN TABLE------------------
+    // --------------------------------------------
+
+    // ----------  TABLE SETUP -----------
     @EmbeddedId // mark the primary key, which is an instance of the FriendshipKey class
     FriendshipKey id;
 
@@ -22,8 +27,11 @@ public class Friendship implements Serializable {
     private boolean isAccepted;
 
 
+    // ---------- CONSTRUCTOR METHOD(S) -----------
+    // ----- MEMORY SPACE CONSTRUCTOR ----
     public Friendship() { }
 
+    // ----- WITH FRIENDSHIPKEY ID CONSTRUCTOR ----
     public Friendship(FriendshipKey id, User user, User friend, boolean isAccepted) {
         this.id = id;
         this.user = user;
@@ -32,6 +40,7 @@ public class Friendship implements Serializable {
     }
 
 
+    // ---------- GET AND SET METHODS -----------
     public FriendshipKey getId() {
         return id;
     }

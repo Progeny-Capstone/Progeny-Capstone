@@ -15,21 +15,30 @@ import java.util.Objects;
 @Embeddable
 public class FriendshipKey implements Serializable {
 
+    // --------------------------------------------
+    // -------------------KEY----------------------
+    // --------------------------------------------
+
+    // ----------  KEY SETUP -----------
     @Column(name = "user_id")
     private Long userId;
 
     @Column(name = "friend_id")
     private Long friendId;
 
-
+    // ---------- CONSTRUCTOR METHOD(S) -----------
+    // ----- MEMORY SPACE CONSTRUCTOR ----
     public FriendshipKey() {
     }
 
+    // ----- CONSTRUCTOR ----
     public FriendshipKey(Long userId, Long friendId) {
         this.userId = userId;
         this.friendId = friendId;
     }
 
+
+    // ---------- OVERRIDE EQUALS AND HASHCODE -----------
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -45,6 +54,7 @@ public class FriendshipKey implements Serializable {
     }
 
 
+    // ---------- GET AND SET METHODS -----------
     public Long getUserId() {
         return userId;
     }

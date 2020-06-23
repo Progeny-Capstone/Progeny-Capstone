@@ -48,16 +48,6 @@ public class ConnectionsController {
     @PostMapping("/profile/friends")
     public String addFriend(@RequestParam long friendId, Model model) {
 
-        // 1. User selects friend to add
-            // a. Grab the current user
-            // b. Grab the friend
-            // c. Set the pending friendship list
-        // 2. Friend handles request
-            // a. Confirm
-                // 1. Add users
-            // b. Deny
-                // 1. Delete request
-
         // ------------- GET CURRENT USER FROM SESSION -------------
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
         User currentUser = new User(user); // 2. set new user to user ^
@@ -67,37 +57,12 @@ public class ConnectionsController {
         User friend = usersRepo.getUserById(friendId);
         model.addAttribute("friend", friend);// 3. Show current user on page
 
-        // ------------- CHECK FOR FRIEND LIST(s) -------------
-        if (friend.getFriendAcceptedList() == null) { // if there is no friends list -->
-
-            List<Friendship> newFriends = new ArrayList<>(); // 1. Make a new friends list
-            friend.setFriendAcceptedList(newFriends); // 2. give the new friends list to User
-
-        }
-        if (currentUser.getUserAcceptedList() == null) { // if there is no friends list -->
-
-            List<Friendship> newFriends = new ArrayList<>(); // 1. Make a new friends list
-            currentUser.setUserAcceptedList(newFriends); // 2. give the new friends list to User
-
-        }
-
+        // --------- CREATE KEY WITH THE USER AND FRIEND IDs ------------
         FriendshipKey friendshipId = new FriendshipKey(currentUser.getId(), friend.getId());
 
+        // --------- NEW INSTANCES OF A FRIENDSHIP (FALSE UNTIL ACCEPTED) ------------
         Friendship userToFriend = new Friendship(friendshipId, currentUser, friend, false); // Not friends just yet (pending approval)
         Friendship friendToUser = new Friendship(friendshipId, friend, currentUser, false); // Not friends just yet (pending approval)
-
-
-        System.out.println("newFriendship = " + userToFriend.getFriend().getUsername());
-        System.out.println("newFriendship = " + friendToUser.getFriend().getUsername());
-
-        // --------- ADD USERS TO EACH OTHERS PENDING FRIENDS LIST------------
-//        friend.getFriendAcceptedList().add(friendToUser);
-//        friend.setFriendAcceptedList(friend.getFriendAcceptedList());
-//        System.out.println("friend = " + friend.getFriendAcceptedList().get(0).getUser().getUsername());
-//
-//        currentUser.getUserAcceptedList().add(userToFriend);
-//        currentUser.setUserAcceptedList(currentUser.getUserAcceptedList());
-//        System.out.println("CurrentUser = " + currentUser.getUserAcceptedList().get(0).getUser().getUsername());
 
         // --------- SAVE TO DB -----------
         friendshipRepo.save(friendToUser); // 3. save the list of users to the current users information

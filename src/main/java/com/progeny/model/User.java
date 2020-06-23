@@ -59,29 +59,7 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
     private List<Recording> recordings;
 
-
-    // --------------- PENDING FRIENDS ----------------
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(
-//            name="pendingFriends",
-//            joinColumns=@JoinColumn(name="pendingUser_Id"),
-//            inverseJoinColumns=@JoinColumn(name="pendingFriend_Id")
-//    )
-//    private List<User> pendingFriends;
-
-
     // --------------- FRIENDS ----------------
-//     @ManyToMany(fetch = FetchType.EAGER)
-//     @JoinTable(
-//             name="friends",
-//             joinColumns=@JoinColumn(name="user_Id"),
-//             inverseJoinColumns= @JoinColumn(name = "friend_Id")
-//     )
-//     private List<User> friends;
-//
-//     @ManyToMany(mappedBy = "friends")
-//     private List<User> friend;
-
 
     //    We configured the relationships to the Student and Course classes as @ManyToOne.
     //    We could do this because with the new entity we structurally decomposed the many-to-many relationship to two many-to-one relationships.
@@ -120,8 +98,6 @@ public class User {
         location = copy.location;
         bio = copy.bio;
         isAdmin = copy.isAdmin;
-//        friends = copy.friends;
-//        friend = copy.friend;
     }
     //----------------------------
 
