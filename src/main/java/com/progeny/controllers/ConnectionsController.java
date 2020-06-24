@@ -39,7 +39,10 @@ public class ConnectionsController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
         model.addAttribute("currentUser", currentUser);// 2. Show current user on form
 
-//        model.addAttribute("friends", currentUser.getFriends()); // 2. Show a list of users attached to current user
+
+        model.addAttribute("friendRequests", friendshipRepo.findFriendshipsByUserId(currentUser.getId())); // 2. Show a list of users attached to current user
+        model.addAttribute("friends", friendshipRepo.findFriendshipsByUserId(currentUser.getId())); // 2. Show a list of users attached to current user
+
 
         return "users/connections";
     }
@@ -69,10 +72,10 @@ public class ConnectionsController {
         friendshipRepo.save(userToFriend); // 3. save the list of users to the current users information
 
 
-        // --------- REDISPLAY THE GET FRIEND INFORMATION AFTER POST -----------
-        model.addAttribute("currentUser", currentUser);// 2. Show current user on form
-        model.addAttribute("friends", currentUser.getFriendAcceptedList()); // 2. Show a list of users attached to current user
-        model.addAttribute("users", usersRepo.findAll()); // 1. Show a list of users on Progeny
+        // --------- DISPLAY INFORMATION VARIABLES -----------
+        model.addAttribute("currentUser", currentUser);// 1. Show current user on form
+        model.addAttribute("friends", friendshipRepo.findFriendshipsByUserId(currentUser.getId())); // 2. Show a list of users attached to current user
+        model.addAttribute("users", usersRepo.findAll()); // 3. Show a list of users on Progeny
 
 
         return "users/connections";

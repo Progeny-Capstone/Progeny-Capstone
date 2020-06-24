@@ -9,5 +9,6 @@ import java.util.List;
 public interface FriendshipRepository extends CrudRepository<Friendship, FriendshipKey> { // < What we are dealing with, How it will be identified >
 
     List<Friendship> findFriendshipsByUserId(long userId);
+    List<Friendship> findFriendshipsByFriendId(long userId);
 
 }
