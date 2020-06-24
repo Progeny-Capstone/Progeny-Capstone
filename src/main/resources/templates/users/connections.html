@@ -126,10 +126,11 @@
                                 <h2 class="modal-title text-center mx-auto" id="exampleModalLongTitle">Unfriend
                                     Confirmation</h2>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body" th:switch="${friend.getFriend().getId() == currentUser.getId()}">
 
                                 <p class="m-0 text-center">Are you sure you want to delete<br>
-                                    <strong th:text="${friend.getUser().getFirstName()} + ' ' + ${friend.getUser().getLastName()}"></strong>
+                                    <strong th:case="${true}" th:text="${friend.getUser().getFirstName()} + ' ' + ${friend.getUser().getLastName()}"></strong>
+                                    <strong th:case="${false}" th:text="${friend.getFriend().getFirstName()} + ' ' + ${friend.getFriend().getLastName()}"></strong>
                                 </p>
 
                             </div>
@@ -139,10 +140,11 @@
                                 </button>
 
                                 <!---------- DELETE FORM ---------->
-                                <form th:action="@{/profile/friends/delete}" method="POST" class="">
+                                <form th:action="@{/profile/friends/delete}" method="POST" class="" th:switch="${friend.getFriend().getId() == currentUser.getId()}">
 
                                     <!---------- ID HIDDEN INPUT ---------->
-                                    <input type="hidden" th:value="${friend.getId()}" th:name="deleteId">
+                                    <input th:case="${true}" type="hidden" th:value="${friend.getUser().getId()}" th:name="deleteId">
+                                    <input th:case="${false}" type="hidden" th:value="${friend.getFriend().getId()}" th:name="deleteId">
 
                                     <!---------- DELETE BUTTON ---------->
                                     <button class="btn btn-sm submit-btn" type="submit">Yes, I am sure</button>
