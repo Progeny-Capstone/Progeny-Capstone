@@ -40,8 +40,8 @@ public class ConnectionsController {
         model.addAttribute("currentUser", currentUser);// 2. Show current user on form
 
 
-        model.addAttribute("friendRequests", friendshipRepo.findFriendshipsByUserId(currentUser.getId())); // 2. Show a list of users attached to current user
-        model.addAttribute("friends", friendshipRepo.findFriendshipsByUserId(currentUser.getId())); // 2. Show a list of users attached to current user
+        model.addAttribute("friendRequests", friendshipRepo.findFriendshipsByFriendId(currentUser.getId())); // List of users where the friend id is equal to the current user's id
+        model.addAttribute("friends", friendshipRepo.findFriendshipsByUserIdOrFriendId(currentUser.getId(), currentUser.getId())); // List of all users in the friendship table
 
 
         return "users/connections";
