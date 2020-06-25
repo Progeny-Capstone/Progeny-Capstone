@@ -146,25 +146,8 @@ public class ConnectionsController {
             model.addAttribute("foundUsers", foundUsers);
 
             // ------------- GET CURRENT FRIENDS -------------
-            List<Friendship> currentFriends = friendshipRepo.findFriendshipsByUserId(currentUser.getId());
-
-
-            // ------------- ITERATE SEARCH RESULTS -------------
-            for (User searchResults : foundUsers) {
-
-                // ------------- ITERATE FRIENDS -------------
-                for (Friendship friend : currentFriends) {
-
-                    // ------------- CHECK SEARCH RESULTS FOR FRIENDS -------------
-                    if (searchResults.equals(friend.getFriend()) || searchResults.equals(friend.getUser())) {
-
-                        // 1. remove add button
-                        // 2. Show friend status (pending friend or friend)
-
-                    }
-                }
-
-            }
+            Friendship currentFriends = friendshipRepo.findFriendshipByUserIdAndFriendId(currentUser.getId(), foundUsers.iterator().next().getId());
+            model.addAttribute("foundFriends", currentFriends);
 
         }
 

@@ -25,17 +25,18 @@
             </form>
 
             <!---------- RESULTS CONTAINER ---------->
-            <div class="d-flex flex-row justify-content-center flex-wrap mt-3  row">
+            <div class="d-flex flex-column justify-content-center flex-wrap mt-3 ">
 
                 <!---------- SEARCH RESULTS ITERATE EACH ---------->
-                <div th:each="userResults : ${foundUsers}" class="friend-card m-2 p-2 col-12 col-lg-4">
+                <div th:each="foundUser : ${foundUsers}" class="">
 
                     <!---------- ADD FRIEND FORM ---------->
-                    <form th:action="@{/profile/friends}" method="POST" class="d-flex flex-column align-items-center">
+                    <form th:action="@{/profile/friends}" method="POST"
+                          class="friend-card m-2 p-2 d-flex flex-row align-items-center">
 
                         <!---------- FRIENDS IMAGE ---------->
-                        <div class="friend-image-container  mr-2">
-                            <img th:src="@{${userResults.getProfileImageUrl()}}"
+                        <div class="friend-image-container ml-5 mr-2">
+                            <img th:src="@{${foundUser.getProfileImageUrl()}}"
                                  class="friend-img rounded-circle mx-auto"
                                  alt="users profile picture">
                         </div>
@@ -44,21 +45,22 @@
                         <div class="friend-details mr-5">
 
                             <!---------- FRIEND NAME ---------->
-                            <h5 th:text="${userResults.getFirstName()} + ' ' +${userResults.getLastName()}"
+                            <h5 th:text="${foundUser.getFirstName()} + ' ' +${foundUser.getLastName()}"
                                 class="user-friend-name m-0"></h5>
 
                             <!---------- FRIEND LOCATION ---------->
-                            <p th:text="${userResults.getLocation()}" class="user-location m-0"></p>
+                            <p th:text="${foundUser.getLocation()}" class="user-location m-0"></p>
 
                         </div>
 
                         <!---------- ADD FRIEND BUTTON(S) ---------->
-                        <button class="btn btn-sm index-btn">
-                            Add
-                        </button>
+                        <button class="btn btn-sm index-btn" th:if="${foundUser.id != currentUser.id}">Add</button>
+                        <p class="user-location" th:if="${foundUser.id == currentUser.id}">you</p>
+
 
                         <!---------- ADD FRIEND ID HIDDEN INPUT---------->
-                        <input type="hidden" th:name="friendId" th:value="${userResults.id}">
+                        <input type="hidden" th:name="friendId" th:value="${foundUser.id}">
+
 
                     </form>
 
@@ -82,7 +84,7 @@
 
                 <!---------- FRIENDS CARD ---------->
                 <div th:each="friendRequest : ${friendRequests}" th:if="!${friendRequest.isAccepted()}"
-                     class="friend-card m-2 p-2 d-flex flex-row align-items-center col-12 col-lg-4">
+                     class="friend-card m-2 p-2 d-flex flex-row align-items-center">
                     <!--/* If isAccepted is not true (false), Then show the friend request here*/-->
 
                     <!---------- FRIENDS IMAGE ---------->
@@ -120,7 +122,7 @@
 
                         </form>
 
-                        <!---------- IFNORE FORM ---------->
+                        <!---------- IGNORE FORM ---------->
                         <form th:action="@{/profile/friends/ignore-friend}" method="POST" class="">
 
                             <!---------- FRIENDSHIP DISMISS(DENY) ---------->
@@ -141,18 +143,18 @@
             </div>
 
 
-        <!--------------------------------------------->
-        <!---------- CURRENT FRIENDS SECTION ---------->
-        <!--------------------------------------------->
+            <!--------------------------------------------->
+            <!---------- CURRENT FRIENDS SECTION ---------->
+            <!--------------------------------------------->
             <!---------- SECTION HEADER---------->
             <h1 class="section-subheader mb-5">Friends</h1>
 
             <!---------- SHOW FRIENDS ---------->
-            <div class="d-flex flex-row justify-content-center flex-wrap mt-3  row">
+            <div class="d-flex flex-column justify-content-center flex-wrap mt-3">
 
                 <!---------- FRIENDS CARD ---------->
                 <div th:each="friend : ${friends}" th:if="${friend.isAccepted()}"
-                     class="friend-card m-2 p-2 d-flex flex-row align-items-center col-12 col-lg-4">
+                     class="friend-card m-2 p-2 d-flex flex-row align-items-center">
                     <!--/* If isAccepted is not true (false), Then show the friend request here*/-->
 
                     <!---------- FRIENDS IMAGE  ---------->
