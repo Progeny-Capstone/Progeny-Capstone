@@ -125,7 +125,7 @@ public class ConnectionsController {
     }
 
     // --------- SEARCH PROGENY USERS (POST)------------
-    @PostMapping("/profile/friends/search")
+    @GetMapping("/profile/friends/search")
     public String searchUsers(@RequestParam String search, Model model) {
 
 
