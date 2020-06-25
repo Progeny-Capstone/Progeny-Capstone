@@ -9,215 +9,85 @@
 <nav th:replace="partials/topnav :: navbar"></nav>
 
 <!---------- MAIN CONTAINER ---------->
-<article class="main-container">
+<article class="main-container container">
 
-    <!---------------------------------------------------->
-    <!---------- PENDING FRIEND REQUEST SECTION ---------->
-    <!---------------------------------------------------->
-    <section class="section-container">
+    <section class="section-container row">
 
-        <!---------- SECTION HEADER---------->
-        <h1 class="section-header text-center px-5 mb-5">Friend Requests</h1>
+        <!------------------------------------>
+        <!---------- SEARCH SECTION ---------->
+        <!------------------------------------>
+        <section class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-5">
 
-        <!---------- SHOW FRIENDS ---------->
-        <div class="d-flex flex-row justify-content-center flex-wrap mt-3  row">
+            <!---------- SEARCH BAR ---------->
+            <form th:action="@{/profile/friends/search}" method="post">
+                <input type="text" class="search-query form-control" name="search"
+                       placeholder="Search for someone on Progeny"/>
+            </form>
 
-            <!---------- FRIENDS CARD ---------->
-            <div th:each="friendRequest : ${friendRequests}" th:if="!${friendRequest.isAccepted()}"
-                 class="friend-card m-2 p-2 d-flex flex-row align-items-center col-12 col-lg-4">
-                <!--/* If isAccepted is not true (false), Then show the friend request here*/-->
+            <!---------- RESULTS CONTAINER ---------->
+            <div class="d-flex flex-row justify-content-center flex-wrap mt-3  row">
 
-                <!---------- FRIENDS IMAGE ---------->
-                <div class="friend-image-container ml-5 mr-2">
-                    <img th:src="@{${friendRequest.getUser().getProfileImageUrl()}}"
-                         class="friend-img rounded-circle mx-auto"
-                         alt="users profile picture">
-                </div>
+                <!---------- SEARCH RESULTS ITERATE EACH ---------->
+                <div th:each="userResults : ${foundUsers}" class="friend-card m-2 p-2 col-12 col-lg-4">
 
-                <!---------- POTENTIAL FRIEND TEXTUAL DETAILS ---------->
-                <div class="friend-details mr-5">
+                    <!---------- ADD FRIEND FORM ---------->
+                    <form th:action="@{/profile/friends}" method="POST" class="d-flex flex-column align-items-center">
 
-                    <!---------- FRIEND NAME ---------->
-                    <h5 th:text="${friendRequest.getUser().getFirstName()} + ' ' +${friendRequest.getUser().getLastName()}"
-                        class="user-friend-name m-0"></h5>
+                        <!---------- FRIENDS IMAGE ---------->
+                        <div class="friend-image-container  mr-2">
+                            <img th:src="@{${userResults.getProfileImageUrl()}}"
+                                 class="friend-img rounded-circle mx-auto"
+                                 alt="users profile picture">
+                        </div>
 
-                    <!---------- FRIEND LOCATION ---------->
-                    <p th:text="${friendRequest.getUser().getLocation()}" class="user-location m-0"></p>
+                        <!---------- POTENTIAL FRIEND TEXTUAL DETAILS ---------->
+                        <div class="friend-details mr-5">
 
-                </div>
+                            <!---------- FRIEND NAME ---------->
+                            <h5 th:text="${userResults.getFirstName()} + ' ' +${userResults.getLastName()}"
+                                class="user-friend-name m-0"></h5>
 
-                <div class="d-flex flex-row justify-content-center">
-
-                    <!---------- CONFIRM FORM ---------->
-                    <form th:action="@{/profile/friends/confirm-friend}" method="POST" class="">
-
-                        <!---------- FRIENDSHIP CONFIRM BUTTON---------->
-                        <button type="submit" class="btn btn-sm feature-btn">
-                            Confirm
-                        </button>
-
-                        <!---------- HIDDEN FRIENDS ID TO SUBMIT ---------->
-                        <input type="hidden" th:value="${friendRequest.getFriend().getId()}" th:name="friendId">
-                        <input type="hidden" th:value="${friendRequest.getUser().getId()}" th:name="userId">
-
-                    </form>
-
-                    <!---------- IFNORE FORM ---------->
-                    <form th:action="@{/profile/friends/ignore-friend}" method="POST" class="">
-
-                        <!---------- FRIENDSHIP DISMISS(DENY) ---------->
-                        <button type="submit" class="btn btn-sm feature-btn">
-                            Ignore
-                        </button>
-
-                        <!---------- HIDDEN FRIENDS ID TO SUBMIT ---------->
-                        <input type="hidden" th:value="${friendRequest.getFriend().getId()}" th:name="friendId">
-                        <input type="hidden" th:value="${friendRequest.getUser().getId()}" th:name="userId">
-
-                    </form>
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-    <!--------------------------------------------->
-    <!---------- CURRENT FRIENDS SECTION ---------->
-    <!--------------------------------------------->
-    <section class="section-container">
-
-        <!---------- SECTION HEADER---------->
-        <h1 class="section-header text-center px-5 mb-5"><span th:text="${currentUser.getFirstName()}"></span>, here are
-            your friends.</h1>
-
-        <!---------- SHOW FRIENDS ---------->
-        <div class="d-flex flex-row justify-content-center flex-wrap mt-3  row">
-
-            <!---------- FRIENDS CARD ---------->
-            <div th:each="friend : ${friends}" th:if="${friend.isAccepted()}"
-                 class="friend-card m-2 p-2 d-flex flex-row align-items-center col-12 col-lg-4">
-                <!--/* If isAccepted is not true (false), Then show the friend request here*/-->
-
-                <!---------- FRIENDS IMAGE  ---------->
-                <div class="friend-image-container ml-5 mr-2"
-                     th:switch="${friend.getFriend().getId() == currentUser.getId()}">
-                    <img th:case="${true}" th:src="@{${friend.getUser().getProfileImageUrl()}}"
-                         class="friend-img rounded-circle mx-auto"
-                         alt="users profile picture">
-                    <img th:case="${false}" th:src="@{${friend.getFriend().getProfileImageUrl()}}"
-                         class="friend-img rounded-circle mx-auto"
-                         alt="users profile picture">
-                </div>
-
-                <!---------- FRIENDS LIST ---------->
-                <div class="friend-details mr-5">
-
-                    <!---------- FRIEND NAME ---------->
-                    <div th:switch="${friend.getFriend().getId() == currentUser.getId()}">
-                        <h5 th:case="${true}"
-                            th:text="${friend.getUser().getFirstName()} + ' ' +${friend.getFriend().getLastName()}"
-                            class="user-friend-name m-0"></h5>
-                        <h5 th:case="${false}"
-                            th:text="${friend.getFriend().getFirstName()} + ' ' +${friend.getFriend().getLastName()}"
-                            class="user-friend-name m-0"></h5>
-                    </div>
-
-                    <!---------- FRIEND LOCATION ---------->
-                    <div th:switch="${friend.getFriend().getId() == currentUser.getId()}">
-                        <p th:case="${true}" th:text="${friend.getUser().getLocation()}" class="user-location m-0"></p>
-                        <p th:case="${false}" th:text="${friend.getFriend().getLocation()}"
-                           class="user-location m-0"></p>
-                    </div>
-
-                </div>
-
-                <!---------- DELETE MODAL BUTTON TRIGGER ---------->
-                <button type="button" class="btn btn-sm feature-btn" data-toggle="modal"
-                        data-target="#exampleModalCenter">
-                    Delete
-                </button>
-
-                <!---------- MODAL ---------->
-                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h2 class="modal-title text-center mx-auto" id="exampleModalLongTitle">Unfriend
-                                    Confirmation</h2>
-                            </div>
-                            <div class="modal-body" th:switch="${friend.getFriend().getId() == currentUser.getId()}">
-
-                                <p class="m-0 text-center">Are you sure you want to delete<br>
-                                    <strong th:case="${true}"
-                                            th:text="${friend.getUser().getFirstName()} + ' ' + ${friend.getUser().getLastName()}"></strong>
-                                    <strong th:case="${false}"
-                                            th:text="${friend.getFriend().getFirstName()} + ' ' + ${friend.getFriend().getLastName()}"></strong>
-                                </p>
-
-                            </div>
-                            <div class="modal-footer d-flex flex-row justify-content-around">
-
-                                <button type="button" class="btn btn-sm cancel-btn" data-dismiss="modal">Close
-                                </button>
-
-                                <!---------- DELETE FORM ---------->
-                                <form th:action="@{/profile/friends/delete}" method="POST" class=""
-                                      th:switch="${friend.getFriend().getId() == currentUser.getId()}">
-
-                                    <!---------- ID HIDDEN INPUT ---------->
-                                    <input th:case="${true}" type="hidden" th:value="${friend.getUser().getId()}"
-                                           th:name="deleteId">
-                                    <input th:case="${false}" type="hidden" th:value="${friend.getFriend().getId()}"
-                                           th:name="deleteId">
-
-                                    <!---------- DELETE BUTTON ---------->
-                                    <button class="btn btn-sm submit-btn" type="submit">Yes, I am sure</button>
-
-                                </form>
-
-                            </div>
+                            <!---------- FRIEND LOCATION ---------->
+                            <p th:text="${userResults.getLocation()}" class="user-location m-0"></p>
 
                         </div>
 
-                    </div>
+                        <!---------- ADD FRIEND BUTTON(S) ---------->
+                        <button class="btn btn-sm index-btn">
+                            Add
+                        </button>
+
+                        <!---------- ADD FRIEND ID HIDDEN INPUT---------->
+                        <input type="hidden" th:name="friendId" th:value="${userResults.id}">
+
+                    </form>
 
                 </div>
 
-
             </div>
 
-        </div>
+        </section>
 
-    </section>
 
-    <!------------------------------------>
-    <!---------- SEARCH SECTION ---------->
-    <!------------------------------------>
-    <section class="section-container mb-5">
+        <!---------------------------------------------------->
+        <!---------- PENDING FRIEND REQUEST SECTION ---------->
+        <!---------------------------------------------------->
+        <section class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
 
-        <!---------- SEARCH BAR ---------->
-        <form th:action="@{/profile/friends/search}" method="post">
-            <input type="text" class="search-query form-control" name="search"
-                   placeholder="Search for someone on Progeny"/>
-        </form>
+            <!---------- SECTION HEADER---------->
+            <h1 class="section-subheader mb-5">Friend Requests</h1>
 
-        <!---------- RESULTS CONTAINER ---------->
-        <div class="d-flex flex-row justify-content-center flex-wrap mt-3  row">
+            <!---------- SHOW FRIENDS ---------->
+            <div class="d-flex flex-column justify-content-center mt-3">
 
-            <!---------- SEARCH RESULTS ITERATE EACH ---------->
-            <div th:each="UserResults : ${foundUsers}" class="friend-card m-2 p-2 col-12 col-lg-4">
-
-                <!---------- ADD FRIEND FORM ---------->
-                <form th:action="@{/profile/friends}" method="POST" class="d-flex flex-row align-items-center">
+                <!---------- FRIENDS CARD ---------->
+                <div th:each="friendRequest : ${friendRequests}" th:if="!${friendRequest.isAccepted()}"
+                     class="friend-card m-2 p-2 d-flex flex-row align-items-center col-12 col-lg-4">
+                    <!--/* If isAccepted is not true (false), Then show the friend request here*/-->
 
                     <!---------- FRIENDS IMAGE ---------->
                     <div class="friend-image-container ml-5 mr-2">
-                        <img th:src="@{${UserResults.getProfileImageUrl()}}"
+                        <img th:src="@{${friendRequest.getUser().getProfileImageUrl()}}"
                              class="friend-img rounded-circle mx-auto"
                              alt="users profile picture">
                     </div>
@@ -226,32 +96,159 @@
                     <div class="friend-details mr-5">
 
                         <!---------- FRIEND NAME ---------->
-                        <h5 th:text="${UserResults.getFirstName()} + ' ' +${UserResults.getLastName()}"
+                        <h5 th:text="${friendRequest.getUser().getFirstName()} + ' ' +${friendRequest.getUser().getLastName()}"
                             class="user-friend-name m-0"></h5>
 
                         <!---------- FRIEND LOCATION ---------->
-                        <p th:text="${UserResults.getLocation()}" class="user-location m-0"></p>
+                        <p th:text="${friendRequest.getUser().getLocation()}" class="user-location m-0"></p>
 
                     </div>
 
-                    <!---------- ADD FRIEND BUTTON(S) ---------->
-                    <button class="btn btn-sm index-btn">
-                        Add
-                    </button>
+                    <div class="d-flex flex-row justify-content-center">
 
-                    <!---------- ADD FRIEND ID HIDDEN INPUT---------->
-                    <input type="hidden" th:name="friendId" th:value="${UserResults.id}">
+                        <!---------- CONFIRM FORM ---------->
+                        <form th:action="@{/profile/friends/confirm-friend}" method="POST" class="">
 
-                </form>
+                            <!---------- FRIENDSHIP CONFIRM BUTTON---------->
+                            <button type="submit" class="btn btn-sm feature-btn">
+                                Confirm
+                            </button>
+
+                            <!---------- HIDDEN FRIENDS ID TO SUBMIT ---------->
+                            <input type="hidden" th:value="${friendRequest.getFriend().getId()}" th:name="friendId">
+                            <input type="hidden" th:value="${friendRequest.getUser().getId()}" th:name="userId">
+
+                        </form>
+
+                        <!---------- IFNORE FORM ---------->
+                        <form th:action="@{/profile/friends/ignore-friend}" method="POST" class="">
+
+                            <!---------- FRIENDSHIP DISMISS(DENY) ---------->
+                            <button type="submit" class="btn btn-sm feature-btn">
+                                Ignore
+                            </button>
+
+                            <!---------- HIDDEN FRIENDS ID TO SUBMIT ---------->
+                            <input type="hidden" th:value="${friendRequest.getFriend().getId()}" th:name="friendId">
+                            <input type="hidden" th:value="${friendRequest.getUser().getId()}" th:name="userId">
+
+                        </form>
+                    </div>
+
+                </div>
+
 
             </div>
 
-        </div>
 
+        <!--------------------------------------------->
+        <!---------- CURRENT FRIENDS SECTION ---------->
+        <!--------------------------------------------->
+            <!---------- SECTION HEADER---------->
+            <h1 class="section-subheader mb-5">Friends</h1>
+
+            <!---------- SHOW FRIENDS ---------->
+            <div class="d-flex flex-row justify-content-center flex-wrap mt-3  row">
+
+                <!---------- FRIENDS CARD ---------->
+                <div th:each="friend : ${friends}" th:if="${friend.isAccepted()}"
+                     class="friend-card m-2 p-2 d-flex flex-row align-items-center col-12 col-lg-4">
+                    <!--/* If isAccepted is not true (false), Then show the friend request here*/-->
+
+                    <!---------- FRIENDS IMAGE  ---------->
+                    <div class="friend-image-container ml-5 mr-2"
+                         th:switch="${friend.getFriend().getId() == currentUser.getId()}">
+                        <img th:case="${true}" th:src="@{${friend.getUser().getProfileImageUrl()}}"
+                             class="friend-img rounded-circle mx-auto"
+                             alt="users profile picture">
+                        <img th:case="${false}" th:src="@{${friend.getFriend().getProfileImageUrl()}}"
+                             class="friend-img rounded-circle mx-auto"
+                             alt="users profile picture">
+                    </div>
+
+                    <!---------- FRIENDS LIST ---------->
+                    <div class="friend-details mr-5">
+
+                        <!---------- FRIEND NAME ---------->
+                        <div th:switch="${friend.getFriend().getId() == currentUser.getId()}">
+                            <h5 th:case="${true}"
+                                th:text="${friend.getUser().getFirstName()} + ' ' +${friend.getFriend().getLastName()}"
+                                class="user-friend-name m-0"></h5>
+                            <h5 th:case="${false}"
+                                th:text="${friend.getFriend().getFirstName()} + ' ' +${friend.getFriend().getLastName()}"
+                                class="user-friend-name m-0"></h5>
+                        </div>
+
+                        <!---------- FRIEND LOCATION ---------->
+                        <div th:switch="${friend.getFriend().getId() == currentUser.getId()}">
+                            <p th:case="${true}" th:text="${friend.getUser().getLocation()}"
+                               class="user-location m-0"></p>
+                            <p th:case="${false}" th:text="${friend.getFriend().getLocation()}"
+                               class="user-location m-0"></p>
+                        </div>
+
+                    </div>
+
+                    <!---------- DELETE MODAL BUTTON TRIGGER ---------->
+                    <button type="button" class="btn btn-sm feature-btn" data-toggle="modal"
+                            data-target="#exampleModalCenter">
+                        Delete
+                    </button>
+
+                    <!---------- MODAL ---------->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title text-center mx-auto" id="exampleModalLongTitle">Unfriend
+                                        Confirmation</h2>
+                                </div>
+                                <div class="modal-body"
+                                     th:switch="${friend.getFriend().getId() == currentUser.getId()}">
+
+                                    <p class="m-0 text-center">Are you sure you want to delete<br>
+                                        <strong th:case="${true}"
+                                                th:text="${friend.getUser().getFirstName()} + ' ' + ${friend.getUser().getLastName()}"></strong>
+                                        <strong th:case="${false}"
+                                                th:text="${friend.getFriend().getFirstName()} + ' ' + ${friend.getFriend().getLastName()}"></strong>
+                                    </p>
+
+                                </div>
+                                <div class="modal-footer d-flex flex-row justify-content-around">
+
+                                    <button type="button" class="btn btn-sm cancel-btn" data-dismiss="modal">Close
+                                    </button>
+
+                                    <!---------- DELETE FORM ---------->
+                                    <form th:action="@{/profile/friends/delete}" method="POST" class="">
+
+                                        <!---------- HIDDEN FRIENDS ID TO SUBMIT ---------->
+                                        <input type="hidden" th:value="${friend.getFriend().getId()}"
+                                               th:name="friendId">
+                                        <input type="hidden" th:value="${friend.getUser().getId()}" th:name="userId">
+
+                                        <!---------- DELETE BUTTON ---------->
+                                        <button class="btn btn-sm submit-btn" type="submit">Yes, I am sure</button>
+
+                                    </form>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
 
     </section>
-
-
 </article>
 
 
