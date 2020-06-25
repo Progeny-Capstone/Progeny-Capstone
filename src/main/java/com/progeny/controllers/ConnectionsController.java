@@ -83,7 +83,7 @@ public class ConnectionsController {
 
     // --------- CONFIRM FRIEND (POST)------------
     @PostMapping("/profile/friends/confirm-friend")
-    public String confirmFriend(@RequestParam long userId,@RequestParam long friendId, Model model) {
+    public String confirmFriend(@RequestParam long userId,@RequestParam long friendId) {
 
         // ------------- GET FRIENDSHIP -------------
         Friendship pendingFriendship = friendshipRepo.findFriendshipByUserIdAndFriendId(userId, friendId);
@@ -96,6 +96,16 @@ public class ConnectionsController {
 
         // --------- SAVE TO DB -----------
         friendshipRepo.save(pendingFriendship); // 3. save the list of users to the current users information
+
+        return "redirect:/profile/friends";
+    }
+
+    // --------- CONFIRM FRIEND (POST)------------
+    @PostMapping("/profile/friends/ignore-friend")
+    public String ignoreFriend(@RequestParam long userId,@RequestParam long friendId) {
+
+        // ------------- REMOVE FRIENDSHIP REQUEST -------------
+        friendshipRepo.deleteByUserIdAndFriendId(userId, friendId);
 
         return "redirect:/profile/friends";
     }

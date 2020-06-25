@@ -46,7 +46,7 @@
 
                 </div>
 
-                <div class="d-flex flex-row justify-content-around">
+                <div class="d-flex flex-row justify-content-center">
 
                     <!---------- CONFIRM FORM ---------->
                     <form th:action="@{/profile/friends/confirm-friend}" method="POST" class="">
@@ -62,10 +62,19 @@
 
                     </form>
 
-                    <!---------- FRIENDSHIP DISMISS(DENY) ---------->
-                    <button type="button" class="btn btn-sm feature-btn">
-                        Ignore
-                    </button>
+                    <!---------- IFNORE FORM ---------->
+                    <form th:action="@{/profile/friends/ignore-friend}" method="POST" class="">
+
+                        <!---------- FRIENDSHIP DISMISS(DENY) ---------->
+                        <button type="submit" class="btn btn-sm feature-btn">
+                            Ignore
+                        </button>
+
+                        <!---------- HIDDEN FRIENDS ID TO SUBMIT ---------->
+                        <input type="hidden" th:value="${friendRequest.getFriend().getId()}" th:name="friendId">
+                        <input type="hidden" th:value="${friendRequest.getUser().getId()}" th:name="userId">
+
+                    </form>
                 </div>
 
             </div>
