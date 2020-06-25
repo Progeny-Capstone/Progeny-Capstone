@@ -11,7 +11,9 @@
 <!---------- MAIN CONTAINER ---------->
 <article class="main-container">
 
+    <!---------------------------------------------------->
     <!---------- PENDING FRIEND REQUEST SECTION ---------->
+    <!---------------------------------------------------->
     <section class="section-container">
 
         <!---------- SECTION HEADER---------->
@@ -44,16 +46,25 @@
 
                 </div>
 
-                <div class="d-flex flex-row justify-content-center">
+                <div class="d-flex flex-row justify-content-around">
 
-                    <!---------- FRIENDSHIP CONFIRM ---------->
-                    <button type="button" class="btn btn-sm feature-btn">
-                        Confirm
-                    </button>
+                    <!---------- CONFIRM FORM ---------->
+                    <form th:action="@{/profile/friends/confirm-friend}" method="POST" class="">
+
+                        <!---------- FRIENDSHIP CONFIRM BUTTON---------->
+                        <button type="submit" class="btn btn-sm feature-btn">
+                            Confirm
+                        </button>
+
+                        <!---------- HIDDEN FRIENDS ID TO SUBMIT ---------->
+                        <input type="hidden" th:value="${friendRequest.getFriend().getId()}" th:name="friendId">
+                        <input type="hidden" th:value="${friendRequest.getUser().getId()}" th:name="userId">
+
+                    </form>
 
                     <!---------- FRIENDSHIP DISMISS(DENY) ---------->
                     <button type="button" class="btn btn-sm feature-btn">
-                        X
+                        Ignore
                     </button>
                 </div>
 
@@ -64,7 +75,10 @@
 
     </section>
 
+
+    <!--------------------------------------------->
     <!---------- CURRENT FRIENDS SECTION ---------->
+    <!--------------------------------------------->
     <section class="section-container">
 
         <!---------- SECTION HEADER---------->
@@ -80,23 +94,24 @@
                 <!--/* If isAccepted is not true (false), Then show the friend request here*/-->
 
                 <!---------- FRIENDS IMAGE  ---------->
-                <div class="friend-image-container ml-5 mr-2" th:switch="${friend.getFriend().getId() == currentUser.getId()}">
+                <div class="friend-image-container ml-5 mr-2"
+                     th:switch="${friend.getFriend().getId() == currentUser.getId()}">
                     <img th:case="${true}" th:src="@{${friend.getUser().getProfileImageUrl()}}"
                          class="friend-img rounded-circle mx-auto"
                          alt="users profile picture">
-                    <img  th:case="${false}" th:src="@{${friend.getFriend().getProfileImageUrl()}}"
+                    <img th:case="${false}" th:src="@{${friend.getFriend().getProfileImageUrl()}}"
                          class="friend-img rounded-circle mx-auto"
                          alt="users profile picture">
                 </div>
 
                 <!---------- FRIENDS LIST ---------->
-                <div class="friend-details mr-5" >
+                <div class="friend-details mr-5">
 
                     <!---------- FRIEND NAME ---------->
                     <div th:switch="${friend.getFriend().getId() == currentUser.getId()}">
                         <h5 th:case="${true}"
-                           th:text="${friend.getUser().getFirstName()} + ' ' +${friend.getFriend().getLastName()}"
-                           class="user-friend-name m-0"></h5>
+                            th:text="${friend.getUser().getFirstName()} + ' ' +${friend.getFriend().getLastName()}"
+                            class="user-friend-name m-0"></h5>
                         <h5 th:case="${false}"
                             th:text="${friend.getFriend().getFirstName()} + ' ' +${friend.getFriend().getLastName()}"
                             class="user-friend-name m-0"></h5>
@@ -129,8 +144,10 @@
                             <div class="modal-body" th:switch="${friend.getFriend().getId() == currentUser.getId()}">
 
                                 <p class="m-0 text-center">Are you sure you want to delete<br>
-                                    <strong th:case="${true}" th:text="${friend.getUser().getFirstName()} + ' ' + ${friend.getUser().getLastName()}"></strong>
-                                    <strong th:case="${false}" th:text="${friend.getFriend().getFirstName()} + ' ' + ${friend.getFriend().getLastName()}"></strong>
+                                    <strong th:case="${true}"
+                                            th:text="${friend.getUser().getFirstName()} + ' ' + ${friend.getUser().getLastName()}"></strong>
+                                    <strong th:case="${false}"
+                                            th:text="${friend.getFriend().getFirstName()} + ' ' + ${friend.getFriend().getLastName()}"></strong>
                                 </p>
 
                             </div>
@@ -140,11 +157,14 @@
                                 </button>
 
                                 <!---------- DELETE FORM ---------->
-                                <form th:action="@{/profile/friends/delete}" method="POST" class="" th:switch="${friend.getFriend().getId() == currentUser.getId()}">
+                                <form th:action="@{/profile/friends/delete}" method="POST" class=""
+                                      th:switch="${friend.getFriend().getId() == currentUser.getId()}">
 
                                     <!---------- ID HIDDEN INPUT ---------->
-                                    <input th:case="${true}" type="hidden" th:value="${friend.getUser().getId()}" th:name="deleteId">
-                                    <input th:case="${false}" type="hidden" th:value="${friend.getFriend().getId()}" th:name="deleteId">
+                                    <input th:case="${true}" type="hidden" th:value="${friend.getUser().getId()}"
+                                           th:name="deleteId">
+                                    <input th:case="${false}" type="hidden" th:value="${friend.getFriend().getId()}"
+                                           th:name="deleteId">
 
                                     <!---------- DELETE BUTTON ---------->
                                     <button class="btn btn-sm submit-btn" type="submit">Yes, I am sure</button>
@@ -166,8 +186,9 @@
 
     </section>
 
-
+    <!------------------------------------>
     <!---------- SEARCH SECTION ---------->
+    <!------------------------------------>
     <section class="section-container mb-5">
 
         <!---------- SEARCH BAR ---------->

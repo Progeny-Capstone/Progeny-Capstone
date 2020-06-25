@@ -81,6 +81,24 @@ public class ConnectionsController {
         return "users/connections";
     }
 
+    // --------- CONFIRM FRIEND (POST)------------
+    @PostMapping("/profile/friends/confirm-friend")
+    public String confirmFriend(@RequestParam long userId,@RequestParam long friendId, Model model) {
+
+        // ------------- GET FRIENDSHIP -------------
+        Friendship pendingFriendship = friendshipRepo.findFriendshipByUserIdAndFriendId(userId, friendId);
+
+        System.out.println(pendingFriendship.getFriend().getFirstName());
+        System.out.println(pendingFriendship.getUser().getFirstName());
+
+        // ------------- CHANGE FRIENDSHIP STATUS -------------
+        pendingFriendship.setAccepted(true);
+
+        // --------- SAVE TO DB -----------
+        friendshipRepo.save(pendingFriendship); // 3. save the list of users to the current users information
+
+        return "redirect:/profile/friends";
+    }
 
     // --------- DELETE CONNECTION (POST) ------------
     @PostMapping("/profile/friends/delete")

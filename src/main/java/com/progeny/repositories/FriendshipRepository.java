@@ -11,5 +11,6 @@ public interface FriendshipRepository extends CrudRepository<Friendship, Friends
     List<Friendship> findFriendshipsByUserId(long userId);
     List<Friendship> findFriendshipsByUserIdOrFriendId(long userId, long friendId);
     List<Friendship> findFriendshipsByFriendId(long friendId);
+    Friendship findFriendshipByUserIdAndFriendId(long userId, long friendId);
 
 }
