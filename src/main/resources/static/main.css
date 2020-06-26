@@ -11,10 +11,12 @@
     --kakhi-color: #D4D3B3;
 
     --dark-navy-color: #354755;
+    --grey-color: #d5dce2;
 
     --white-opacity-color: rgba(255, 255, 255, 0.7);
     --kakhi-opacity-color: rgba(212, 211, 179, 0.2);
     --navy-opacity-color: rgba(71, 94, 113, 0.7);
+
 
     /*font-family: 'DM Serif Display', serif;*/
     /*font-family: 'Roboto', sans-serif;*/
@@ -303,12 +305,8 @@ a:active {
 /*-----------------------------------*/
 /*------------- PROFILE -------------*/
 /*-----------------------------------*/
-#profile-nav {
-    background: var(--navy-color);
-}
-
 #profile-nav li a {
-    color: var(--Light-color);
+    color: var(--navy-color);
 }
 
 .profile-badge {
@@ -318,7 +316,7 @@ a:active {
 }
 
 .profile-details-container, .recording-sub-section,
-.friend-recording-sub-section {
+.friend-recording-sub-section, .profile-nav-item {
     background: var(--white-opacity-color);
     border-radius: 10px;
 }
@@ -347,38 +345,33 @@ a:active {
 }
 
 .add-recording-title {
-    color: var(--mint-color);
     font-size: calc(18px + (25 - 18) * ((100vw - 300px) / (1600 - 300)));
     /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
     font-family: 'Roboto', sans-serif;
 }
 
+.add-recording-title {
+    color: #fff;
+}
+
 .add-recording-graphic {
-    fill: var(--mint-color);
+    fill: var(--navy-color);
 }
 
 .recording-card-add {
     height: auto;
     width: 100%;
-    border: solid 1px var(--mint-color);
     border-radius: 10px;
+    background: var(--navy-opacity-color);
 }
 
-.friend-card {
-    background: #fff;
+.recording-section-header {
+    color: var(--navy-opacity-color);
+    font-size: calc(20px + (25 - 20) * ((100vw - 300px) / (1600 - 300)));
+    /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
+    font-family: 'Roboto', sans-serif;
 }
 
-.friend-image-container {
-    height: 65px;
-    width: 65px;
-}
-
-img.friend-img {
-    vertical-align: middle;
-    object-fit: cover;
-    height: 65px;
-    width: 65px;
-}
 
 .recording-card {
     height: auto;
