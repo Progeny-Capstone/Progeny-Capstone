@@ -9,7 +9,23 @@
 <nav th:replace="partials/topnav :: navbar"></nav>
 
 <!---------- MAIN CONTAINER ---------->
-<article class="main-container container">
+<article class="main-container">
+
+    <!---------- PROFILE NAVIGATION ---------->
+    <nav class="my-5" id="profile-nav">
+
+        <!---------- PROFILE NAVIGATION LIST ---------->
+        <ul class="nav nav-pills d-flex flex-row justify-content-center">
+
+            <!---------- PROFILE NAVIGATION LIST ITEMS ---------->
+            <li class="active mx-5 my-3 nav-item profile-nav-item"><a href="/profile">Profile</a></li>
+            <li class="mx-5 my-3 nav-item profile-nav-item"><a href="/profile/friends">Friends</a></li>
+            <li class="mx-5 my-3 nav-item profile-nav-item"><a href="/profile/edit/{id}">Settings</a></li>
+
+        </ul>
+
+    </nav>
+
 
     <section class="section-container row">
 

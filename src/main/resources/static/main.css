@@ -29,7 +29,9 @@ html {
     scroll-behavior: smooth;
 }
 
+/*------------------------------------------*/
 /*------------- SECTION BASICS -------------*/
+/*------------------------------------------*/
 a {
     color: var(--coral-color);
 }
@@ -96,7 +98,9 @@ a:active {
     color: var(--Light-color);
 }
 
+/*---------------------------------*/
 /*------------- INDEX -------------*/
+/*---------------------------------*/
 #view-more {
     float: left;
 }
@@ -127,7 +131,9 @@ a:active {
     color: var(--Light-color);
 }
 
+/*------------------------------------*/
 /*------------- GRAPHICS -------------*/
+/*------------------------------------*/
 .moon-stars-icons {
     fill: var(--coral-color);
     height: auto;
@@ -139,7 +145,9 @@ a:active {
     z-index: -1;
 }
 
+/*-----------------------------------*/
 /*------------- STORIES -------------*/
+/*-----------------------------------*/
 .story-image-container, .story-card {
     height: 500px;
     width: 350px;
@@ -197,7 +205,9 @@ a:active {
 
 }
 
+/*--------------------------------------------*/
 /*------------- STORY INDIVIDUAL -------------*/
+/*--------------------------------------------*/
 #publisher {
     font-size: calc(11px + (13 - 11) * ((100vw - 300px) / (1600 - 300)));
     /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
@@ -210,8 +220,9 @@ a:active {
     color: var(--coral-color);
 }
 
-
+/*----------------------------------------*/
 /*------------- STORY RECORD -------------*/
+/*----------------------------------------*/
 
 #record-title-container {
     background: var(--white-opacity-color);
@@ -247,13 +258,16 @@ a:active {
     background: var(--coral-color);
 }
 
-.audio-icon{
+.audio-icon {
     height: 30px;
     width: auto;
     fill: var(--Light-color);
 }
 
+
+/*-------------------*/
 /*---- STEP BAR -----*/
+/*-------------------*/
 .line {
     border-bottom: 1px solid var(--dark-navy-color);
     padding-bottom: 20px;
@@ -286,18 +300,25 @@ a:active {
     margin-top: -10px;
 }
 
-
+/*-----------------------------------*/
 /*------------- PROFILE -------------*/
-#profile-jumbotron {
+/*-----------------------------------*/
+#profile-nav {
     background: var(--navy-color);
+}
+
+#profile-nav li a {
     color: var(--Light-color);
 }
 
-#profile-section {
-    margin-top: 0;
+.profile-badge {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    color: var(--navy-color);
+    border-radius: 10px;
 }
 
-.profile-details-container, .recording-card {
+.profile-details-container, .recording-sub-section,
+.friend-recording-sub-section {
     background: var(--white-opacity-color);
     border-radius: 10px;
 }
@@ -325,6 +346,24 @@ a:active {
     background: var(--light-coral-color);
 }
 
+.add-recording-title {
+    color: var(--mint-color);
+    font-size: calc(18px + (25 - 18) * ((100vw - 300px) / (1600 - 300)));
+    /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
+    font-family: 'Roboto', sans-serif;
+}
+
+.add-recording-graphic {
+    fill: var(--mint-color);
+}
+
+.recording-card-add {
+    height: auto;
+    width: 100%;
+    border: solid 1px var(--mint-color);
+    border-radius: 10px;
+}
+
 .friend-card {
     background: #fff;
 }
@@ -345,17 +384,11 @@ img.friend-img {
     height: auto;
     width: 100%;
     border-radius: 10px;
-}
-
-.recording-card-add {
-    height: auto;
-    width: 100%;
-    background: var(--light-coral-color);
-    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .recording-title {
-    font-size: calc(20px + (30 - 20) * ((100vw - 300px) / (1600 - 300)));
+    font-size: calc(18px + (25 - 18) * ((100vw - 300px) / (1600 - 300)));
     /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
     font-family: 'Roboto', sans-serif;
 }
@@ -372,7 +405,10 @@ img.friend-img {
     fill: var(--navy-opacity-color);
 }
 
+
+/*----------------------------------------*/
 /*------------- EDIT PROFILE -------------*/
+/*----------------------------------------*/
 .modal-content {
     background: var(--Light-color);
 }
@@ -407,7 +443,10 @@ img.friend-img {
     color: var(--navy-color);
 }
 
+
+/*---------------------------------*/
 /*------------- FORMS -------------*/
+/*---------------------------------*/
 input[type="text"], input[type="password"], input[type="email"], textarea[type="text"] {
     background: transparent;
     border: none;
@@ -463,7 +502,10 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
     position: absolute;
 }
 
+
+/*--------------------------------------*/
 /*------------- TEAM CARDS -------------*/
+/*--------------------------------------*/
 .team-section-cards {
     margin: 5% 0;
 }
@@ -516,7 +558,9 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
     fill: var(--coral-color);
 }
 
+/*-----------------------------------*/
 /*------------- FEATURE -------------*/
+/*-----------------------------------*/
 #feature-jumbotron {
     background: url("images/stars.svg") no-repeat;
     background-color: var(--navy-color);
@@ -542,7 +586,9 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
     color: var(--navy-color);
 }
 
+/*-----------------------------------------*/
 /*------------- SCROLL ANCHOR -------------*/
+/*-----------------------------------------*/
 .arrow {
     position: absolute;
     bottom: 100px;
