@@ -26,15 +26,15 @@
             <li class="nav-item active"><a class="nav-link" href="/"><span class="sr-only">(current)</span></a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right d-flex flex-row align-items-center">
-            <li class="nav-item"><a class="nav-link" href="/stories">Stories</a></li>
-            <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+            <li class="nav-item mx-2"><a class="nav-link" href="/stories">Stories</a></li>
+            <li class="nav-item mx-2"><a class="nav-link" href="/about">About</a></li>
 
             <!--------SHOW FOR VISITOR-------->
-            <li sec:authorize="isAnonymous()" class="nav-item"><a class="nav-link" href="/register">Register</a></li>
-            <li sec:authorize="isAnonymous()" class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+            <li sec:authorize="isAnonymous()" class="nav-item mx-2"><a class="nav-link" href="/register">Register</a></li>
+            <li sec:authorize="isAnonymous()" class="nav-item mx-2"><a class="nav-link" href="/login">Login</a></li>
 
 
-            <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
+            <li sec:authorize="isAuthenticated()" class="nav-item mx-2 dropdown">
                 <a th:if="${#authentication.getPrincipal().isAdmin()}" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     Admin
@@ -61,7 +61,7 @@
 
             <!--------SHOW FOR REGISTERED/LOGGED IN USER-------->
             <li sec:authorize="isAuthenticated()">
-            <li class="nav-item"><a class="nav-link" href="/profile" sec:authorize="isAuthenticated()">Profile</a></li>
+            <li class="nav-item mx-2"><a class="nav-link" href="/profile" sec:authorize="isAuthenticated()">Profile</a></li>
             <form th:action="@{/logout}" method="POST" class="nav-item"> <!-- form to get submit to be post method -->
                 <button class="btn btn-sm btn-outline-danger my-2 my-sm-0" type="submit"
                         sec:authorize="isAuthenticated()" id="logout-btn">Logout

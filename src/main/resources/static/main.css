@@ -305,6 +305,11 @@ a:active {
 /*-----------------------------------*/
 /*------------- PROFILE -------------*/
 /*-----------------------------------*/
+.greeting-jumbotron {
+    background: var(--navy-color);
+    color: #fff;
+}
+
 #profile-nav li a {
     color: var(--navy-color);
 }
@@ -316,10 +321,11 @@ a:active {
 }
 
 .profile-details-container, .recording-sub-section,
-.friend-recording-sub-section, .profile-nav-item {
+.friend-recording-sub-section, #profile-nav {
     background: var(--white-opacity-color);
     border-radius: 10px;
 }
+
 
 .profile-image-container {
     height: 200px;
@@ -355,7 +361,11 @@ a:active {
 }
 
 .add-recording-graphic {
-    fill: var(--navy-color);
+    fill: #fff;
+}
+
+.add-recording-graphic:hover {
+    fill: var(--mint-color);
 }
 
 .recording-card-add {
@@ -392,10 +402,55 @@ a:active {
     font-family: 'Roboto', sans-serif;
 }
 
-.icon-location {
-    height: auto;
-    width: 15px;
-    fill: var(--navy-opacity-color);
+.profile-section--graphic {
+    fill: var(--navy-color);
+}
+
+.profile-section--graphic:hover {
+    fill: var(--mint-color);
+}
+
+.profile-section--graphic:active {
+    fill: var(--coral-color);
+}
+
+/*-----------------------------------*/
+/*------------- FRIENDS -------------*/
+/*-----------------------------------*/
+.friend-section, .search-section{
+    background: var(--white-opacity-color);
+    border-radius: 10px;
+}
+
+.friend-card{
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.accepted-friends{
+    border: solid 2px var(--mint-color);
+}
+
+#confirm-btn{
+    background: var(--mint-color);
+    color: #fff;
+}
+#confirm-btn:hover{
+    background: var(--navy-color);
+    color: #fff;
+}
+
+.friend-image-container {
+    height: 50px;
+    width: 50px;
+}
+
+.friend-image-container img {
+    vertical-align: middle;
+    object-fit: cover;
+    width: 100%;
+    max-width: 50px;
+    height: 100%;
 }
 
 

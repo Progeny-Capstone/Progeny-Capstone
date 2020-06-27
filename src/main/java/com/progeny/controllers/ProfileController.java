@@ -1,5 +1,6 @@
 package com.progeny.controllers;
 
+import com.progeny.model.Friendship;
 import com.progeny.model.Recording;
 import com.progeny.model.User;
 import com.progeny.repositories.FriendshipRepository;
@@ -44,7 +45,6 @@ public class ProfileController {
 
         // ------------ GET THE CURRENT USERS FRIENDS ---------------
         model.addAttribute("friends", friendshipRepo.findFriendshipsByUserId(currentUser.getId())); // 2. Show a list of users attached to current user
-
 
         // ------------ IF NO RECORDINGS LIST ---------------
         if(user.getRecordings() == null){ // if there is no friends list -->

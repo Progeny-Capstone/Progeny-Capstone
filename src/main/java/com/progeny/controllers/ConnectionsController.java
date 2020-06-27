@@ -39,6 +39,16 @@ public class ConnectionsController {
         User currentUser = new User(user); // 2. set new user to user ^
         model.addAttribute("currentUser", currentUser);// 2. Show current user on form
 
+        List<Friendship> friendRequests = friendshipRepo.findFriendshipsByFriendId(currentUser.getId());
+
+        for(Friendship friendRequest: friendRequests){
+            if (!friendRequest.isAccepted()){
+                List<Friendship> friendRequestList = new ArrayList<>();
+                friendRequestList.add(friendRequest);
+                model.addAttribute("friendRequestList", friendRequestList);
+            }
+        }
+
         // ------------- SHOW USER'S FRIENDS -------------
         model.addAttribute("friendRequests", friendshipRepo.findFriendshipsByFriendId(currentUser.getId())); // List of users where the friend id is equal to the current user's id
         model.addAttribute("friends", friendshipRepo.findFriendshipsByUserIdOrFriendId(currentUser.getId(), currentUser.getId())); // List of all users in the friendship table
@@ -151,9 +161,20 @@ public class ConnectionsController {
 
         }
 
+        List<Friendship> friendRequests = friendshipRepo.findFriendshipsByFriendId(currentUser.getId());
+
+        for(Friendship friendRequest: friendRequests){
+            if (!friendRequest.isAccepted()){
+                List<Friendship> friendRequestList = new ArrayList<>();
+                friendRequestList.add(friendRequest);
+                model.addAttribute("friendRequestList", friendRequestList);
+            }
+        }
+
         // --------- DISPLAY INFORMATION VARIABLES -----------
         model.addAttribute("currentUser", currentUser);// 1. Show current user on form
         model.addAttribute("friends", friendshipRepo.findFriendshipsByUserId(currentUser.getId())); // 2. Show a list of users attached to current user
+        model.addAttribute("friendRequests", friendshipRepo.findFriendshipsByFriendId(currentUser.getId())); // List of users where the friend id is equal to the current user's id
         model.addAttribute("users", usersRepo.findAll()); // 3. Show a list of users on Progeny
 
         return "users/connections";
