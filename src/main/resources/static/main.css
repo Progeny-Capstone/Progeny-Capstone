@@ -11,10 +11,12 @@
     --kakhi-color: #D4D3B3;
 
     --dark-navy-color: #354755;
+    --grey-color: #d5dce2;
 
     --white-opacity-color: rgba(255, 255, 255, 0.7);
     --kakhi-opacity-color: rgba(212, 211, 179, 0.2);
     --navy-opacity-color: rgba(71, 94, 113, 0.7);
+
 
     /*font-family: 'DM Serif Display', serif;*/
     /*font-family: 'Roboto', sans-serif;*/
@@ -29,7 +31,9 @@ html {
     scroll-behavior: smooth;
 }
 
+/*------------------------------------------*/
 /*------------- SECTION BASICS -------------*/
+/*------------------------------------------*/
 a {
     color: var(--coral-color);
 }
@@ -96,7 +100,9 @@ a:active {
     color: var(--Light-color);
 }
 
+/*---------------------------------*/
 /*------------- INDEX -------------*/
+/*---------------------------------*/
 #view-more {
     float: left;
 }
@@ -127,7 +133,9 @@ a:active {
     color: var(--Light-color);
 }
 
+/*------------------------------------*/
 /*------------- GRAPHICS -------------*/
+/*------------------------------------*/
 .moon-stars-icons {
     fill: var(--coral-color);
     height: auto;
@@ -139,7 +147,9 @@ a:active {
     z-index: -1;
 }
 
+/*-----------------------------------*/
 /*------------- STORIES -------------*/
+/*-----------------------------------*/
 .story-image-container, .story-card {
     height: 500px;
     width: 350px;
@@ -197,7 +207,9 @@ a:active {
 
 }
 
+/*--------------------------------------------*/
 /*------------- STORY INDIVIDUAL -------------*/
+/*--------------------------------------------*/
 #publisher {
     font-size: calc(11px + (13 - 11) * ((100vw - 300px) / (1600 - 300)));
     /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
@@ -210,8 +222,9 @@ a:active {
     color: var(--coral-color);
 }
 
-
+/*----------------------------------------*/
 /*------------- STORY RECORD -------------*/
+/*----------------------------------------*/
 
 #record-title-container {
     background: var(--white-opacity-color);
@@ -247,13 +260,16 @@ a:active {
     background: var(--coral-color);
 }
 
-.audio-icon{
+.audio-icon {
     height: 30px;
     width: auto;
     fill: var(--Light-color);
 }
 
+
+/*-------------------*/
 /*---- STEP BAR -----*/
+/*-------------------*/
 .line {
     border-bottom: 1px solid var(--dark-navy-color);
     padding-bottom: 20px;
@@ -286,21 +302,30 @@ a:active {
     margin-top: -10px;
 }
 
-
+/*-----------------------------------*/
 /*------------- PROFILE -------------*/
-#profile-jumbotron {
+/*-----------------------------------*/
+.greeting-jumbotron {
     background: var(--navy-color);
-    color: var(--Light-color);
+    color: #fff;
 }
 
-#profile-section {
-    margin-top: 0;
+#profile-nav li a {
+    color: var(--navy-color);
 }
 
-.profile-details-container, .recording-card {
+.profile-badge {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    color: var(--navy-color);
+    border-radius: 10px;
+}
+
+.profile-details-container, .recording-sub-section,
+.friend-recording-sub-section, #profile-nav {
     background: var(--white-opacity-color);
     border-radius: 10px;
 }
+
 
 .profile-image-container {
     height: 200px;
@@ -325,37 +350,48 @@ a:active {
     background: var(--light-coral-color);
 }
 
-.friend-card {
-    background: #fff;
+.add-recording-title {
+    font-size: calc(18px + (25 - 18) * ((100vw - 300px) / (1600 - 300)));
+    /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
+    font-family: 'Roboto', sans-serif;
 }
 
-.friend-image-container {
-    height: 65px;
-    width: 65px;
+.add-recording-title {
+    color: #fff;
 }
 
-img.friend-img {
-    vertical-align: middle;
-    object-fit: cover;
-    height: 65px;
-    width: 65px;
+.add-recording-graphic {
+    fill: #fff;
 }
 
-.recording-card {
-    height: auto;
-    width: 100%;
-    border-radius: 10px;
+.add-recording-graphic:hover {
+    fill: var(--mint-color);
 }
 
 .recording-card-add {
     height: auto;
     width: 100%;
-    background: var(--light-coral-color);
     border-radius: 10px;
+    background: var(--navy-opacity-color);
+}
+
+.recording-section-header {
+    color: var(--navy-opacity-color);
+    font-size: calc(20px + (25 - 20) * ((100vw - 300px) / (1600 - 300)));
+    /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.recording-card {
+    height: auto;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .recording-title {
-    font-size: calc(20px + (30 - 20) * ((100vw - 300px) / (1600 - 300)));
+    font-size: calc(18px + (25 - 18) * ((100vw - 300px) / (1600 - 300)));
     /*font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));*/
     font-family: 'Roboto', sans-serif;
 }
@@ -366,13 +402,61 @@ img.friend-img {
     font-family: 'Roboto', sans-serif;
 }
 
-.icon-location {
-    height: auto;
-    width: 15px;
-    fill: var(--navy-opacity-color);
+.profile-section--graphic {
+    fill: var(--navy-color);
 }
 
+.profile-section--graphic:hover {
+    fill: var(--mint-color);
+}
+
+.profile-section--graphic:active {
+    fill: var(--coral-color);
+}
+
+/*-----------------------------------*/
+/*------------- FRIENDS -------------*/
+/*-----------------------------------*/
+.friend-section, .search-section{
+    background: var(--white-opacity-color);
+    border-radius: 10px;
+}
+
+.friend-card{
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.accepted-friends{
+    border: solid 2px var(--mint-color);
+}
+
+#confirm-btn{
+    background: var(--mint-color);
+    color: #fff;
+}
+#confirm-btn:hover{
+    background: var(--navy-color);
+    color: #fff;
+}
+
+.friend-image-container {
+    height: 50px;
+    width: 50px;
+}
+
+.friend-image-container img {
+    vertical-align: middle;
+    object-fit: cover;
+    width: 100%;
+    max-width: 50px;
+    height: 100%;
+}
+
+
+/*----------------------------------------*/
 /*------------- EDIT PROFILE -------------*/
+/*----------------------------------------*/
 .modal-content {
     background: var(--Light-color);
 }
@@ -407,7 +491,10 @@ img.friend-img {
     color: var(--navy-color);
 }
 
+
+/*---------------------------------*/
 /*------------- FORMS -------------*/
+/*---------------------------------*/
 input[type="text"], input[type="password"], input[type="email"], textarea[type="text"] {
     background: transparent;
     border: none;
@@ -463,7 +550,10 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
     position: absolute;
 }
 
+
+/*--------------------------------------*/
 /*------------- TEAM CARDS -------------*/
+/*--------------------------------------*/
 .team-section-cards {
     margin: 5% 0;
 }
@@ -516,7 +606,9 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
     fill: var(--coral-color);
 }
 
+/*-----------------------------------*/
 /*------------- FEATURE -------------*/
+/*-----------------------------------*/
 #feature-jumbotron {
     background: url("images/stars.svg") no-repeat;
     background-color: var(--navy-color);
@@ -542,7 +634,9 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
     color: var(--navy-color);
 }
 
+/*-----------------------------------------*/
 /*------------- SCROLL ANCHOR -------------*/
+/*-----------------------------------------*/
 .arrow {
     position: absolute;
     bottom: 100px;

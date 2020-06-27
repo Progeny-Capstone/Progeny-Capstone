@@ -8,25 +8,76 @@
 <!---------- TOP NAVIGATION BAR ---------->
 <nav th:replace="partials/topnav :: navbar"></nav>
 
-<!---------- SECTION ---------->
+<!---------- MAIN CONTAINER ---------->
 <article class="main-container">
 
-    <!---------- SECTION ---------->
-    <section class="section-container">
+    <!---------- PROFILE NAVIGATION ---------->
+    <section class="jumbotron greeting-jumbotron mt-5">
+        <h1 class="section-header">Welcome back, <span th:text="${currentUser.firstName}"></span>!</h1>
+    </section>
+
+    <!---------- PROFILE NAVIGATION ---------->
+    <nav class="section-container mt-5 mb-2" id="profile-nav">
+
+        <!---------- PROFILE NAVIGATION LIST ---------->
+        <ul class="nav d-flex flex-row justify-content-between row ">
+
+            <!---------- PROFILE NAVIGATION LIST ITEMS ---------->
+            <li class=" py-3 profile-nav-item text-center col-12 col-md-4 ">
+                <a href="/profile" class="d-flex flex-column align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         class="profile-section--graphic mb-1">
+                        <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm7.753 18.305c-.261-.586-.789-.991-1.871-1.241-2.293-.529-4.428-.993-3.393-2.945 3.145-5.942.833-9.119-2.489-9.119-3.388 0-5.644 3.299-2.489 9.119 1.066 1.964-1.148 2.427-3.393 2.945-1.084.25-1.608.658-1.867 1.246-1.405-1.723-2.251-3.919-2.251-6.31 0-5.514 4.486-10 10-10s10 4.486 10 10c0 2.389-.845 4.583-2.247 6.305z"/>
+                    </svg>
+                    Profile
+                </a>
+            </li>
+            <li class=" py-3 profile-nav-item text-center col-12 col-md-4 ">
+                <a href="/profile/friends" class="d-flex flex-column align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         class="profile-section--graphic mb-1">
+                        <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 22c-3.123 0-5.914-1.441-7.749-3.69.259-.588.783-.995 1.867-1.246 2.244-.518 4.459-.981 3.393-2.945-3.155-5.82-.899-9.119 2.489-9.119 3.322 0 5.634 3.177 2.489 9.119-1.035 1.952 1.1 2.416 3.393 2.945 1.082.25 1.61.655 1.871 1.241-1.836 2.253-4.628 3.695-7.753 3.695z"/>
+                    </svg>
+                    Friends
+                </a>
+            </li>
+            <li class=" py-3 profile-nav-item text-center col-12 col-md-4 ">
+                <a href="/profile/edit/{id}" class="d-flex flex-column align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         class="profile-section--graphic mb-1">
+                        <path d="M24 14.187v-4.374c-2.148-.766-2.726-.802-3.027-1.529-.303-.729.083-1.169 1.059-3.223l-3.093-3.093c-2.026.963-2.488 1.364-3.224 1.059-.727-.302-.768-.889-1.527-3.027h-4.375c-.764 2.144-.8 2.725-1.529 3.027-.752.313-1.203-.1-3.223-1.059l-3.093 3.093c.977 2.055 1.362 2.493 1.059 3.224-.302.727-.881.764-3.027 1.528v4.375c2.139.76 2.725.8 3.027 1.528.304.734-.081 1.167-1.059 3.223l3.093 3.093c1.999-.95 2.47-1.373 3.223-1.059.728.302.764.88 1.529 3.027h4.374c.758-2.131.799-2.723 1.537-3.031.745-.308 1.186.099 3.215 1.062l3.093-3.093c-.975-2.05-1.362-2.492-1.059-3.223.3-.726.88-.763 3.027-1.528zm-4.875.764c-.577 1.394-.068 2.458.488 3.578l-1.084 1.084c-1.093-.543-2.161-1.076-3.573-.49-1.396.581-1.79 1.693-2.188 2.877h-1.534c-.398-1.185-.791-2.297-2.183-2.875-1.419-.588-2.507-.045-3.579.488l-1.083-1.084c.557-1.118 1.066-2.18.487-3.58-.579-1.391-1.691-1.784-2.876-2.182v-1.533c1.185-.398 2.297-.791 2.875-2.184.578-1.394.068-2.459-.488-3.579l1.084-1.084c1.082.538 2.162 1.077 3.58.488 1.392-.577 1.785-1.69 2.183-2.875h1.534c.398 1.185.792 2.297 2.184 2.875 1.419.588 2.506.045 3.579-.488l1.084 1.084c-.556 1.121-1.065 2.187-.488 3.58.577 1.391 1.689 1.784 2.875 2.183v1.534c-1.188.398-2.302.791-2.877 2.183zm-7.125-5.951c1.654 0 3 1.346 3 3s-1.346 3-3 3-3-1.346-3-3 1.346-3 3-3zm0-2c-2.762 0-5 2.238-5 5s2.238 5 5 5 5-2.238 5-5-2.238-5-5-5z"/>
+                    </svg>
+                    Settings
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+    <!---------------------------------------------------->
+    <!---------- PENDING FRIEND REQUEST SECTION ---------->
+    <!---------------------------------------------------->
+    <section class="section-container friend-section mt-3 mb-3 px-5 pt-5 pb-3">
 
         <!---------- SECTION HEADER---------->
-        <h1 class="section-header text-center px-5 mb-5"><span th:text="${currentUser.getFirstName()}"></span>, here are your
-            friends.</h1>
+        <h1 class="section-subheader p-4">Friend Requests</h1>
 
         <!---------- SHOW FRIENDS ---------->
-        <div class="d-flex flex-row justify-content-center flex-wrap mt-3  row">
+        <div class="d-flex flex-column justify-content-center m-2 p-2">
+
+            <!--/* If there are no friends Requests, Then show this sentence*/-->
+            <p th:if="${friendRequestList == null}" class="p-4">You have no friend requests</p>
 
             <!---------- FRIENDS CARD ---------->
-            <div th:each="friend : ${friends}" class="friend-card m-2 p-2 d-flex flex-row align-items-center col-12 col-lg-4">
+            <div th:each="friendRequest : ${friendRequests}" th:if="!${friendRequest.isAccepted()}"
+                 class="friend-card m-2 p-2 d-flex flex-row align-items-center">
+                <!--/* If isAccepted is not true (false), Then show the friend request here*/-->
 
                 <!---------- FRIENDS IMAGE ---------->
                 <div class="friend-image-container ml-5 mr-2">
-                    <img th:src="@{${friend.getProfileImageUrl()}}"
+                    <img th:src="@{${friendRequest.getUser().getProfileImageUrl()}}"
                          class="friend-img rounded-circle mx-auto"
                          alt="users profile picture">
                 </div>
@@ -35,16 +86,102 @@
                 <div class="friend-details mr-5">
 
                     <!---------- FRIEND NAME ---------->
-                    <h5 th:text="${friend.getFirstName()} + ' ' +${friend.getLastName()}"
+                    <h5 th:text="${friendRequest.getUser().getFirstName()} + ' ' +${friendRequest.getUser().getLastName()}"
                         class="user-friend-name m-0"></h5>
 
                     <!---------- FRIEND LOCATION ---------->
-                    <p th:text="${friend.getLocation()}" class="user-location m-0"></p>
+                    <p th:text="${friendRequest.getUser().getLocation()}" class="user-location m-0"></p>
+
+                </div>
+
+                <div class="d-flex flex-row justify-content-center">
+
+                    <!---------- CONFIRM FORM ---------->
+                    <form th:action="@{/profile/friends/confirm-friend}" method="POST" class="mx-2">
+
+                        <!---------- FRIENDSHIP CONFIRM BUTTON---------->
+                        <button type="submit" class="btn btn-sm m-0" id="confirm-btn">
+                            Confirm
+                        </button>
+
+                        <!---------- HIDDEN FRIENDS ID TO SUBMIT ---------->
+                        <input type="hidden" th:value="${friendRequest.getFriend().getId()}" th:name="friendId">
+                        <input type="hidden" th:value="${friendRequest.getUser().getId()}" th:name="userId">
+
+                    </form>
+
+                    <!---------- IGNORE FORM ---------->
+                    <form th:action="@{/profile/friends/ignore-friend}" method="POST" class="mx-2">
+
+                        <!---------- FRIENDSHIP DISMISS(DENY) ---------->
+                        <button type="submit" class="btn btn-sm feature-btn m-0">
+                            Ignore
+                        </button>
+
+                        <!---------- HIDDEN FRIENDS ID TO SUBMIT ---------->
+                        <input type="hidden" th:value="${friendRequest.getFriend().getId()}" th:name="friendId">
+                        <input type="hidden" th:value="${friendRequest.getUser().getId()}" th:name="userId">
+
+                    </form>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!--------------------------------------------->
+        <!---------- CURRENT FRIENDS SECTION ---------->
+        <!--------------------------------------------->
+        <!---------- SECTION HEADER---------->
+        <h1 class="section-subheader p-4">Friends</h1>
+
+        <!---------- SHOW FRIENDS ---------->
+        <div class="d-flex flex-column justify-content-center mt-1 m-2 p-2">
+
+            <!---------- FRIENDS CARD ---------->
+            <div th:each="friend : ${friends}" th:if="${friend.isAccepted()}"
+                 class="friend-card accepted-friends m-2 p-2 d-flex flex-row align-items-center">
+                <!--/* If isAccepted is not true (false), Then show the friend request here*/-->
+
+                <!---------- FRIENDS IMAGE  ---------->
+                <div class="friend-image-container ml-5 mr-2"
+                     th:switch="${friend.getFriend().getId() == currentUser.getId()}">
+                    <img th:case="${true}" th:src="@{${friend.getUser().getProfileImageUrl()}}"
+                         class="friend-img rounded-circle mx-auto"
+                         alt="users profile picture">
+                    <img th:case="${false}" th:src="@{${friend.getFriend().getProfileImageUrl()}}"
+                         class="friend-img rounded-circle mx-auto"
+                         alt="users profile picture">
+                </div>
+
+                <!---------- FRIENDS LIST ---------->
+                <div class="friend-details mr-5">
+
+                    <!---------- FRIEND NAME ---------->
+                    <div th:switch="${friend.getFriend().getId() == currentUser.getId()}">
+                        <h5 th:case="${true}"
+                            th:text="${friend.getUser().getFirstName()} + ' ' +${friend.getFriend().getLastName()}"
+                            class="user-friend-name m-0"></h5>
+                        <h5 th:case="${false}"
+                            th:text="${friend.getFriend().getFirstName()} + ' ' +${friend.getFriend().getLastName()}"
+                            class="user-friend-name m-0"></h5>
+                    </div>
+
+                    <!---------- FRIEND LOCATION ---------->
+                    <div th:switch="${friend.getFriend().getId() == currentUser.getId()}">
+                        <p th:case="${true}" th:text="${friend.getUser().getLocation()}"
+                           class="user-location m-0"></p>
+                        <p th:case="${false}" th:text="${friend.getFriend().getLocation()}"
+                           class="user-location m-0"></p>
+                    </div>
 
                 </div>
 
                 <!---------- DELETE MODAL BUTTON TRIGGER ---------->
-                <button type="button" class="btn btn-sm feature-btn" data-toggle="modal" data-target="#exampleModalCenter">
+                <button type="button" class="btn btn-sm feature-btn m-0" data-toggle="modal"
+                        data-target="#exampleModalCenter">
                     Delete
                 </button>
 
@@ -57,22 +194,29 @@
                                 <h2 class="modal-title text-center mx-auto" id="exampleModalLongTitle">Unfriend
                                     Confirmation</h2>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body"
+                                 th:switch="${friend.getFriend().getId() == currentUser.getId()}">
 
                                 <p class="m-0 text-center">Are you sure you want to delete<br>
-                                    <strong th:text="${friend.getFirstName()} + ' ' + ${friend.getLastName()}"></strong>
+                                    <strong th:case="${true}"
+                                            th:text="${friend.getUser().getFirstName()} + ' ' + ${friend.getUser().getLastName()}"></strong>
+                                    <strong th:case="${false}"
+                                            th:text="${friend.getFriend().getFirstName()} + ' ' + ${friend.getFriend().getLastName()}"></strong>
                                 </p>
 
                             </div>
                             <div class="modal-footer d-flex flex-row justify-content-around">
 
-                                <button type="button" class="btn btn-sm cancel-btn" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-sm cancel-btn" data-dismiss="modal">Close
+                                </button>
 
                                 <!---------- DELETE FORM ---------->
                                 <form th:action="@{/profile/friends/delete}" method="POST" class="">
 
-                                    <!---------- ID HIDDEN INPUT ---------->
-                                    <input type="hidden" th:value="${friend.getId()}" th:name="deleteId">
+                                    <!---------- HIDDEN FRIENDS ID TO SUBMIT ---------->
+                                    <input type="hidden" th:value="${friend.getFriend().getId()}"
+                                           th:name="friendId">
+                                    <input type="hidden" th:value="${friend.getUser().getId()}" th:name="userId">
 
                                     <!---------- DELETE BUTTON ---------->
                                     <button class="btn btn-sm submit-btn" type="submit">Yes, I am sure</button>
@@ -80,9 +224,13 @@
                                 </form>
 
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>
+
 
             </div>
 
@@ -90,27 +238,32 @@
 
     </section>
 
-    <!---------- SEARCH SECTION ---------->
-    <section class="section-container mb-5">
+    <section class="section-container mt-3 mb-5">
+
+        <!------------------------------------>
+        <!---------- SEARCH SECTION ---------->
+        <!------------------------------------>
+        <section class="search-section px-5 pt-5 pb-5 mb-5">
 
             <!---------- SEARCH BAR ---------->
-            <form th:action="@{/profile/friends/search}" method="post">
+            <form th:action="@{/profile/friends/search}" method="get">
                 <input type="text" class="search-query form-control" name="search"
                        placeholder="Search for someone on Progeny"/>
             </form>
 
             <!---------- RESULTS CONTAINER ---------->
-            <div class="d-flex flex-row justify-content-center flex-wrap mt-3  row">
+            <div class="d-flex flex-column justify-content-center">
 
                 <!---------- SEARCH RESULTS ITERATE EACH ---------->
-                <div th:each="UserResults : ${foundUsers}" class="friend-card m-2 p-2 col-12 col-lg-4">
+                <div th:each="foundUser : ${foundUsers}" class="">
 
                     <!---------- ADD FRIEND FORM ---------->
-                    <form th:action="@{/profile/friends}" method="POST" class="d-flex flex-row align-items-center">
+                    <form th:action="@{/profile/friends}" method="POST"
+                          class="friend-card m-2 p-2 d-flex flex-row align-items-center">
 
                         <!---------- FRIENDS IMAGE ---------->
                         <div class="friend-image-container ml-5 mr-2">
-                            <img th:src="@{${UserResults.getProfileImageUrl()}}"
+                            <img th:src="@{${foundUser.getProfileImageUrl()}}"
                                  class="friend-img rounded-circle mx-auto"
                                  alt="users profile picture">
                         </div>
@@ -119,21 +272,21 @@
                         <div class="friend-details mr-5">
 
                             <!---------- FRIEND NAME ---------->
-                            <h5 th:text="${UserResults.getFirstName()} + ' ' +${UserResults.getLastName()}"
+                            <h5 th:text="${foundUser.getFirstName()} + ' ' +${foundUser.getLastName()}"
                                 class="user-friend-name m-0"></h5>
 
                             <!---------- FRIEND LOCATION ---------->
-                            <p th:text="${UserResults.getLocation()}" class="user-location m-0"></p>
+                            <p th:text="${foundUser.getLocation()}" class="user-location m-0"></p>
 
                         </div>
 
                         <!---------- ADD FRIEND BUTTON(S) ---------->
-                        <button class="btn btn-sm index-btn">
-                            Add
-                        </button>
+                        <button class="btn btn-sm index-btn m-0" th:if="${foundUser.id != currentUser.id}">Add</button>
+                        <p class="user-location" th:if="${foundUser.id == currentUser.id}">you</p>
 
                         <!---------- ADD FRIEND ID HIDDEN INPUT---------->
-                        <input type="hidden" th:name="friendId" th:value="${UserResults.id}">
+                        <input type="hidden" th:name="friendId" th:value="${foundUser.id}">
+
 
                     </form>
 
@@ -141,9 +294,9 @@
 
             </div>
 
+        </section>
 
     </section>
-
 
 </article>
 

@@ -1,6 +1,9 @@
 package com.progeny.controllers;
 
+import com.progeny.model.Friendship;
+import com.progeny.model.FriendshipKey;
 import com.progeny.model.User;
+import com.progeny.repositories.FriendshipRepository;
 import com.progeny.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,25 +19,40 @@ public class ConnectionsController {
 
     // --------- INITIALIZE ------------
     private UserRepository usersRepo;
-    private PasswordEncoder passwordEncoder;
+    private FriendshipRepository friendshipRepo;
 
 
     // ------------ CONSTRUCTOR METHOD ---------------
     // --------- AKA DEPENDENCY INJECTION ------------
-    public ConnectionsController(UserRepository usersRepo, PasswordEncoder passwordEncoder) {
+    public ConnectionsController(UserRepository usersRepo, FriendshipRepository friendshipRepo) {
         this.usersRepo = usersRepo;
-        this.passwordEncoder = passwordEncoder;
+        this.friendshipRepo = friendshipRepo;
     }
 
 
-    // --------- SHOW (GET) ------------
+    // --------- SHOW FRIENDS (GET) ------------
     @GetMapping("/profile/friends")
     public String showFriends(Model model) {
 
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
+        // ------------- GET CURRENT USER FROM SESSION -------------
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
+        User currentUser = new User(user); // 2. set new user to user ^
         model.addAttribute("currentUser", currentUser);// 2. Show current user on form
 
-        model.addAttribute("friends", currentUser.getFriends()); // 2. Show a list of users attached to current user
+        List<Friendship> friendRequests = friendshipRepo.findFriendshipsByFriendId(currentUser.getId());
+
+        for(Friendship friendRequest: friendRequests){
+            if (!friendRequest.isAccepted()){
+                List<Friendship> friendRequestList = new ArrayList<>();
+                friendRequestList.add(friendRequest);
+                model.addAttribute("friendRequestList", friendRequestList);
+            }
+        }
+
+        // ------------- SHOW USER'S FRIENDS -------------
+        model.addAttribute("friendRequests", friendshipRepo.findFriendshipsByFriendId(currentUser.getId())); // List of users where the friend id is equal to the current user's id
+        model.addAttribute("friends", friendshipRepo.findFriendshipsByUserIdOrFriendId(currentUser.getId(), currentUser.getId())); // List of all users in the friendship table
+
 
         return "users/connections";
     }
@@ -52,106 +70,79 @@ public class ConnectionsController {
         User friend = usersRepo.getUserById(friendId);
         model.addAttribute("friend", friend);// 3. Show current user on page
 
-        // ------------- CHECK FOR FRIEND LIST(s) -------------
-        if (friend.getFriends() == null) { // if there is no friends list -->
+        // --------- FRIENDSHIP KEY ------------
+        FriendshipKey friendshipId = new FriendshipKey(currentUser.getId(), friend.getId());
 
-            List<User> newFriends = new ArrayList<>(); // 1. Make a new friends list
-            friend.setFriends(newFriends); // 2. give the new friends list to User
+        // --------- GET CURRENT FRIENDSHIPS ------------
+        Friendship existingFriendshipId = friendshipRepo.findFriendshipByUserIdAndFriendId(currentUser.getId(), friendId);
+        Friendship existingFriendshipIdReverse = friendshipRepo.findFriendshipByUserIdAndFriendId(friendId, currentUser.getId());
+
+        // --------- CHECK FRIENDSHIPS ------------
+        if (existingFriendshipId == null && existingFriendshipIdReverse == null) {
+
+            // --------- NEW INSTANCE OF A FRIENDSHIP (FALSE UNTIL ACCEPTED) ------------
+            Friendship userToFriend = new Friendship(friendshipId, currentUser, friend, false); // Not friends just yet (pending approval)
+
+            // --------- SAVE TO DB -----------
+            friendshipRepo.save(userToFriend); // 3. save the list of users to the current users information
 
         }
-        if (currentUser.getFriends() == null) { // if there is no friends list -->
 
-            List<User> newFriends = new ArrayList<>(); // 1. Make a new friends list
-            currentUser.setFriends(newFriends); // 2. give the new friends list to User
 
-        }
-
-        // --------- ADD USERS TO EACH OTHERS FRIENDS LIST------------
-        friend.getFriends().add(currentUser);
-        friend.setFriends(friend.getFriends());
-
-        currentUser.getFriends().add(friend);
-        currentUser.setFriends(currentUser.getFriends());
-
-        // --------- SAVE TO DB -----------
-        usersRepo.save(currentUser); // 3. save the list of users to the current users information
-        usersRepo.save(friend); // 3. save the list of users to the current users information
-
-        // --------- REDISPLAY THE GET FRIEND INFORMATION AFTER POST -----------
-        model.addAttribute("currentUser", currentUser);// 2. Show current user on form
-        model.addAttribute("friends", currentUser.getFriends()); // 2. Show a list of users attached to current user
-        model.addAttribute("users", usersRepo.findAll()); // 1. Show a list of users on Progeny
+        // --------- DISPLAY INFORMATION VARIABLES -----------
+        model.addAttribute("currentUser", currentUser);// 1. Show current user on form
+        model.addAttribute("friends", friendshipRepo.findFriendshipsByUserId(currentUser.getId())); // 2. Show a list of users attached to current user
+        model.addAttribute("users", usersRepo.findAll()); // 3. Show a list of users on Progeny
 
 
         return "users/connections";
     }
 
+    // --------- CONFIRM FRIEND (POST)------------
+    @PostMapping("/profile/friends/confirm-friend")
+    public String confirmFriendship(@RequestParam long userId, @RequestParam long friendId) {
 
-    // --------- DELETE CONNECTION (POST) ------------
-    @PostMapping("/profile/friends/delete")
-    public String postDelete(@RequestParam long deleteId, Model model) {
+        // ------------- GET FRIENDSHIP -------------
+        Friendship pendingFriendship = friendshipRepo.findFriendshipByUserIdAndFriendId(userId, friendId);
 
-        // ------------- GET CURRENT USER FROM SESSION -------------
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
-        User currentUser = new User(user); // 2. set new user to user ^
-        model.addAttribute("currentUser", currentUser);// 3. Show current user on page
+        // ------------- CHANGE FRIENDSHIP STATUS -------------
+        pendingFriendship.setAccepted(true);
 
-        // 1. Find the user in the user Repo by the id being passed in
-        User deleteUser = usersRepo.getOne(deleteId);
-
-        // 2. Delete the connection to the user in the friends joining table
-        List<User> friendsList = deleteUser.getFriends(); // 1. get list of friends
-        for (int i = 0; i < friendsList.size(); i++) { // 2. iterate through friends list
-
-            if (friendsList.get(i).getId() == currentUser.getId()) {
-
-                deleteUser.getFriends().remove(i);
-
-            }
-        }
-        deleteUser.setFriends(deleteUser.getFriends());
-
-
-        List<User> userFriendList = currentUser.getFriends(); // 1. get list of friends
-        for (int i = 0; i < userFriendList.size(); i++) { // 2. iterate through friends list
-
-            if (userFriendList.get(i).getId() == deleteUser.getId()) {
-
-                currentUser.getFriends().remove(i);
-
-            }
-        }
-        currentUser.setFriends(currentUser.getFriends());
-
-        // 3. Save the changes
-        usersRepo.save(currentUser); // 3. save the removal of friend to the current users information
-        usersRepo.save(deleteUser); // 3. save the removal of friend to the current users information
+        // --------- SAVE TO DB -----------
+        friendshipRepo.save(pendingFriendship); // 3. save the list of users to the current users information
 
         return "redirect:/profile/friends";
     }
 
+    // --------- IGNORE FRIEND REQUEST (POST)------------
+    @PostMapping("/profile/friends/ignore-friend")
+    public String ignoreFriendship(@RequestParam long userId, @RequestParam long friendId) {
 
-    // --------- SEARCH FOR FRIEND (GET)------------
-    @GetMapping("/profile/friends/search")
-    public String showUsers(Model model) {
+        // ------------- REMOVE FRIENDSHIP REQUEST -------------
+        friendshipRepo.deleteByUserIdAndFriendId(userId, friendId);
 
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
-        model.addAttribute("currentUser", currentUser);// 2. Show current user on form
-
-        model.addAttribute("friends", currentUser.getFriends()); // 2. Show a list of users attached to current user
-
-        return "users/connections";
+        return "redirect:/profile/friends";
     }
 
-    // --------- SEARCH FOR FRIEND (POST)------------
-    @PostMapping("/profile/friends/search")
+    // --------- DELETE CONNECTION (POST) ------------
+    @PostMapping("/profile/friends/delete")
+    public String deleteFriendship(@RequestParam long userId, @RequestParam long friendId) {
+
+        // ------------- REMOVE FRIENDSHIP -------------
+        friendshipRepo.deleteByUserIdAndFriendId(userId, friendId);
+
+        return "redirect:/profile/friends";
+    }
+
+    // --------- SEARCH PROGENY USERS (POST)------------
+    @GetMapping("/profile/friends/search")
     public String searchUsers(@RequestParam String search, Model model) {
+
 
         // ------------- GET CURRENT USER FROM SESSION -------------
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); //1. Get the current user
         User currentUser = new User(user); // 2. set new user to user ^
-        model.addAttribute("currentUser", currentUser);// 3. Show current user on page
-        model.addAttribute("friends", currentUser.getFriends()); // 4. Show a list of users attached to current user
+
 
         if (search.equals("all")) {
 
@@ -164,8 +155,27 @@ public class ConnectionsController {
             List<User> foundUsers = usersRepo.findAllByFirstNameLikeOrLastNameLike(search, search);
             model.addAttribute("foundUsers", foundUsers);
 
+            // ------------- GET CURRENT FRIENDS -------------
+            Friendship currentFriends = friendshipRepo.findFriendshipByUserIdAndFriendId(currentUser.getId(), foundUsers.iterator().next().getId());
+            model.addAttribute("foundFriends", currentFriends);
+
         }
 
+        List<Friendship> friendRequests = friendshipRepo.findFriendshipsByFriendId(currentUser.getId());
+
+        for(Friendship friendRequest: friendRequests){
+            if (!friendRequest.isAccepted()){
+                List<Friendship> friendRequestList = new ArrayList<>();
+                friendRequestList.add(friendRequest);
+                model.addAttribute("friendRequestList", friendRequestList);
+            }
+        }
+
+        // --------- DISPLAY INFORMATION VARIABLES -----------
+        model.addAttribute("currentUser", currentUser);// 1. Show current user on form
+        model.addAttribute("friends", friendshipRepo.findFriendshipsByUserId(currentUser.getId())); // 2. Show a list of users attached to current user
+        model.addAttribute("friendRequests", friendshipRepo.findFriendshipsByFriendId(currentUser.getId())); // List of users where the friend id is equal to the current user's id
+        model.addAttribute("users", usersRepo.findAll()); // 3. Show a list of users on Progeny
 
         return "users/connections";
     }

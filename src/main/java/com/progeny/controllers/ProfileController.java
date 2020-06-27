@@ -1,7 +1,9 @@
 package com.progeny.controllers;
 
+import com.progeny.model.Friendship;
 import com.progeny.model.Recording;
 import com.progeny.model.User;
+import com.progeny.repositories.FriendshipRepository;
 import com.progeny.repositories.GroupRepository;
 import com.progeny.repositories.RecordingRepository;
 import com.progeny.repositories.UserRepository;
@@ -20,14 +22,14 @@ public class ProfileController {
 
     private UserRepository userRepo;
     private RecordingRepository recordingRepo;
-    private GroupRepository groupsRepo;
+    private FriendshipRepository friendshipRepo;
 
     // ------------ CONSTRUCTOR METHOD ---------------
     // --------- AKA DEPENDENCY INJECTION ------------
-    public ProfileController(UserRepository userRepo, RecordingRepository recordingRepo, GroupRepository groupsRepo) {
+    public ProfileController(UserRepository userRepo, RecordingRepository recordingRepo, FriendshipRepository friendshipRepo) {
         this.userRepo = userRepo;
         this.recordingRepo = recordingRepo;
-        this.groupsRepo = groupsRepo;
+        this.friendshipRepo = friendshipRepo;
     }
 
 
@@ -42,8 +44,7 @@ public class ProfileController {
 
 
         // ------------ GET THE CURRENT USERS FRIENDS ---------------
-        model.addAttribute("friends", currentUser.getFriends()); // Show a list of users attached to current user
-
+        model.addAttribute("friends", friendshipRepo.findFriendshipsByUserId(currentUser.getId())); // 2. Show a list of users attached to current user
 
         // ------------ IF NO RECORDINGS LIST ---------------
         if(user.getRecordings() == null){ // if there is no friends list -->
