@@ -17,3 +17,4 @@ Progeny is a full-stack web application that allows users to create and save rec
    * SpringBoot Framework
    * MySQL database
    * Filestack API
+   * MediaStream Recording API
